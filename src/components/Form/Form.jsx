@@ -22,10 +22,10 @@ const Form = () => {
   }, [country, street]);
 
   const onChangeCountry = (e) => {
-    setStreet(e.target.value);
+    setCountry(e.target.value);
   };
   const onChangeStreet = (e) => {
-    setCountry(e.target.value);
+    setStreet(e.target.value);
   };
   const onChangeSubject = (e) => {
     setSubject(e.target.value);
