@@ -18,7 +18,7 @@ const ProductItem = ({ product, className, onAdd }) => {
         </span>
       </div>
 
-      <Button className={styles.add - btn} onClick={onAddHandler}>
+      <Button className={styles.addBtn} onClick={onAddHandler}>
         Add to Cart
       </Button>
     </div>
