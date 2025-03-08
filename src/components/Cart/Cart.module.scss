@@ -25,11 +25,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 5px 20px 5px 14px;
 }
-.itemInner {
-  display: flex;
-  align-items: center;
-}
+
 .image img {
   border-radius: 5px;
 }
@@ -42,22 +40,29 @@ html {
   gap: 10px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
 }
 
 .header {
   display: flex;
   font-size: 1rem;
-  flex-wrap: wrap;
-  justify-content: center;
-  text-align: center;
+  padding: 21px 20px 14px;
+  align-items: center;
 }
-
+h1 {
+  font-size: 17px;
+  line-height: 21px;
+  text-transform: uppercase;
+  flex-grow: 1;
+  padding: 0;
+  margin: 0;
+}
 .title {
   font-size: 2rem;
   margin-right: 1em;
+  font-size: 15px;
+  line-height: 18px;
+  font-weight: 700;
+  padding: 3px 0;
 }
 
 .button {
@@ -68,6 +73,9 @@ html {
   color: white;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 15px;
+  line-height: 18px;
+  font-weight: 500;
 }
 
 /* Медиа-запросы для адаптации на маленьких экранах */
@@ -113,6 +121,46 @@ html {
     padding: 0.5em 1em;
   }
 }
+.label {
+  flex-grow: 1;
+}
 .image img {
+  text-align: center;
   width: 50px;
+  height: 50px;
+  margin-right: 11px;
+}
+.price {
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 500;
+  padding: 4px 0;
+}
+.textField textarea {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  height: 46px;
+  font-size: 17px;
+  line-height: 21px;
+  -webkit-font-smoothing: antialiased;
+  padding: 12px 20px 13px;
+  box-sizing: border-box;
+  display: block;
+  outline: none;
+  border: none;
+  border-radius: 0;
+  resize: none;
+  color: gray;
+  -webkit-user-select: auto;
+  user-select: auto;
+  cursor: auto;
+  width: 100%;
+}
+.textFieldHint {
+  font-size: 14px;
+  line-height: 18px;
+  -webkit-font-smoothing: antialiased;
+  padding: 10px 20px 24px;
+  color: gray;
 }
