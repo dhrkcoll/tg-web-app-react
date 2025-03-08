@@ -39,7 +39,7 @@ const ProductItem = ({ product }) => {
   return (
     <div className={styles.product}>
       <div className={styles.productImage}>
-        <img src="../../../public/860.jpg" alt={product.title} />
+        <img src={product.image_path} alt={product.title} />
       </div>
 
       <div>

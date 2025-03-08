@@ -16,42 +16,48 @@ const products = [
     title: "Burger",
     price: 200,
     description: "Its much more tasty burger",
-    image_path: image,
+    image_path:
+      "https://recipes.av.ru//media/recipes/100608_picture_XNlaEKL.jpg",
   },
   {
     id: 2,
     title: "Burger",
     price: 200,
     description: "Its much more tasty burger",
-    image_path: image,
+    image_path:
+      "https://recipes.av.ru//media/recipes/100608_picture_XNlaEKL.jpg",
   },
   {
     id: 3,
     title: "Pepperoni Pizza",
     price: 200,
     description: "Its much more tasty burger",
-    image_path: image,
+    image_path:
+      "https://recipes.av.ru//media/recipes/100608_picture_XNlaEKL.jpg",
   },
   {
     id: 4,
     title: "Hot Dog",
     price: 400,
     description: "Its much more tasty burger",
-    image_path: image,
+    image_path:
+      "https://recipes.av.ru//media/recipes/100608_picture_XNlaEKL.jpg",
   },
   {
     id: 5,
     title: "Pizza",
     price: 200,
     description: "Its much more tasty burger",
-    image_path: image,
+    image_path:
+      "https://recipes.av.ru//media/recipes/100608_picture_XNlaEKL.jpg",
   },
   {
     id: 6,
     title: "CheesBurger King",
     price: 200,
     description: "Its much more tasty burger",
-    image_path: image,
+    image_path:
+      "https://recipes.av.ru//media/recipes/100608_picture_XNlaEKL.jpg",
   },
 ];
 
