@@ -1,0 +1,118 @@
+// .cart {
+//   height: 100vh;
+//   gap: 10px;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   flex-wrap: wrap;
+//   justify-content: center;
+// }
+// .header {
+//   display: flex;
+//   font-size: 1rem;
+// }
+// .title {
+//   font-size: 2rem;
+//   margin-right: 2em;
+// }
+// .button {
+//   font-size: 1em;
+//   padding: 0.5em 0.5em;
+//   border: none;
+//   background-color: green;
+// }
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.itemInner {
+  display: flex;
+  align-items: center;
+}
+.image img {
+  border-radius: 5px;
+}
+html {
+  font-size: 16px; /* Базовый размер шрифта */
+}
+
+.cart {
+  height: 100vh;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  font-size: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+}
+
+.title {
+  font-size: 2rem;
+  margin-right: 1em;
+}
+
+.button {
+  font-size: 1em;
+  padding: 0.7em 1.5em;
+  border: none;
+  background-color: green;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Медиа-запросы для адаптации на маленьких экранах */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+    margin-right: 0.5em;
+  }
+
+  .button {
+    padding: 0.8em 1.6em;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 12px;
+  }
+
+  .title {
+    font-size: 1.2rem;
+  }
+
+  .button {
+    padding: 0.6em 1.2em;
+  }
+}
+
+@media (max-width: 320px) {
+  html {
+    font-size: 10px;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+
+  .button {
+    padding: 0.5em 1em;
+  }
+}
+.image img {
+  width: 50px;
+}
