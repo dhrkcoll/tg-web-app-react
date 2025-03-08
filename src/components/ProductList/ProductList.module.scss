@@ -1,9 +1,7 @@
 .list {
+  gap: 10px;
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   justify-content: center;
-}
-.item {
-  margin-right: 10px;
-  margin-bottom: 10px;
 }

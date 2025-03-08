@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useCallback, useState } from "react";
 import styles from "./ProductList.module.scss";
 import ProductItem from "../ProductItem/ProductItem";
 import { useTelegram } from "../../hooks/useTelegram.js";
+import image from "../../../public/860.png";
 
 const getTotalPrice = (items = []) => {
   return items.reduce((acc, item) => {
@@ -10,17 +11,53 @@ const getTotalPrice = (items = []) => {
 };
 
 const products = [
-  { id: 1, title: "Jeans", price: 5000, description: "Blue, straight" },
-  { id: 2, title: "Jacket", price: 12000, description: "Black" },
-  { id: 3, title: "Shoes", price: 3000, description: "Yellow" },
-  { id: 4, title: "Hat", price: 1000, description: "Brown" },
-  { id: 5, title: "Dress", price: 16000, description: "Red" },
-  { id: 6, title: "Both", price: 5000, description: "Blue, straight" },
+  {
+    id: 1,
+    title: "Burger",
+    price: 200,
+    description: "Its much more tasty burger",
+    image_path: image,
+  },
+  {
+    id: 2,
+    title: "Burger",
+    price: 200,
+    description: "Its much more tasty burger",
+    image_path: image,
+  },
+  {
+    id: 3,
+    title: "Burger",
+    price: 200,
+    description: "Its much more tasty burger",
+    image_path: image,
+  },
+  {
+    id: 4,
+    title: "Burger",
+    price: 200,
+    description: "Its much more tasty burger",
+    image_path: image,
+  },
+  {
+    id: 5,
+    title: "Burger",
+    price: 200,
+    description: "Its much more tasty burger",
+    image_path: image,
+  },
+  {
+    id: 6,
+    title: "Burger",
+    price: 200,
+    description: "Its much more tasty burger",
+    image_path: image,
+  },
 ];
 
 const ProductList = () => {
   const [addedItems, setAddedItems] = React.useState([]);
-  const { tg } = useTelegram();
+  const { tg, queryId } = useTelegram();
 
   const onAdd = (product) => {
     const alreadyAdded = addedItems.find((item) => item.id === product.id);
@@ -43,10 +80,35 @@ const ProductList = () => {
       });
     }
   };
+
+  const onSendData = React.useCallback(() => {
+    const data = {
+      products: addedItems,
+      totalPrice: getTotalPrice(addedItems),
+      queryId,
+    };
+
+    fetch(`http://localhost:8000/web-data`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+  }, []);
+
+  useEffect(() => {
+    tg.onEvent("mainButtonClicked", onSendData);
+
+    return () => {
+      tg.offEvent("mainButtonClicked", onSendData);
+    };
+  }, [onSendData]);
+
   return (
     <div className={styles.list}>
       {products.map((item) => {
-        return <ProductItem product={item} onAdd={onAdd} className={"item"} />;
+        return <ProductItem key={item.id} product={item} onAdd={onAdd} />;
       })}
     </div>
   );
