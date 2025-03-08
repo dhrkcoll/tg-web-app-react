@@ -13,51 +13,51 @@ const getTotalPrice = (items = []) => {
 const products = [
   {
     id: 1,
-    title: "Burger",
+    title: "Бургер",
     price: 200,
-    description: "Its much more tasty burger",
+    description: "Бургер с котлетой>",
     image_path:
       "https://recipes.av.ru//media/recipes/100608_picture_XNlaEKL.jpg",
   },
   {
     id: 2,
-    title: "Burger",
-    price: 200,
-    description: "Its much more tasty burger",
+    title: "Чизбургер",
+    price: 300,
+    description: "Чизбургер с сыром",
     image_path:
-      "https://recipes.av.ru//media/recipes/100608_picture_XNlaEKL.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/4/43/Burger_King_Quad_Stacker_cheeseburger.jpg",
   },
   {
     id: 3,
-    title: "Pepperoni Pizza",
+    title: "Пицца четыре сезона",
     price: 200,
-    description: "Its much more tasty burger",
+    description: "Пицца с четыремя начинками",
     image_path:
-      "https://recipes.av.ru//media/recipes/100608_picture_XNlaEKL.jpg",
+      "https://n1s1.hsmedia.ru/59/36/c9/5936c9e68910131291645f5a16f64ff5/728x546_1_1433a5b929e0c874a97a0294863f7d17@1706x1280_0xQG2bzfJA_6913784370140981657.jpg.webp",
   },
   {
     id: 4,
-    title: "Hot Dog",
-    price: 400,
-    description: "Its much more tasty burger",
+    title: "Хот-Дог",
+    price: 150,
+    description: "Горячая но не собака",
     image_path:
-      "https://recipes.av.ru//media/recipes/100608_picture_XNlaEKL.jpg",
+      "https://images.gastronom.ru/EgeRAvZr5uieLU3HG5Do-YZMxMKY7aq29aDHkks7tyM/pr:recipe-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzLzNhNmFmZWY3LTE3N2YtNGRhOC1hMWI3LWJiZTEyZmVjOGM1Yi5qcGc.webp",
   },
   {
     id: 5,
-    title: "Pizza",
+    title: "Пицца пепперони",
     price: 200,
-    description: "Its much more tasty burger",
+    description: "Пицца с острым салями",
     image_path:
-      "https://recipes.av.ru//media/recipes/100608_picture_XNlaEKL.jpg",
+      "https://www.chefmarket.ru/blog/wp-content/uploads/2020/07/hot-homemade-pepperoni-2000x1200.jpg",
   },
   {
     id: 6,
-    title: "CheesBurger King",
+    title: "Попкорн",
     price: 200,
-    description: "Its much more tasty burger",
+    description: "Сладкий попкорн",
     image_path:
-      "https://recipes.av.ru//media/recipes/100608_picture_XNlaEKL.jpg",
+      "https://e52e3ee2-628b-49a9-9e26-e5a61fd72b20.selcdn.net/upload/webp/b2d/1920_1080_1/%D0%A1%D0%BB%D0%B0%D0%B4%D0%BA%D0%B8%D0%B9_%D0%BF%D0%BE%D0%BF%D0%BA%D0%BE%D1%80%D0%BD.webp",
   },
 ];
 
