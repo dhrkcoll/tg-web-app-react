@@ -1,7 +1,15 @@
 .list {
-  gap: 10px;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: center;
+  // gap: 10px;
+  // display: flex;
+  // align-items: center;
+  // flex-wrap: wrap;
+  // justify-content: center;
+
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(195px, 2fr)
+  ); /* Адаптивная сетка */
+  gap: 10px; /* Отступы между карточками */
+  align-items: stretch; /* Выравниваем высоту карточек */
 }
