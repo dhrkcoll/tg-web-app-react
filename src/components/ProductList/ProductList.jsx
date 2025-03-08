@@ -14,7 +14,7 @@ const products = [
   {
     id: 1,
     title: "Бургер",
-    price: 200,
+    price: 250,
     description: "Бургер с котлетой>",
     image_path:
       "https://recipes.av.ru//media/recipes/100608_picture_XNlaEKL.jpg",
@@ -30,10 +30,10 @@ const products = [
   {
     id: 3,
     title: "Пицца четыре сезона",
-    price: 200,
+    price: 600,
     description: "Пицца с четыремя начинками",
     image_path:
-      "https://n1s1.hsmedia.ru/59/36/c9/5936c9e68910131291645f5a16f64ff5/728x546_1_1433a5b929e0c874a97a0294863f7d17@1706x1280_0xQG2bzfJA_6913784370140981657.jpg.webp",
+      "https://richifamily.ru/upload/iblock/561/yyzcj2lcve7fgtye5ntrdlb5ysyd7nyz.jpeg",
   },
   {
     id: 4,
@@ -46,7 +46,7 @@ const products = [
   {
     id: 5,
     title: "Пицца пепперони",
-    price: 200,
+    price: 450,
     description: "Пицца с острым салями",
     image_path:
       "https://www.chefmarket.ru/blog/wp-content/uploads/2020/07/hot-homemade-pepperoni-2000x1200.jpg",
@@ -54,7 +54,7 @@ const products = [
   {
     id: 6,
     title: "Попкорн",
-    price: 200,
+    price: 250,
     description: "Сладкий попкорн",
     image_path:
       "https://e52e3ee2-628b-49a9-9e26-e5a61fd72b20.selcdn.net/upload/webp/b2d/1920_1080_1/%D0%A1%D0%BB%D0%B0%D0%B4%D0%BA%D0%B8%D0%B9_%D0%BF%D0%BE%D0%BF%D0%BA%D0%BE%D1%80%D0%BD.webp",
