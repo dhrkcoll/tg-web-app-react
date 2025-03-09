@@ -4,3 +4,36 @@
   box-sizing: border-box;
   list-style: none;
 }
+html {
+  font-size: 10px; /* Базовый размер для 320px */
+}
+
+@media (min-width: 321px) {
+  html {
+    font-size: 12px; /* Для 480px */
+  }
+}
+
+@media (min-width: 481px) {
+  html {
+    font-size: 14px; /* Для 768px */
+  }
+}
+
+@media (min-width: 769px) {
+  html {
+    font-size: 16px; /* Для 1024px */
+  }
+}
+
+@media (min-width: 1025px) {
+  html {
+    font-size: 18px; /* Для 1280px */
+  }
+}
+
+@media (min-width: 1281px) {
+  html {
+    font-size: 20px; /* Для 1440px и выше */
+  }
+}

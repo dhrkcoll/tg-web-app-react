@@ -6,11 +6,8 @@
   // justify-content: center;
 
   display: grid;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(195px, 2fr)
-  ); /* Адаптивная сетка */
+  grid-template-columns: repeat(auto-fill, minmax(190px, 2fr));
   background-color: var(--tg-theme-bg-color);
-  gap: 10px; /* Отступы между карточками */
-  align-items: stretch; /* Выравниваем высоту карточек */
+  gap: 10px;
+  align-items: stretch;
 }

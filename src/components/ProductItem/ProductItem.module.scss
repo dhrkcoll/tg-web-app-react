@@ -1,50 +1,3 @@
-// * {
-//   font-weight: 700;
-// }
-// .product {
-//   position: relative;
-//   display: flex;
-//   flex-direction: column;
-//   text-align: center;
-//   justify-content: center;
-//   border: 1px solid var(--tg-theme-button-color);
-//   padding: 15px;
-//   width: 170px;
-// }
-// // .img {
-// //   width: 100%;
-// //   background-color: lightgray;
-// //   height: 100px;
-// //   margin: 0 auto;
-// //   background-color: var(--tg-theme-button-color);
-// // }
-// .description {
-//   font-size: 0.8em;
-// }
-// .addBtn {
-//   width: 100%;
-// }
-
-// .productImage img {
-//   width: 100%;
-//   height: 100%;
-//   margin-bottom: 0.1rem;
-// }
-// .amountProduct {
-//   position: absolute;
-//   top: 20px;
-//   right: 20px;
-//   width: 20px;
-//   height: 20px;
-//   border-radius: 50%;
-//   background-color: orange;
-// }
-// .productTitle {
-//   margin-bottom: 0.5rem;
-// }
-// .productPrice {
-//   margin-bottom: 0.5rem;
-// }
 * {
   font-weight: 700;
   box-sizing: border-box;
@@ -58,14 +11,14 @@
   flex-direction: column;
   text-align: center;
   justify-content: space-between;
+
   padding: 15px;
-  width: 190px;
+  min-width: 120px;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   height: 100%;
-  flex: 1 1 auto;
-  min-height: 200px; /* Минимальная высота */
+  min-height: 200px;
 }
 
 // .product:hover {
@@ -74,8 +27,7 @@
 // }
 
 .description {
-  font-size: 0.8em;
-
+  font-size: 1em;
   margin-bottom: 0.5rem;
 }
 
@@ -94,17 +46,21 @@
   // background-color: darken(var(--tg-theme-button-color), 10%);
 }
 
-.productImage img {
+.productImage {
   width: 100%;
+  height: 160px;
+  overflow: hidden;
+}
+.productImage img {
+  max-width: 100%;
   height: 100%;
-  margin-bottom: 0.1rem;
+  margin-bottom: 0.3rem;
   border-radius: 8px;
   object-fit: cover;
 }
 
 .amountProduct {
   position: absolute;
-
   top: 20px;
   right: 20px;
   width: 20px;
@@ -121,12 +77,12 @@
 
 .productTitle {
   margin-bottom: 0.2em;
-  font-size: 2.5rem;
+  font-size: 2rem;
 }
 
 .productPrice {
   margin-bottom: 0.5em;
-  font-size: 1rem;
+  font-size: 1.5em;
   font-weight: bold;
 }
 @keyframes pop {
