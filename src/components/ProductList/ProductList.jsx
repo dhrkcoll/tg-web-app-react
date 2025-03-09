@@ -2,13 +2,7 @@ import React, { useEffect, useCallback, useState } from "react";
 import styles from "./ProductList.module.scss";
 import ProductItem from "../ProductItem/ProductItem";
 import { useTelegram } from "../../hooks/useTelegram.js";
-import image from "../../../public/860.png";
-
-const getTotalPrice = (items = []) => {
-  return items.reduce((acc, item) => {
-    return (acc += item.price);
-  }, 0);
-};
+import { useSelector } from "react-redux";
 
 const products = [
   {
@@ -62,6 +56,8 @@ const products = [
 ];
 
 const ProductList = () => {
+  const productsInCart = useSelector((state) => state.cart.items);
+  const totalPrice = useSelector((state) => state.cart.totalPrice);
   const [addedItems, setAddedItems] = React.useState([]);
   const { tg, queryId } = useTelegram();
 
@@ -77,12 +73,12 @@ const ProductList = () => {
 
     setAddedItems(newItems);
 
-    if (newItems.length === 0) {
+    if (productsInCart.length === 0) {
       tg.MainButton.hide();
     } else {
       tg.MainButton.show();
       tg.MainButton.setParams({
-        text: `Buy ${getTotalPrice(newItems)}`,
+        text: `Buy ${totalPrice}`,
       });
     }
   };

@@ -52,6 +52,7 @@ const products = [
       "https://e52e3ee2-628b-49a9-9e26-e5a61fd72b20.selcdn.net/upload/webp/b2d/1920_1080_1/%D0%A1%D0%BB%D0%B0%D0%B4%D0%BA%D0%B8%D0%B9_%D0%BF%D0%BE%D0%BF%D0%BA%D0%BE%D1%80%D0%BD.webp",
   },
 ];
+
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.items);
   console.log(cartItems);
