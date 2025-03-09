@@ -41,25 +41,29 @@ const ProductItem = ({ product }) => {
       <div className={styles.productImage}>
         <img src={product.image_path} alt={product.title} />
       </div>
-
-      <div>
-        {amountProduct?.count >= 1 ? (
-          <span
-            className={`${styles.amountProduct} ${
-              isAnimating ? styles.popAnimation : ""
-            }`}
-          >
-            {amountProduct.count}
-          </span>
-        ) : (
-          ""
-        )}
+      {amountProduct?.count >= 1 ? (
+        <span
+          className={`${styles.amountProduct} ${
+            isAnimating ? styles.popAnimation : ""
+          }`}
+        >
+          {amountProduct.count}
+        </span>
+      ) : (
+        ""
+      )}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: "10px",
+        }}
+      >
         <h2 className={styles.productTitle}>{product.title}</h2>
 
-        <div className={styles.productPrice}>
-          <div>Стоимость:</div>
-          {product.price}₽
-        </div>
+        <div className={styles.productPrice}>{product.price}₽</div>
       </div>
       {amountProduct?.count >= 1 ? (
         <div style={{ display: "flex", gap: "5px" }}>
