@@ -58,7 +58,7 @@ const ProductItem = ({ product }) => {
 
         <div className={styles.productPrice}>
           <div>Стоимость:</div>
-          {product.price}руб.
+          {product.price}₽
         </div>
       </div>
       {amountProduct?.count >= 1 ? (
