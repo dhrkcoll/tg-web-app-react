@@ -31,9 +31,6 @@
 .image img {
   border-radius: 5px;
 }
-html {
-  font-size: 16px; /* Базовый размер шрифта */
-}
 
 .cart {
   height: 100vh;
@@ -78,49 +75,6 @@ h1 {
   font-weight: 500;
 }
 
-/* Медиа-запросы для адаптации на маленьких экранах */
-@media (max-width: 768px) {
-  html {
-    font-size: 14px;
-  }
-
-  .title {
-    font-size: 1.5rem;
-    margin-right: 0.5em;
-  }
-
-  .button {
-    padding: 0.8em 1.6em;
-  }
-}
-
-@media (max-width: 480px) {
-  html {
-    font-size: 12px;
-  }
-
-  .title {
-    font-size: 1.2rem;
-  }
-
-  .button {
-    padding: 0.6em 1.2em;
-  }
-}
-
-@media (max-width: 320px) {
-  html {
-    font-size: 10px;
-  }
-
-  .title {
-    font-size: 1rem;
-  }
-
-  .button {
-    padding: 0.5em 1em;
-  }
-}
 .label {
   flex-grow: 1;
 }
