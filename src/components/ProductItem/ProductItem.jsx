@@ -62,7 +62,7 @@ const ProductItem = ({ product }) => {
         </div>
       </div>
       {amountProduct?.count >= 1 ? (
-        <div>
+        <div style={{ display: "flex", gap: "5px" }}>
           <Button type={"plus"} title={"+"} onClick={onIncreaseHandler} />{" "}
           <Button type={"minus"} title={"-"} onClick={onDecreaseHandler} />
         </div>
