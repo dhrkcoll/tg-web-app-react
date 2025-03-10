@@ -30,7 +30,7 @@ const ProductItem = ({ product }) => {
     if (isAnimating) {
       const timeout = setTimeout(() => {
         setIsAnimating(false);
-      }, 300); // Длительность анимации
+      }, 300);
 
       return () => clearTimeout(timeout);
     }
@@ -62,6 +62,8 @@ const ProductItem = ({ product }) => {
         }}
       >
         <h2 className={styles.productTitle}>{product.title}</h2>
+
+        <div></div>
 
         <div className={styles.productPrice}>{product.price}₽</div>
       </div>

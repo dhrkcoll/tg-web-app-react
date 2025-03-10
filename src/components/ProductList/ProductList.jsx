@@ -58,54 +58,40 @@ const products = [
 const ProductList = () => {
   const productsInCart = useSelector((state) => state.cart.items);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
-  const [addedItems, setAddedItems] = React.useState([]);
   const { tg, queryId } = useTelegram();
 
-  const onAdd = (product) => {
-    const alreadyAdded = addedItems.find((item) => item.id === product.id);
-    let newItems = [];
-
-    if (alreadyAdded) {
-      newItems = addedItems.filter((item) => item.id !== product.id);
-    } else {
-      newItems = [...addedItems, product];
-    }
-
-    setAddedItems(newItems);
-
-    if (productsInCart.length === 0) {
-      tg.MainButton.hide();
-    } else {
-      tg.MainButton.show();
-      tg.MainButton.setParams({
-        text: `Buy ${totalPrice}`,
-      });
-    }
-  };
-
-  const onSendData = React.useCallback(() => {
-    const data = {
-      products: addedItems,
-      totalPrice: getTotalPrice(addedItems),
-      queryId,
-    };
-
-    fetch(`http://localhost:8000/web-data`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
+  if (productsInCart.length === 0) {
+    tg.MainButton.hide();
+  } else {
+    tg.MainButton.show();
+    tg.MainButton.setParams({
+      text: `Buy ${totalPrice}`,
     });
-  }, []);
+  }
 
-  useEffect(() => {
-    tg.onEvent("mainButtonClicked", onSendData);
+  // const onSendData = React.useCallback(() => {
+  //   const data = {
+  //     products: addedItems,
+  //     totalPrice: getTotalPrice(addedItems),
+  //     queryId,
+  //   };
 
-    return () => {
-      tg.offEvent("mainButtonClicked", onSendData);
-    };
-  }, [onSendData]);
+  //   fetch(`http://localhost:8000/web-data`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(data),
+  //   });
+  // }, []);
+
+  // useEffect(() => {
+  //   tg.onEvent("mainButtonClicked", onSendData);
+
+  //   return () => {
+  //     tg.offEvent("mainButtonClicked", onSendData);
+  //   };
+  // }, [onSendData]);
 
   return (
     <div className={styles.list}>
