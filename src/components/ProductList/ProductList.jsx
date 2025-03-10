@@ -40,6 +40,8 @@ const ProductList = () => {
           return <ProductItem key={item.id} product={item} />;
         })}
       </div>
+
+      <div>{totalPrice}</div>
     </>
   );
 };
