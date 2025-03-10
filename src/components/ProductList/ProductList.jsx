@@ -58,6 +58,7 @@ const products = [
 const ProductList = () => {
   const productsInCart = useSelector((state) => state.cart.items);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
+  const totalCount = productsInCart.reduce((sum, item) => sum + item.count, 0);
   const { tg, queryId } = useTelegram();
 
   useEffect(() => {
@@ -66,7 +67,7 @@ const ProductList = () => {
     } else {
       tg.MainButton.show();
       tg.MainButton.setParams({
-        text: `Купить за ${totalPrice}₽`,
+        text: `Купить за ${totalCount}₽`,
       });
     }
   }, [totalPrice, productsInCart]);
@@ -96,11 +97,14 @@ const ProductList = () => {
   // }, [onSendData]);
 
   return (
-    <div className={styles.list}>
-      {products.map((item) => {
-        return <ProductItem key={item.id} product={item} />;
-      })}
-    </div>
+    <>
+      <div className={styles.list}>
+        {products.map((item) => {
+          return <ProductItem key={item.id} product={item} />;
+        })}
+      </div>
+      <div>{totalPrice}</div>
+    </>
   );
 };
 
