@@ -10,7 +10,7 @@ const ProductItem = ({ product }) => {
   const amountProduct = useSelector((state) =>
     state.cart.items.find((item) => item.id === product.id)
   );
-
+  // console.log(amountProduct);
   const [isAnimating, setIsAnimating] = useState(false);
 
   const onAddHandler = () => {
@@ -67,7 +67,7 @@ const ProductItem = ({ product }) => {
 
         <div className={styles.productPrice}>{product.price}₽</div>
       </div>
-      {amountProduct?.count >= 1 ? (
+      {amountProduct?.count > 0 ? (
         <div style={{ display: "flex", gap: "5px" }}>
           <Button type={"plus"} title={"+"} onClick={onIncreaseHandler} />{" "}
           <Button type={"minus"} title={"-"} onClick={onDecreaseHandler} />

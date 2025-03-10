@@ -58,6 +58,7 @@ const products = [
 const ProductList = () => {
   const productsInCart = useSelector((state) => state.cart.items);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
+
   const { tg, queryId } = useTelegram();
 
   useEffect(() => {
