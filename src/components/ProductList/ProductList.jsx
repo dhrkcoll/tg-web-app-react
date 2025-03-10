@@ -96,7 +96,7 @@ const ProductList = () => {
   return (
     <div className={styles.list}>
       {products.map((item) => {
-        return <ProductItem key={item.id} product={item} onAdd={onAdd} />;
+        return <ProductItem key={item.id} product={item} />;
       })}
     </div>
   );
