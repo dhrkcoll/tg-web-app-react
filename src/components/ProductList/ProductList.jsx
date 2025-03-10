@@ -60,14 +60,16 @@ const ProductList = () => {
   const totalPrice = useSelector((state) => state.cart.totalPrice);
   const { tg, queryId } = useTelegram();
 
-  if (productsInCart.length === 0) {
-    tg.MainButton.hide();
-  } else {
-    tg.MainButton.show();
-    tg.MainButton.setParams({
-      text: `Buy ${totalPrice}`,
-    });
-  }
+  useEffect(() => {
+    if (productsInCart.length === 0) {
+      tg.MainButton.hide();
+    } else {
+      tg.MainButton.show();
+      tg.MainButton.setParams({
+        text: `Купить за ${totalPrice}₽`,
+      });
+    }
+  }, [totalPrice, productsInCart]);
 
   // const onSendData = React.useCallback(() => {
   //   const data = {

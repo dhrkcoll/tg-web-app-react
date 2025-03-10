@@ -78,7 +78,7 @@ const Cart = () => {
                 <p className={styles.description}>{item.description}</p>
               </div>
 
-              <div className={styles.price}>{item.price} руб.</div>
+              <div className={styles.price}>{item.price}₽</div>
             </li>
           );
         })}
