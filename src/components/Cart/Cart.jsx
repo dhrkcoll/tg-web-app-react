@@ -55,7 +55,7 @@ const products = [
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.items);
-  console.log(cartItems);
+
   return (
     <div className={styles.cart}>
       <div className={styles.header}>
