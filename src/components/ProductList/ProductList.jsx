@@ -23,7 +23,7 @@ const products = [
   },
   {
     id: 3,
-    title: "Пицца четыре сезона",
+    title: "Пицца четыре сезона с овощами и грибаки с соусом ",
     price: 600,
     description: "Пицца с четыремя начинками",
     image_path:
@@ -103,7 +103,6 @@ const ProductList = () => {
           return <ProductItem key={item.id} product={item} />;
         })}
       </div>
-      <div>{totalPrice}</div>
     </>
   );
 };

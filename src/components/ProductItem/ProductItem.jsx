@@ -4,6 +4,7 @@ import Button from "../Button/Button.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem, increaseItem } from "../../store/cartSlice.js";
 import { decreaseItem } from "../../store/cartSlice.js";
+import { GoDotFill } from "react-icons/go";
 
 const ProductItem = ({ product }) => {
   const dispatch = useDispatch();
@@ -63,7 +64,7 @@ const ProductItem = ({ product }) => {
       >
         <h2 className={styles.productTitle}>{product.title}</h2>
 
-        <div></div>
+        <div>|</div>
 
         <div className={styles.productPrice}>{product.price}₽</div>
       </div>
