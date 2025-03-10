@@ -4,14 +4,14 @@ import Button from "../Button/Button.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem, increaseItem } from "../../store/cartSlice.js";
 import { decreaseItem } from "../../store/cartSlice.js";
-import { GoDotFill } from "react-icons/go";
+import { Link } from "react-router-dom";
 
 const ProductItem = ({ product }) => {
   const dispatch = useDispatch();
   const amountProduct = useSelector((state) =>
     state.cart.items.find((item) => item.id === product.id)
   );
-  // console.log(amountProduct);
+
   const [isAnimating, setIsAnimating] = useState(false);
 
   const onAddHandler = () => {
@@ -39,35 +39,37 @@ const ProductItem = ({ product }) => {
 
   return (
     <div className={styles.product}>
-      <div className={styles.productImage}>
-        <img src={product.image_path} alt={product.title} />
-      </div>
-      {amountProduct?.count >= 1 ? (
-        <span
-          className={`${styles.amountProduct} ${
-            isAnimating ? styles.popAnimation : ""
-          }`}
+      <Link to={`/product/${product.id}`}>
+        <div className={styles.productImage}>
+          <img src={product.image_path} alt={product.title} />
+        </div>
+        {amountProduct?.count >= 1 ? (
+          <span
+            className={`${styles.amountProduct} ${
+              isAnimating ? styles.popAnimation : ""
+            }`}
+          >
+            {amountProduct.count}
+          </span>
+        ) : (
+          ""
+        )}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: "10px",
+          }}
         >
-          {amountProduct.count}
-        </span>
-      ) : (
-        ""
-      )}
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: "10px",
-        }}
-      >
-        <h2 className={styles.productTitle}>{product.title}</h2>
+          <h2 className={styles.productTitle}>{product.title}</h2>
 
-        <div>|</div>
+          <div>|</div>
 
-        <div className={styles.productPrice}>{product.price}₽</div>
-      </div>
+          <div className={styles.productPrice}>{product.price}₽</div>
+        </div>
+      </Link>
       {amountProduct?.count > 0 ? (
         <div style={{ display: "flex", gap: "5px" }}>
           <Button type={"plus"} title={"+"} onClick={onIncreaseHandler} />{" "}
