@@ -20,11 +20,7 @@ const ProductPage = () => {
   });
 
   useEffect(() => {
-    if (window.Telegram && tg) {
-      tg.BackButton.show();
-    } else {
-      backButton.hide();
-    }
+    tg.BackButton.show();
   }, []);
 
   useEffect(() => {
