@@ -4,6 +4,7 @@ import ProductItem from "../ProductItem/ProductItem";
 import { useTelegram } from "../../hooks/useTelegram.js";
 import { useSelector } from "react-redux";
 import { selectProducts } from "../../store/productsSlice";
+import Cart from "../Cart/Cart";
 
 const ProductList = () => {
   const products = useSelector(selectProducts);
@@ -13,6 +14,7 @@ const ProductList = () => {
     (sum, item) => item.price * item.count + sum,
     0
   );
+  const [isVisibleCart, setIsVisibleCart] = useState(false);
 
   const { tg, queryId } = useTelegram();
 
@@ -28,7 +30,9 @@ const ProductList = () => {
     }
   }, [totalPrice1, productsInCart]);
 
-  const onSendData = React.useCallback(() => {}, []);
+  const onSendData = useCallback(() => {
+    setIsVisibleCart((prev) => !prev);
+  }, []);
 
   useEffect(() => {
     tg.onEvent("mainButtonClicked", onSendData);
@@ -40,12 +44,15 @@ const ProductList = () => {
 
   return (
     <>
-      <div className={styles.list}>
-        {products.map((item) => {
-          return <ProductItem key={item.id} product={item} />;
-        })}
-      </div>
-      <div>{totalPrice1}</div>
+      {!isVisibleCart ? (
+        <div className={styles.list}>
+          {products.map((item) => {
+            return <ProductItem key={item.id} product={item} />;
+          })}
+        </div>
+      ) : (
+        <Cart />
+      )}
     </>
   );
 };
