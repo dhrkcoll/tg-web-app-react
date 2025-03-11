@@ -6,16 +6,16 @@ import CartItem from "../CartItem/CartItem";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.items);
+  const totalPrice = useSelector((state) => state.cart.totalPrice);
 
   return (
     <div className={styles.cart}>
       <div className={styles.header}>
         <h1 className={styles.title}>Твои заказы</h1>
-        <button className={styles.button}>
-          <Link to={"/"} style={{ color: "white" }}>
-            Изменить
-          </Link>
-        </button>
+
+        <Link to={"/"} style={{ color: "white" }} className={styles.button}>
+          Изменить
+        </Link>
       </div>
 
       <ul>
