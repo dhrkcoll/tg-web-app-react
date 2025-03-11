@@ -13,10 +13,14 @@ html {
   background-color: var(--tg-theme-secondary-bg-color);
 }
 button {
-  color: var(--tg-theme-button-color);
+  background-color: var(--tg-theme-button-color);
+  color: var(--tg-theme-button-text-color);
 }
 body {
   background-color: rgb(244, 244, 245);
+}
+a {
+  color: var(--tg-theme-link-color);
 }
 /* @media (min-width: 321px) {
   html {
