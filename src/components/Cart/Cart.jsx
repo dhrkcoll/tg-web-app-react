@@ -21,7 +21,7 @@ const Cart = () => {
   //     });
   //   }
   // }, [productsInCart]);
-  useTelegramButton(`Сделать заказ на ${totalPrice}`, cartItems === 0);
+  useTelegramButton(`Сделать заказ на ${totalPrice}`, cartItems !== 0);
 
   if (!cartItems) {
     return <div>Корзина пуста</div>;
