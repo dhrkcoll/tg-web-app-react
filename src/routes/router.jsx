@@ -8,5 +8,5 @@ export const router = createBrowserRouter([
   { index: "/", element: <ProductList /> },
   { path: "/form", element: <Form /> },
   { path: "/cart", element: <Cart /> },
-  { path: "/product/:productId", element: <ProductPage /> },
+  { path: "/products/:productId", element: <ProductPage /> },
 ]);

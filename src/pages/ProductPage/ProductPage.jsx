@@ -10,7 +10,24 @@ const ProductPage = () => {
   const productsInCart = useSelector((state) => state.cart.items);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
   const { productId } = useParams();
+
   const product = useSelector(selectProductById(productId));
+
+  useEffect(() => {
+    if (window.Telegram && tg) {
+      const backButton = tg.BackButton;
+    }
+
+    backButton.onClick(() => {
+      console.log("Back button clicked");
+    });
+
+    backButton.show();
+    return () => {
+      backButton.hide();
+      backButton.offClick();
+    };
+  }, []);
 
   useEffect(() => {
     if (productsInCart.length === 0) {
