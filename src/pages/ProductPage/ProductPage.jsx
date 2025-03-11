@@ -17,11 +17,22 @@ const ProductPage = () => {
 
   const onClickBackButton = useCallback(() => {
     navigate(-1);
-  });
+  }, [navigate]);
 
   useEffect(() => {
-    tg.BackButton.show();
-  }, []);
+    if (!window.Telegram || !tg) {
+      return;
+    }
+    const backButton = tg.BackButton;
+
+    backButton.show();
+    backButton.onClick(onClickBackButton);
+
+    return () => {
+      backButton.hide();
+      backButton.offClick(onClickBackButton);
+    };
+  }, [tg, onClickBackButton]);
 
   useEffect(() => {
     if (productsInCart.length === 0) {
