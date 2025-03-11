@@ -1,5 +1,5 @@
 import { useEffect, useCallback } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectProductById } from "../../store/productsSlice";
 import styles from "./ProductPage.module.scss";
@@ -51,9 +51,6 @@ const ProductPage = () => {
 
   return (
     <div className={styles.productContainer}>
-      <button className={styles.backButton}>
-        <Link to={"/"}>Назад</Link>
-      </button>
       <img src={product.image_path} alt={product.title} />
       <h1 className={styles.productTitle}>{product.title}</h1>
       <p className={styles.productDescription}>{product.description}</p>

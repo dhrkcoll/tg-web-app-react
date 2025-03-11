@@ -6,28 +6,8 @@
   padding: 10px;
   background-color: var(--tg-theme-bg-color);
   border-radius: 8px;
-
   max-width: 400px;
   margin: 0 auto;
-}
-.backButton {
-  background-color: #000000;
-  border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
-  font-size: 16px;
-  cursor: pointer;
-  position: absolute;
-  top: 16px;
-  left: 0px;
-  z-index: 10;
-}
-.backButton a {
-  color: white;
-}
-
-.back-button:hover {
-  background-color: #d81b60;
 }
 
 .productContainer img {
@@ -41,13 +21,11 @@
   font-size: 24px;
   font-weight: bold;
   margin: 12px 0;
-  color: #333;
   text-align: center;
 }
 
 .productDescription {
   font-size: 16px;
-  color: #666;
   text-align: center;
   margin: 8px 0;
 }
@@ -55,6 +33,5 @@
 .productPrice {
   font-size: 20px;
   font-weight: bold;
-  color: #000000;
   margin: 12px 0;
 }
