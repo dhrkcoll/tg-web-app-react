@@ -25,7 +25,7 @@ const ProductList = () => {
   //     });
   //   }
   // }, [productsInCart]);
-  useTelegramButton(`Посмотреть заказ`, productsInCart.length === 0);
+  useTelegramButton(`Посмотреть заказ`, productsInCart.length !== 0);
 
   const onClickMainButton = useCallback(() => {
     navigate("/cart");

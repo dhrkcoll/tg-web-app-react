@@ -4,22 +4,28 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CartItem from "../CartItem/CartItem";
 import { useTelegram } from "../../hooks/useTelegram.js";
+import { useTelegramButton } from "../../hooks/useTelegramButton";
 
 const Cart = () => {
   const { tg } = useTelegram();
   const cartItems = useSelector((state) => state.cart.items);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
 
-  useEffect(() => {
-    if (productsInCart.length === 0) {
-      tg.MainButton.hide();
-    } else {
-      tg.MainButton.show();
-      tg.MainButton.setParams({
-        text: `Сделать заказ на ${totalPrice}`,
-      });
-    }
-  }, [productsInCart]);
+  // useEffect(() => {
+  //   if (productsInCart.length === 0) {
+  //     tg.MainButton.hide();
+  //   } else {
+  //     tg.MainButton.show();
+  //     tg.MainButton.setParams({
+  //       text: `Сделать заказ на ${totalPrice}`,
+  //     });
+  //   }
+  // }, [productsInCart]);
+  useTelegramButton(`Сделать заказ на ${totalPrice}`, cartItems === 0);
+
+  if (!cartItems) {
+    return <div>Корзина пуста</div>;
+  }
 
   return (
     <div className={styles.cart}>
