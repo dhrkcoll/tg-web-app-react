@@ -1,16 +1,20 @@
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import styles from "./Cart.module.scss";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CartItem from "../CartItem/CartItem";
 import { useTelegram } from "../../hooks/useTelegram.js";
 import { useTelegramButton } from "../../hooks/useTelegramButton";
 
 const Cart = () => {
+  const navigate = useNavigate();
   const { tg } = useTelegram();
   const cartItems = useSelector((state) => state.cart.items);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
 
+  const onClickBackButton = useCallback(() => {
+    navigate(-1);
+  }, [navigate]);
   // useEffect(() => {
   //   if (productsInCart.length === 0) {
   //     tg.MainButton.hide();
@@ -22,6 +26,20 @@ const Cart = () => {
   //   }
   // }, [productsInCart]);
   useTelegramButton(`Сделать заказ на ${totalPrice}₽`, cartItems !== 0);
+  useEffect(() => {
+    if (!window.Telegram || !tg) {
+      return;
+    }
+    const backButton = tg.BackButton;
+
+    backButton.show();
+    backButton.onClick(onClickBackButton);
+
+    return () => {
+      backButton.hide();
+      backButton.offClick(onClickBackButton);
+    };
+  }, [tg, onClickBackButton]);
 
   if (!cartItems) {
     return <div>Корзина пуста</div>;
