@@ -15,7 +15,9 @@ html {
 button {
   color: var(--tg-theme-button-color);
 }
-
+body {
+  background-color: rgb(244, 244, 245);
+}
 /* @media (min-width: 321px) {
   html {
     font-size: 12px; 

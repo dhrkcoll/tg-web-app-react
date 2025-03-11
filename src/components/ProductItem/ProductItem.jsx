@@ -39,7 +39,7 @@ const ProductItem = ({ product }) => {
 
   return (
     <div className={styles.product}>
-      <Link to={`/product/${product.id}`}>
+      <Link to={`/products/${product.id}`}>
         <div className={styles.productImage}>
           <img src={product.image_path} alt={product.title} />
         </div>
