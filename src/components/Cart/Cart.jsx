@@ -1,12 +1,25 @@
-import React from "react";
+import { useEffect } from "react";
 import styles from "./Cart.module.scss";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CartItem from "../CartItem/CartItem";
+import { useTelegram } from "../../hooks/useTelegram.js";
 
 const Cart = () => {
+  const { tg } = useTelegram();
   const cartItems = useSelector((state) => state.cart.items);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
+
+  useEffect(() => {
+    if (productsInCart.length === 0) {
+      tg.MainButton.hide();
+    } else {
+      tg.MainButton.show();
+      tg.MainButton.setParams({
+        text: `Сделать заказ на ${totalPrice}`,
+      });
+    }
+  }, [productsInCart]);
 
   return (
     <div className={styles.cart}>

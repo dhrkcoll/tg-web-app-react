@@ -5,6 +5,7 @@ import { useTelegram } from "../../hooks/useTelegram.js";
 import { useSelector } from "react-redux";
 import { selectProducts } from "../../store/productsSlice";
 import { useNavigate } from "react-router-dom";
+import { useTelegramButton } from "../../hooks/useTelegramButton";
 
 const ProductList = () => {
   const navigate = useNavigate();
@@ -14,16 +15,17 @@ const ProductList = () => {
 
   const { tg, queryId } = useTelegram();
 
-  useEffect(() => {
-    if (productsInCart.length === 0) {
-      tg.MainButton.hide();
-    } else {
-      tg.MainButton.show();
-      tg.MainButton.setParams({
-        text: `Посмотреть заказ`,
-      });
-    }
-  }, [productsInCart]);
+  // useEffect(() => {
+  //   if (productsInCart.length === 0) {
+  //     tg.MainButton.hide();
+  //   } else {
+  //     tg.MainButton.show();
+  //     tg.MainButton.setParams({
+  //       text: `Посмотреть заказ`,
+  //     });
+  //   }
+  // }, [productsInCart]);
+  useTelegramButton(`Посмотреть заказ`, productsInCart.length === 0);
 
   const onClickMainButton = useCallback(() => {
     navigate("/cart");
