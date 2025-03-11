@@ -14,15 +14,17 @@ const ProductPage = () => {
   const product = useSelector(selectProductById(productId));
 
   useEffect(() => {
-    if (window.Telegram && tg) {
-      const backButton = tg.BackButton;
+    if (!window.Telegram || !tg) {
+      return;
     }
+    const backButton = tg.BackButton;
 
     backButton.onClick(() => {
       console.log("Back button clicked");
     });
 
     backButton.show();
+
     return () => {
       backButton.hide();
       backButton.offClick();
