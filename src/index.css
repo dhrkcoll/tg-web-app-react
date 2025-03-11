@@ -8,6 +8,12 @@
 
 html {
   font-size: 10px; /* Базовый размер для 320px */
+  font-family: "Roboto", sans-serif;
+  color: var(--tg-theme-text-color);
+  background-color: var(--tg-theme-text-color);
+}
+button {
+  color: var(--tg-theme-button-color);
 }
 
 /* @media (min-width: 321px) {

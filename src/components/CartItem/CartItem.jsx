@@ -13,7 +13,6 @@ const CartItem = ({ item }) => {
         <h2 className={styles.itemTitle}>
           {item.title} <span>{item?.count}Х</span>
         </h2>
-        <p className={styles.description}>{item.description}</p>
       </div>
 
       <div className={styles.price}>{totalPrice}₽</div>
