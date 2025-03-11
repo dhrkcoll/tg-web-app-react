@@ -21,6 +21,7 @@ const ProductList = () => {
       tg.MainButton.hide();
     } else {
       tg.MainButton.show();
+
       tg.MainButton.setParams({
         text: `Купить за ${totalPrice1}₽`,
       });

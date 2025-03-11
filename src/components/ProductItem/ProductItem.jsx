@@ -72,7 +72,7 @@ const ProductItem = ({ product }) => {
       </Link>
       {amountProduct?.count > 0 ? (
         <div style={{ display: "flex", gap: "5px" }}>
-          <Button type={"plus"} title={"+"} onClick={onAddHandler} />{" "}
+          <Button type={"plus"} title={"+"} onClick={onIncreaseHandler} />{" "}
           <Button type={"minus"} title={"-"} onClick={onDecreaseHandler} />
         </div>
       ) : (
