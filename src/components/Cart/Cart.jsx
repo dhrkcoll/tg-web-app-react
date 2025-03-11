@@ -12,10 +12,11 @@ const Cart = () => {
     <div className={styles.cart}>
       <div className={styles.header}>
         <h1 className={styles.title}>Твои заказы</h1>
-
-        <Link to={"/"} style={{ color: "white" }} className={styles.button}>
-          Изменить
-        </Link>
+        <button className={styles.button}>
+          <Link to={"/"} style={{ color: "white" }}>
+            Изменить
+          </Link>
+        </button>
       </div>
 
       <ul>

@@ -4,17 +4,13 @@ import ProductItem from "../ProductItem/ProductItem";
 import { useTelegram } from "../../hooks/useTelegram.js";
 import { useSelector } from "react-redux";
 import { selectProducts } from "../../store/productsSlice";
-import Cart from "../Cart/Cart";
+import { useNavigate } from "react-router-dom";
 
 const ProductList = () => {
+  const navigate = useNavigate();
   const products = useSelector(selectProducts);
   const productsInCart = useSelector((state) => state.cart.items);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
-  const totalPrice1 = productsInCart.reduce(
-    (sum, item) => item.price * item.count + sum,
-    0
-  );
-  const [isVisibleCart, setIsVisibleCart] = useState(false);
 
   const { tg, queryId } = useTelegram();
 
@@ -23,36 +19,31 @@ const ProductList = () => {
       tg.MainButton.hide();
     } else {
       tg.MainButton.show();
-
       tg.MainButton.setParams({
-        text: `Купить за ${totalPrice1}₽`,
+        text: `Посмотреть заказ`,
       });
     }
-  }, [totalPrice1, productsInCart]);
+  }, [productsInCart]);
 
-  const onSendData = useCallback(() => {
-    setIsVisibleCart((prev) => !prev);
+  const onClickMainButton = useCallback(() => {
+    navigate("/cart");
   }, []);
 
   useEffect(() => {
-    tg.onEvent("mainButtonClicked", onSendData);
+    tg.onEvent("mainButtonClicked", onClickMainButton);
 
     return () => {
-      tg.offEvent("mainButtonClicked", onSendData);
+      tg.offEvent("mainButtonClicked", onClickMainButton);
     };
   }, []);
 
   return (
     <>
-      {!isVisibleCart ? (
-        <div className={styles.list}>
-          {products.map((item) => {
-            return <ProductItem key={item.id} product={item} />;
-          })}
-        </div>
-      ) : (
-        <Cart />
-      )}
+      <div className={styles.list}>
+        {products.map((item) => {
+          return <ProductItem key={item.id} product={item} />;
+        })}
+      </div>
     </>
   );
 };
