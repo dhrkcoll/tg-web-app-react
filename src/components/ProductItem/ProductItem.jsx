@@ -19,7 +19,7 @@ const ProductItem = ({ product }) => {
     setIsAnimating(true);
   };
   const onIncreaseHandler = () => {
-    dispatch(increaseItem(product));
+    dispatch(addItem(product));
     setIsAnimating(true);
   };
   const onDecreaseHandler = () => {
@@ -72,7 +72,7 @@ const ProductItem = ({ product }) => {
       </Link>
       {amountProduct?.count > 0 ? (
         <div style={{ display: "flex", gap: "5px" }}>
-          <Button type={"plus"} title={"+"} onClick={onIncreaseHandler} />{" "}
+          <Button type={"plus"} title={"+"} onClick={onAddHandler} />{" "}
           <Button type={"minus"} title={"-"} onClick={onDecreaseHandler} />
         </div>
       ) : (

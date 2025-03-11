@@ -9,6 +9,10 @@ const ProductList = () => {
   const products = useSelector(selectProducts);
   const productsInCart = useSelector((state) => state.cart.items);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
+  const totalPrice1 = productsInCart.reduce(
+    (sum, item) => item.price * item.count + sum,
+    0
+  );
 
   const { tg, queryId } = useTelegram();
 
@@ -18,10 +22,10 @@ const ProductList = () => {
     } else {
       tg.MainButton.show();
       tg.MainButton.setParams({
-        text: `Купить за ${totalPrice}₽`,
+        text: `Купить за ${totalPrice1}₽`,
       });
     }
-  }, [totalPrice, productsInCart]);
+  }, [totalPrice1, productsInCart]);
 
   const onSendData = React.useCallback(() => {}, []);
 
@@ -40,6 +44,7 @@ const ProductList = () => {
           return <ProductItem key={item.id} product={item} />;
         })}
       </div>
+      <div>{totalPrice1}</div>
     </>
   );
 };
