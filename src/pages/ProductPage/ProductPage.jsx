@@ -1,11 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectProductById } from "../../store/productsSlice";
 import styles from "./ProductPage.module.scss";
 import { useTelegram } from "../../hooks/useTelegram.js";
+import { useNavigate } from "react-router-dom";
 
 const ProductPage = () => {
+  const navigate = useNavigate();
   const { tg } = useTelegram();
   const productsInCart = useSelector((state) => state.cart.items);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
@@ -13,22 +15,16 @@ const ProductPage = () => {
 
   const product = useSelector(selectProductById(productId));
 
+  const onClickBackButton = useCallback(() => {
+    navigate(-1);
+  });
+
   useEffect(() => {
-    if (!window.Telegram || !tg) {
-      return;
-    }
-    const backButton = tg.BackButton;
-
-    backButton.onClick(() => {
-      console.log("Back button clicked");
-    });
-
-    backButton.show();
-
-    return () => {
+    if (window.Telegram && tg) {
+      tg.BackButton.show();
+    } else {
       backButton.hide();
-      backButton.offClick();
-    };
+    }
   }, []);
 
   useEffect(() => {
