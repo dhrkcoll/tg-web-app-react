@@ -67,24 +67,32 @@ const ProductPage = () => {
               zIndex: "3",
             }}
           >
-            <div className={styles.productCardInfo}>
-              <div className={styles.productCardInfoHeader}>
-                <div className={styles.productTitle}>
-                  <h1 className={styles.productName}>{product.title}</h1>
-                  <p className={styles.productSizeAndWeight}>32см, 552г</p>
+            <div style={{ borderRadius: "16px" }}>
+              <div className={styles.productCardInfo}>
+                <div className={styles.productCardInfoHeader}>
+                  <div className={styles.productTitle}>
+                    <h1 className={styles.productName}>{product.title}</h1>
+                    <p className={styles.productSizeAndWeight}>32см, 552г</p>
+                  </div>
+
+                  <p className={styles.productPrice}>{product.price}₽</p>
                 </div>
+                <p className={styles.productDescription}>
+                  {product.description}
+                </p>
 
-                <p className={styles.productPrice}>{product.price}₽</p>
+                {product?.size ? (
+                  <div className={styles.productSizes}></div>
+                ) : (
+                  ""
+                )}
               </div>
-              <p className={styles.productDescription}>{product.description}</p>
-
-              {product?.size ? <div className={styles.productSizes}></div> : ""}
-            </div>
-            <div className={styles.charsButton}>
-              <div className={styles.charsButtonContent}>
-                <div className={styles.charsButtonText}>
-                  <div className={styles.charsTitle}>Свойства</div>
-                  <FaAngleRight />
+              <div className={styles.charsButton}>
+                <div className={styles.charsButtonContent}>
+                  <div className={styles.charsButtonText}>
+                    <div className={styles.charsTitle}>Свойства</div>
+                    <FaAngleRight />
+                  </div>
                 </div>
               </div>
             </div>
