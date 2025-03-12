@@ -4,7 +4,12 @@ import Button from "../Button/Button";
 import { useTelegram } from "../../hooks/useTelegram.js";
 
 const Header = () => {
+  const [selectedDelivery, setSelectedDelivery] = React.useState("pickup");
   const { user, onClose } = useTelegram();
+
+  const handleDeliveryChange = (type) => {
+    setSelectedDelivery(type);
+  };
 
   return (
     <header className={styles.header}>
@@ -61,12 +66,22 @@ const Header = () => {
         <div className={styles.selectTypeDelivery}>
           <div className={styles.row}>
             <div className={styles.selectContent}>
-              <div className={styles.item}>
+              <div
+                className={`${styles.item} ${
+                  selectedDelivery === "delivery" ? styles.active : ""
+                }`}
+                onClick={() => handleDeliveryChange("delivery")}
+              >
                 <div className={styles.text}>
                   <div className={styles.div2}>Доставка</div>
                 </div>
               </div>
-              <div className={`${styles.item} ${styles.active}`}>
+              <div
+                className={`${styles.item} ${
+                  selectedDelivery === "pickup" ? styles.active : ""
+                }`}
+                onClick={() => handleDeliveryChange("pickup")}
+              >
                 <div className={styles.text}>
                   <div className={styles.div2}>Самовывоз</div>
                 </div>
