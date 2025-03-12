@@ -62,12 +62,13 @@ const ProductPage = () => {
             style={{
               width: "100%",
               height: "100%",
-              borderRadius: "10px",
+              borderRadius: "15px",
               marginTop: "-16px",
               zIndex: "3",
+              backgroundColor: "var(--tg-theme-section-bg-color)",
             }}
           >
-            <div style={{ borderRadius: "16px" }}>
+            <div style={{ width: "100%", height: "100%" }}>
               <div className={styles.productCardInfo}>
                 <div className={styles.productCardInfoHeader}>
                   <div className={styles.productTitle}>
