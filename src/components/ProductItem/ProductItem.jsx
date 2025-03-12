@@ -39,47 +39,50 @@ const ProductItem = ({ product }) => {
 
   return (
     <div className={styles.product}>
-      <Link to={`/products/${product.id}`}>
-        <div className={styles.productImage}>
-          <img src={product.image_path} alt={product.title} />
-        </div>
-        {amountProduct?.count >= 1 ? (
-          <span
-            className={`${styles.amountProduct} ${
-              isAnimating ? styles.popAnimation : ""
-            }`}
+      <div className={styles.productInner}>
+        <Link to={`/products/${product.id}`}>
+          <div
+            className={styles.productImage}
+            style={{ backgroundImage: `url(${product.image_path})` }}
+          ></div>
+          {amountProduct?.count >= 1 ? (
+            <span
+              className={`${styles.amountProduct} ${
+                isAnimating ? styles.popAnimation : ""
+              }`}
+            >
+              {amountProduct.count}
+            </span>
+          ) : (
+            ""
+          )}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+              gap: "10px",
+            }}
           >
-            {amountProduct.count}
-          </span>
+            <h2 className={styles.productTitle}>{product.title}</h2>
+
+            <div>|</div>
+
+            <div className={styles.productPrice}>{product.price}₽</div>
+          </div>
+        </Link>
+        {amountProduct?.count > 0 ? (
+          <div style={{ display: "flex", gap: "5px" }}>
+            <Button type={"plus"} title={"+"} onClick={onIncreaseHandler} />{" "}
+            <Button type={"minus"} title={"-"} onClick={onDecreaseHandler} />
+          </div>
         ) : (
-          ""
+          <>
+            <Button type={"add"} title={"Добавить"} onClick={onAddHandler} />
+          </>
         )}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-            gap: "10px",
-          }}
-        >
-          <h2 className={styles.productTitle}>{product.title}</h2>
-
-          <div>|</div>
-
-          <div className={styles.productPrice}>{product.price}₽</div>
-        </div>
-      </Link>
-      {amountProduct?.count > 0 ? (
-        <div style={{ display: "flex", gap: "5px" }}>
-          <Button type={"plus"} title={"+"} onClick={onIncreaseHandler} />{" "}
-          <Button type={"minus"} title={"-"} onClick={onDecreaseHandler} />
-        </div>
-      ) : (
-        <>
-          <Button type={"add"} title={"Добавить"} onClick={onAddHandler} />
-        </>
-      )}
+      </div>
     </div>
   );
 };

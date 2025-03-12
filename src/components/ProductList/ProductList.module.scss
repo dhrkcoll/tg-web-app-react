@@ -1,13 +1,9 @@
 .list {
-  // gap: 10px;
-  // display: flex;
-  // align-items: center;
-  // flex-wrap: wrap;
-  // justify-content: center;
-
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
+  gap: 16px;
   background-color: var(--tg-theme-bg-color);
+  padding: 0 16px 30px 16px;
 }
