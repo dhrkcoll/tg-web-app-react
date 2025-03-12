@@ -58,20 +58,34 @@ const ProductPage = () => {
             className={styles.productCardPicture}
             style={{ backgroundImage: `url(${product.image_path})` }}
           ></div>
-          <div className={styles.productCardInfo}>
-            <div className={styles.productCardInfoHeader}>
-              <h1 className={styles.productTitle}>{product.title}</h1>
-              <p className={styles.productSizeAndWeight}>32см, 552г</p>
-            </div>
-            <p className={styles.productDescription}>{product.description}</p>
+          <div
+            style={{
+              width: "100%",
+              height: "100%",
+              borderRadius: "10px",
+              marginTop: "-16px",
+              zIndex: "3",
+            }}
+          >
+            <div className={styles.productCardInfo}>
+              <div className={styles.productCardInfoHeader}>
+                <div className={styles.productTitle}>
+                  <h1 className={styles.productName}>{product.title}</h1>
+                  <p className={styles.productSizeAndWeight}>32см, 552г</p>
+                </div>
 
-            {product?.size ? <div className={styles.productSizes}></div> : ""}
-          </div>
-          <div className={styles.charsButton}>
-            <div className={styles.charsButtonContent}>
-              <div className={styles.charsButtonText}>
-                <div className={styles.charsTitle}>Свойства</div>
-                <FaAngleRight />
+                <p className={styles.productPrice}>{product.price}₽</p>
+              </div>
+              <p className={styles.productDescription}>{product.description}</p>
+
+              {product?.size ? <div className={styles.productSizes}></div> : ""}
+            </div>
+            <div className={styles.charsButton}>
+              <div className={styles.charsButtonContent}>
+                <div className={styles.charsButtonText}>
+                  <div className={styles.charsTitle}>Свойства</div>
+                  <FaAngleRight />
+                </div>
               </div>
             </div>
           </div>
