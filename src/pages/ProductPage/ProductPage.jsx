@@ -63,37 +63,29 @@ const ProductPage = () => {
               width: "100%",
               height: "100%",
               borderRadius: "15px",
-              marginTop: "-16px",
+              marginTop: "-30px",
               zIndex: "3",
               backgroundColor: "var(--tg-theme-section-bg-color)",
             }}
           >
-            <div style={{ width: "100%", height: "100%" }}>
-              <div className={styles.productCardInfo}>
-                <div className={styles.productCardInfoHeader}>
-                  <div className={styles.productTitle}>
-                    <h1 className={styles.productName}>{product.title}</h1>
-                    <p className={styles.productSizeAndWeight}>32см, 552г</p>
-                  </div>
-
-                  <p className={styles.productPrice}>{product.price}₽</p>
+            <div className={styles.productCardInfo}>
+              <div className={styles.productCardInfoHeader}>
+                <div className={styles.productTitle}>
+                  <h1 className={styles.productName}>{product.title}</h1>
+                  <p className={styles.productSizeAndWeight}>32см, 552г</p>
                 </div>
-                <p className={styles.productDescription}>
-                  {product.description}
-                </p>
 
-                {product?.size ? (
-                  <div className={styles.productSizes}></div>
-                ) : (
-                  ""
-                )}
+                <p className={styles.productPrice}>{product.price}₽</p>
               </div>
-              <div className={styles.charsButton}>
-                <div className={styles.charsButtonContent}>
-                  <div className={styles.charsButtonText}>
-                    <div className={styles.charsTitle}>Свойства</div>
-                    <FaAngleRight />
-                  </div>
+              <p className={styles.productDescription}>{product.description}</p>
+
+              {product?.size ? <div className={styles.productSizes}></div> : ""}
+            </div>
+            <div className={styles.charsButton}>
+              <div className={styles.charsButtonContent}>
+                <div className={styles.charsButtonText}>
+                  <div className={styles.charsTitle}>Свойства</div>
+                  <FaAngleRight />
                 </div>
               </div>
             </div>
