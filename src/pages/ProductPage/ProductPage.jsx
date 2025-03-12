@@ -5,6 +5,7 @@ import { selectProductById } from "../../store/productsSlice";
 import styles from "./ProductPage.module.scss";
 import { useTelegram } from "../../hooks/useTelegram.js";
 import { useNavigate } from "react-router-dom";
+import { FaAngleRight } from "react-icons/fa6";
 
 const ProductPage = () => {
   const navigate = useNavigate();
@@ -51,10 +52,31 @@ const ProductPage = () => {
 
   return (
     <div className={styles.productContainer}>
-      <img src={product.image_path} alt={product.title} />
-      <h1 className={styles.productTitle}>{product.title}</h1>
-      <p className={styles.productDescription}>{product.description}</p>
-      <p className={styles.productPrice}>{product.price}₽</p>
+      <div className={styles.productCard}>
+        <div className={styles.productCardContent}>
+          <div
+            className={styles.productCardPicture}
+            style={{ backgroundImage: `url(${product.image_path})` }}
+          ></div>
+          <div className={styles.productCardInfo}>
+            <div className={styles.productCardInfoHeader}>
+              <h1 className={styles.productTitle}>{product.title}</h1>
+              <p className={styles.productSizeAndWeight}>32см, 552г</p>
+            </div>
+            <p className={styles.productDescription}>{product.description}</p>
+
+            {product?.size ? <div className={styles.productSizes}></div> : ""}
+          </div>
+          <div className={styles.charsButton}>
+            <div className={styles.charsButtonContent}>
+              <div className={styles.charsButtonText}>
+                <div className={styles.charsTitle}>Свойства</div>
+                <FaAngleRight />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

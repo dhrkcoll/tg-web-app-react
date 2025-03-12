@@ -1,37 +1,122 @@
 .productContainer {
-  position: relative;
+  background: var(--tg-theme-secondary-bg-color);
+}
+
+.productCardInner {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 10px;
-  background-color: var(--tg-theme-bg-color);
-  border-radius: 8px;
-  max-width: 400px;
-  margin: 0 auto;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+  padding-bottom: calc(
+    var(--tg-safe-area-inset-bottom, 12px) +
+      var(--tg-content-safe-area-inset-bottom, 0px) + 58px
+  );
+  gap: 24px;
 }
-
-.productContainer img {
-  width: 100%; // Ширина изображения 100% от родительского контейнера
-  height: auto; // Автоматическая высота для сохранения пропорций
-  border-radius: 8px;
-  object-fit: cover;
+.productCardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+  gap: 12px;
 }
-
+.productCardPicture {
+  height: 299px;
+  position: relative;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0);
+  background-position-x: center;
+  background-position-y: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+  background-origin: padding-box;
+  background-clip: border-box;
+  width: 100%;
+}
+.productCardInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+  margin: -16px 0 0 0;
+  border-radius: 16px;
+  z-index: 2;
+  gap: 12px;
+  padding: 16px;
+  overflow: hidden;
+  background: var(--tg-theme-section-bg-color);
+}
 .productTitle {
-  font-size: 24px;
-  font-weight: bold;
-  margin: 12px 0;
-  text-align: center;
 }
-
 .productDescription {
-  font-size: 16px;
-  text-align: center;
-  margin: 8px 0;
+  color: var(--tg-theme-hint-color, #8e8e93);
+  text-align: left;
+  font-size: var(--regular-paragarph-14-font-size, 14px);
+  line-height: var(--regular-paragarph-14-line-height, 125%);
+  font-weight: var(--regular-paragarph-14-font-weight, 400);
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
-
-.productPrice {
-  font-size: 20px;
-  font-weight: bold;
-  margin: 12px 0;
+.charsButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  background: var(--tg-theme-section-bg-color, #fff);
+  border-style: solid;
+  border-color: var(--tg-theme-section-separator-color, #c8c7cc);
+  border-width: 0.33px 0 0 0;
+  padding: 0 16px 0 16px;
+  gap: 16px;
+  align-self: stretch;
+  flex-shrink: 0;
+}
+.charsButtonContent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  padding: 16px 0 16px 0;
+  gap: 6px;
+  flex: 1;
+}
+.charsButtonText {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 1;
+  position: relative;
+}
+.charsButtonTitle {
+  color: var(--tg-theme-link-color, #268be3);
+  text-align: left;
+  font-size: var(--regular-16-font-size, 16px);
+  line-height: var(--regular-16-line-height, 100%);
+  font-weight: var(--regular-16-font-weight, 400);
+  position: relative;
+  flex: 1;
+}
+.charsButtonText svg {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  position: relative;
+  overflow: hidden;
 }
