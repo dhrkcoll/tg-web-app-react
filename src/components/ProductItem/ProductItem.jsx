@@ -46,7 +46,18 @@ const ProductItem = ({ product }) => {
             style={{ backgroundImage: `url(${product.image_path})` }}
           >
             <div className={styles.reviews}>
-              <div className={styles.review}></div>
+              <div className={styles.rating}>
+                <div className={styles.ratingIcon}>
+                  <img
+                    src="https://miniapp.chatfood.org/img/group-30.d629f4d9.svg"
+                    alt="rating"
+                  />
+                </div>
+
+                <div className={styles.ratingCount}>
+                  {product.rating ? product.rating : 0}
+                </div>
+              </div>
               {amountProduct?.count >= 1 ? (
                 <span
                   className={`${styles.amountProduct} ${
@@ -78,13 +89,18 @@ const ProductItem = ({ product }) => {
           </div>
         </Link>
         {amountProduct?.count > 0 ? (
-          <div style={{ display: "flex", gap: "5px" }}>
+          <div style={{ display: "flex", gap: "5px", alignSelf: "center" }}>
             <Button type={"plus"} title={"+"} onClick={onIncreaseHandler} />{" "}
             <Button type={"minus"} title={"-"} onClick={onDecreaseHandler} />
           </div>
         ) : (
           <>
-            <Button type={"add"} title={"Добавить"} onClick={onAddHandler} />
+            <Button
+              type={"add"}
+              title={"Добавить"}
+              onClick={onAddHandler}
+              style={{ alignSelf: "center" }}
+            />
           </>
         )}
       </div>
