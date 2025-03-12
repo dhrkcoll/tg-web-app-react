@@ -36,7 +36,7 @@ const Header = () => {
         </div>
         <div className={styles.headerCity}>
           <div className={styles.headerNameCity}>
-            <div className={styles.div}>Самара</div>
+            <div className={styles.div}>Зилаир</div>
           </div>
         </div>
         <div className={styles.searchBtn}>
@@ -90,7 +90,7 @@ const Header = () => {
               ></path>
             </svg>
             <div className={styles.text3}>
-              <div className={styles.address}>Самара, ул. Партизанская 88</div>
+              <div className={styles.address}>Зилаир, ул. Ленина 25</div>
               <div className={styles.iconRight}>
                 <svg
                   data-v-103ac670=""
