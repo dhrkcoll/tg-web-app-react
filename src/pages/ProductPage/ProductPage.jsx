@@ -58,16 +58,7 @@ const ProductPage = () => {
             className={styles.productCardPicture}
             style={{ backgroundImage: `url(${product.image_path})` }}
           ></div>
-          <div
-            style={{
-              width: "100%",
-              height: "100%",
-              borderRadius: "15px",
-              marginTop: "-30px",
-              zIndex: "3",
-              backgroundColor: "var(--tg-theme-section-bg-color)",
-            }}
-          >
+          <div className={styles.productCardInfoPlace}>
             <div className={styles.productCardInfo}>
               <div className={styles.productCardInfoHeader}>
                 <div className={styles.productTitle}>
