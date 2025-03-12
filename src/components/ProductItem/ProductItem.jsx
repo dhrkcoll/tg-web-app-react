@@ -44,18 +44,23 @@ const ProductItem = ({ product }) => {
           <div
             className={styles.productImage}
             style={{ backgroundImage: `url(${product.image_path})` }}
-          ></div>
-          {amountProduct?.count >= 1 ? (
-            <span
-              className={`${styles.amountProduct} ${
-                isAnimating ? styles.popAnimation : ""
-              }`}
-            >
-              {amountProduct.count}
-            </span>
-          ) : (
-            ""
-          )}
+          >
+            <div className={styles.reviews}>
+              <div className={styles.review}></div>
+              {amountProduct?.count >= 1 ? (
+                <span
+                  className={`${styles.amountProduct} ${
+                    isAnimating ? styles.popAnimation : ""
+                  }`}
+                >
+                  {amountProduct.count}
+                </span>
+              ) : (
+                ""
+              )}
+            </div>
+          </div>
+
           <div
             style={{
               display: "flex",
