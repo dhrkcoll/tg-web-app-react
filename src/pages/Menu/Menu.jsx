@@ -47,31 +47,59 @@ const Menu = () => {
             </div>
           </section>
           <div className={styles.menuSection}>
-            <div className="menu-content">
-              <div className="menu-content-item">
+            <div className={styles.menuContent}>
+              <div className={styles.menuContentItem}>
                 <AiTwotoneShop />
-                <div className="text">
-                  <div className="div3">Мои заказы</div>
-                  <div className="_18"></div>
-                  <div className="icons-16-angle-right">
+                <div className={styles.menuContentItemInner}>
+                  <div className={styles.menuContentText}>Мои заказы</div>
+                  <div className={styles.menuContentRight}>
                     <FaAngleRight />
                   </div>
                 </div>
               </div>
-              <div className="menu-content-item">
+              <div className={styles.menuContentItem}>
                 <MdOutlineAccountBalanceWallet />
-                <div className="text">
-                  <div className="div3">Баланс</div>
+                <div className={styles.menuContentItemInner}>
+                  <div className={styles.menuContentText}>Баланс</div>
                   <div className="_890">500,00&nbsp;₽</div>
                 </div>
               </div>
-              <div className="menu-content-item">
+              <div className={styles.menuContentItem}>
                 <MdOutlineHomeWork />
-                <div className="text2">
-                  <div className="div3">Мои адреса</div>
-                  <div className="_18"></div>
-                  <div className="icons-16-angle-right">
+                <div className={styles.menuContentItemInner}>
+                  <div className={styles.menuContentText}>Мои адреса</div>
+                  <div className={styles.menuContentRight}>
                     <FaAngleRight />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className={styles.menuSection}>
+            <div className={styles.menuContent}>
+              <div className={styles.menuContentItem}>
+                <div className={styles.menuContentItemInner}>
+                  <div className={styles.menuContentText}>Режим работы</div>
+                </div>
+              </div>
+              <div className={styles.menuContentItem}>
+                <div className={styles.menuContentItemInner}>
+                  <div className={styles.menuContentText}>
+                    Согласие на обработку
+                  </div>
+                </div>
+              </div>
+              <div className={styles.menuContentItem}>
+                <div className={styles.menuContentItemInner}>
+                  <div className={styles.menuContentText}>
+                    Политика обработки данных
+                  </div>
+                </div>
+              </div>
+              <div className={styles.menuContentItem}>
+                <div className={styles.menuContentItemInner}>
+                  <div className={styles.menuContentText}>
+                    Пользовательское соглашение
                   </div>
                 </div>
               </div>
