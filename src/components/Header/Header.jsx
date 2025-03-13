@@ -2,6 +2,8 @@ import React from "react";
 import styles from "./Header.module.scss";
 import Button from "../Button/Button";
 import { useTelegram } from "../../hooks/useTelegram.js";
+import { Link } from "react-router-dom";
+import { FaAngleRight } from "react-icons/fa6";
 
 const Header = () => {
   const [selectedDelivery, setSelectedDelivery] = React.useState("pickup");
@@ -105,22 +107,12 @@ const Header = () => {
               ></path>
             </svg>
             <div className={styles.text3}>
-              <div className={styles.address}>Зилаир, ул. Ленина 25</div>
-              <div className={styles.iconRight}>
-                <svg
-                  data-v-103ac670=""
-                  width="7"
-                  height="12"
-                  viewBox="0 0 7 12"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    data-v-103ac670=""
-                    d="M4.72934 6.60887C4.80967 6.52919 4.87344 6.4344 4.91695 6.32995C4.96046 6.22551 4.98286 6.11348 4.98286 6.00033C4.98286 5.88719 4.96046 5.77516 4.91695 5.67071C4.87344 5.56627 4.80967 5.47147 4.72934 5.3918L0.79528 1.46631C0.714946 1.38663 0.651182 1.29184 0.607669 1.18739C0.564155 1.08295 0.541753 0.970919 0.541753 0.857773C0.541753 0.744626 0.564155 0.632599 0.607669 0.528154C0.651182 0.42371 0.714946 0.328914 0.79528 0.249236C0.955867 0.0896018 1.1731 0 1.39953 0C1.62596 0 1.84319 0.0896018 2.00378 0.249236L5.93784 4.18329C6.41936 4.66541 6.68982 5.31894 6.68982 6.00033C6.68982 6.68172 6.41936 7.33525 5.93784 7.81737L2.00378 11.7514C1.84414 11.9098 1.62867 11.999 1.40382 12C1.29102 12.0006 1.1792 11.979 1.07477 11.9364C0.970345 11.8937 0.875367 11.8309 0.79528 11.7514C0.714946 11.6717 0.651182 11.577 0.607669 11.4725C0.564155 11.3681 0.541753 11.256 0.541753 11.1429C0.541753 11.0297 0.564155 10.9177 0.607669 10.8133C0.651182 10.7088 0.714946 10.614 0.79528 10.5344L4.72934 6.60887Z"
-                  ></path>
-                </svg>
-              </div>
+              <Link to={"/select"}>
+                <div className={styles.address}>Зилаир, ул. Ленина 25</div>
+                <div className={styles.iconRight}>
+                  <FaAngleRight />
+                </div>
+              </Link>
             </div>
           </div>
         </div>

@@ -5,6 +5,7 @@ import Cart from "../components/Cart/Cart.jsx";
 import ProductPage from "../pages/ProductPage/ProductPage.jsx";
 import App from "../App.jsx";
 import Menu from "../pages/Menu/Menu.jsx";
+import SelectPage from "../pages/SelectPage/SelectPage.jsx";
 
 export const router = createBrowserRouter([
   { index: "/", element: <App /> },
@@ -12,4 +13,5 @@ export const router = createBrowserRouter([
   { path: "/cart", element: <Cart /> },
   { path: "/products/:productId", element: <ProductPage /> },
   { path: "/menu", element: <Menu /> },
+  { path: "/select", element: <SelectPage /> },
 ]);
