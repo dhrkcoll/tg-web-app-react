@@ -7,7 +7,7 @@
 }
 
 html {
-  font-size: 10px; /* Базовый размер для 320px */
+  font-size: 14px; /* Базовый размер для 320px */
   font-family: "Roboto", sans-serif;
   color: var(--tg-theme-text-color);
   background-color: var(--tg-theme-secondary-bg-color);
