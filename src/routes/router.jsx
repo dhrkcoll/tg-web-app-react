@@ -14,4 +14,5 @@ export const router = createBrowserRouter([
   { path: "/products/:productId", element: <ProductPage /> },
   { path: "/menu", element: <Menu /> },
   { path: "/select", element: <SelectPage /> },
+  { path: "/menu", element: <Menu /> },
 ]);

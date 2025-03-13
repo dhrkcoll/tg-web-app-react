@@ -205,6 +205,9 @@
   position: relative;
   overflow: hidden;
 }
+.iconRight svg {
+  color: var(--tg-theme-text-color);
+}
 .text3 a {
   display: flex;
   width: 100%;
