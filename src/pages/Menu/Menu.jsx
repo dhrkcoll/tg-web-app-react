@@ -1,7 +1,32 @@
-import React from "react";
+import { useCallback, useEffect } from "react";
 import styles from "./Menu.module.scss";
+import { useTelegram } from "../../hooks/useTelegram.js";
+import { useNavigate } from "react-router-dom";
 
 const Menu = () => {
+  const navigate = useNavigate();
+  const { tg } = useTelegram();
+
+  const onClickBackButton = useCallback(() => {
+    navigate(-1);
+  }, [navigate]);
+
+  useEffect(() => {
+    if (!window.Telegram || !tg) {
+      return;
+    }
+
+    const backButton = tg.BackButton;
+
+    backButton.show();
+    backButton.onClick(onClickBackButton);
+
+    return () => {
+      backButton.hide();
+      backButton.offClick(onClickBackButton);
+    };
+  }, [tg, onClickBackButton]);
+
   return (
     <div className={styles.menuContainer}>
       <div className={styles.profile}>
@@ -17,58 +42,45 @@ const Menu = () => {
               </div>
             </div>
           </section>
-          <div data-v-14aa940a="" class="section-menu">
-            <div data-v-14aa940a="" class="menu-content">
-              <div data-v-14aa940a="" class="menu-content-item">
+          <div className={styles.menuSection}>
+            <div className="menu-content">
+              <div className="menu-content-item">
                 <img
-                  data-v-14aa940a=""
-                  class="icons-30-orders"
+                  className="icons-30-orders"
                   src="/img/icons-30-orders0.1ad6293d.svg"
                 />
-                <div data-v-14aa940a="" class="text">
-                  <div data-v-14aa940a="" class="div3">
-                    Мои заказы
-                  </div>
-                  <div data-v-14aa940a="" class="_18"></div>
-                  <div data-v-14aa940a="" class="icons-16-angle-right">
+                <div className="text">
+                  <div className="div3">Мои заказы</div>
+                  <div className="_18"></div>
+                  <div className="icons-16-angle-right">
                     <img
-                      data-v-14aa940a=""
-                      class="group-12"
+                      className="group-12"
                       src="/img/group-11.9d48cbdd.svg"
                     />
                   </div>
                 </div>
               </div>
-              <div data-v-14aa940a="" class="menu-content-item">
+              <div className="menu-content-item">
                 <img
-                  data-v-14aa940a=""
-                  class="icons-30-wallet"
+                  className="icons-30-wallet"
                   src="/img/icons-30-wallet0.0e6c8f60.svg"
                 />
-                <div data-v-14aa940a="" class="text">
-                  <div data-v-14aa940a="" class="div3">
-                    Баланс
-                  </div>
-                  <div data-v-14aa940a="" class="_890">
-                    500,00&nbsp;₽
-                  </div>
+                <div className="text">
+                  <div className="div3">Баланс</div>
+                  <div className="_890">500,00&nbsp;₽</div>
                 </div>
               </div>
-              <div data-v-14aa940a="" class="menu-content-item">
+              <div className="menu-content-item">
                 <img
-                  data-v-14aa940a=""
-                  class="icons-30-map"
+                  className="icons-30-map"
                   src="/img/icons-30-map0.f4d6ba2b.svg"
                 />
-                <div data-v-14aa940a="" class="text2">
-                  <div data-v-14aa940a="" class="div3">
-                    Мои адреса
-                  </div>
-                  <div data-v-14aa940a="" class="_18"></div>
-                  <div data-v-14aa940a="" class="icons-16-angle-right">
+                <div className="text2">
+                  <div className="div3">Мои адреса</div>
+                  <div className="_18"></div>
+                  <div className="icons-16-angle-right">
                     <img
-                      data-v-14aa940a=""
-                      class="group-14"
+                      className="group-14"
                       src="/img/group-13.9d48cbdd.svg"
                     />
                   </div>
