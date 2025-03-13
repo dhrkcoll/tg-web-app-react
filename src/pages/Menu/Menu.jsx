@@ -2,6 +2,10 @@ import { useCallback, useEffect } from "react";
 import styles from "./Menu.module.scss";
 import { useTelegram } from "../../hooks/useTelegram.js";
 import { useNavigate } from "react-router-dom";
+import { MdOutlineHomeWork } from "react-icons/md";
+import { AiTwotoneShop } from "react-icons/ai";
+import { MdOutlineAccountBalanceWallet } from "react-icons/md";
+import { FaAngleRight } from "react-icons/fa6";
 
 const Menu = () => {
   const navigate = useNavigate();
@@ -45,44 +49,29 @@ const Menu = () => {
           <div className={styles.menuSection}>
             <div className="menu-content">
               <div className="menu-content-item">
-                <img
-                  className="icons-30-orders"
-                  src="/img/icons-30-orders0.1ad6293d.svg"
-                />
+                <AiTwotoneShop />
                 <div className="text">
                   <div className="div3">Мои заказы</div>
                   <div className="_18"></div>
                   <div className="icons-16-angle-right">
-                    <img
-                      className="group-12"
-                      src="/img/group-11.9d48cbdd.svg"
-                    />
+                    <FaAngleRight />
                   </div>
                 </div>
               </div>
               <div className="menu-content-item">
-                <img
-                  className="icons-30-wallet"
-                  src="/img/icons-30-wallet0.0e6c8f60.svg"
-                />
+                <MdOutlineAccountBalanceWallet />
                 <div className="text">
                   <div className="div3">Баланс</div>
                   <div className="_890">500,00&nbsp;₽</div>
                 </div>
               </div>
               <div className="menu-content-item">
-                <img
-                  className="icons-30-map"
-                  src="/img/icons-30-map0.f4d6ba2b.svg"
-                />
+                <MdOutlineHomeWork />
                 <div className="text2">
                   <div className="div3">Мои адреса</div>
                   <div className="_18"></div>
                   <div className="icons-16-angle-right">
-                    <img
-                      className="group-14"
-                      src="/img/group-13.9d48cbdd.svg"
-                    />
+                    <FaAngleRight />
                   </div>
                 </div>
               </div>
