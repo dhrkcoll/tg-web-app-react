@@ -6,6 +6,7 @@ import ProductPage from "../pages/ProductPage/ProductPage.jsx";
 import App from "../App.jsx";
 import Menu from "../pages/Menu/Menu.jsx";
 import SelectPage from "../pages/SelectPage/SelectPage.jsx";
+import SelectCityPage from "../pages/SelectCityPage/SelectCityPage.jsx";
 
 export const router = createBrowserRouter([
   { index: "/", element: <App /> },
@@ -15,4 +16,5 @@ export const router = createBrowserRouter([
   { path: "/menu", element: <Menu /> },
   { path: "/select", element: <SelectPage /> },
   { path: "/menu", element: <Menu /> },
+  { path: "/selectCity", element: <SelectCityPage /> },
 ]);

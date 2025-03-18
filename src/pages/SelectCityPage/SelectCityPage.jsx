@@ -1,17 +1,17 @@
 import { useEffect, useCallback } from "react";
-import styles from "./SelectPage.module.scss";
+import styles from "./SelectCityPage.module.scss";
 import { FaCheck } from "react-icons/fa";
 import { useTelegram } from "../../hooks/useTelegram.js";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { selectStreet } from "../../store/citiesSlice";
+import { selectCity } from "../../store/citiesSlice";
 
-const SelectPage = () => {
+const SelectCityPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { tg } = useTelegram();
+  const cities = useSelector((state) => state.cities.cities);
   const selectedCity = useSelector((state) => state.cities.selectedCity);
-  const selectedStreet = useSelector((state) => state.cities.selectedStreet);
 
   const onClickBackButton = useCallback(() => {
     navigate(-1);
@@ -33,11 +33,10 @@ const SelectPage = () => {
     };
   }, [tg, onClickBackButton]);
 
-  const handleSelectStreet = (street) => {
-    dispatch(selectStreet(street));
+  const handleSelectCity = (city) => {
+    dispatch(selectCity(city));
     navigate("/");
   };
-
   return (
     <div className={styles.selectPageContainer}>
       <div className={styles.catalogRestaurantsList}>
@@ -46,36 +45,28 @@ const SelectPage = () => {
             <div className={styles.head}>
               <div className={styles.title}>Выберите адрес</div>
             </div>
-
-            <div className={styles.listAddresses}>
-              {selectedCity.streets.map((street, index) => {
-                return (
-                  <div
-                    className={styles.listAddressesItem}
-                    onClick={() => handleSelectStreet(street)}
-                  >
+            {cities.map((city, index) => {
+              return (
+                <div
+                  key={city.id}
+                  className={styles.listAddresses}
+                  onClick={() => handleSelectCity(city)}
+                >
+                  <div className={styles.listAddressesItem}>
                     <div className={styles.content}>
                       <div className={styles.text}>
-                        <div className={styles.address}>
-                          {selectedCity.name}, ул. {street.name} {street.number}
-                        </div>
-                        <div className={styles.fullAddress}>
-                          Россия, {selectedCity.name}, {street.name},{" "}
-                          {street.number}
-                        </div>
+                        <div className={styles.address}>{city.name}</div>
                       </div>
-                      {selectedStreet === street ? (
+                      {city.id === selectedCity.id && (
                         <div className={styles.checkmarkIcon}>
                           <FaCheck />
                         </div>
-                      ) : (
-                        <div></div>
                       )}
                     </div>
                   </div>
-                );
-              })}
-            </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -83,4 +74,4 @@ const SelectPage = () => {
   );
 };
 
-export default SelectPage;
+export default SelectCityPage;

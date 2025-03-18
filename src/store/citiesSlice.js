@@ -1,4 +1,28 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {
+  createSlice,
+  createAsyncThunk,
+  createSelector,
+} from "@reduxjs/toolkit";
+import { BASE_URL } from "../../env.js";
+
+export const fetchCities = createAsyncThunk(
+  "cities/fetchCities",
+  async function (endpoint, { rejectWithValue }) {
+    try {
+      const response = await fetch(`${BASE_URL}/${endpoint}`);
+
+      if (!response.ok) {
+        throw new Error("Server Error! Didnt get cities");
+      }
+
+      const data = await response.json();
+
+      return data;
+    } catch (error) {
+      rejectWithValue("Error", error);
+    }
+  }
+);
 
 const initialState = {
   cities: [
@@ -32,12 +56,56 @@ const initialState = {
       streets: [{ id: 7, name: "Красный проспект" }],
     },
   ],
+  selectedCity: {
+    id: 1,
+    name: "Зилаир",
+    streets: [
+      { id: 1, name: "Ленина", number: 25 },
+      { id: 2, name: "Салавата Юлаева", number: 28 },
+    ],
+  },
+  selectedStreet: {},
+  loading: false,
+  error: null,
 };
 
 const citiesSlice = createSlice({
   name: "cities",
   initialState,
-  reducers: {},
+  reducers: {
+    selectCity(state, action) {
+      state.selectedCity = action.payload;
+    },
+    selectStreet(state, action) {
+      state.selectedStreet = action.payload;
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchCities.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchCities.fulfilled, (state, action) => {
+        state.loading = false;
+        state.cities = action.payload;
+        state.error = null;
+      })
+      .addCase(fetchCities.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
+  },
 });
 
+export const selectStreetByCity = createSelector(
+  (state) => state.cities,
+  (state) => state.selectedCity,
+  (cities, selectedCity) => {
+    if (!selectedCity) return [];
+    const city = cities.find((city) => city.id === selectedCity);
+    return city ? city.streets : [];
+  }
+);
+export const { selectCity, selectStreet } = citiesSlice.actions;
 export default citiesSlice.reducer;

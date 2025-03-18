@@ -2,12 +2,15 @@ import React from "react";
 import styles from "./Header.module.scss";
 import Button from "../Button/Button";
 import { useTelegram } from "../../hooks/useTelegram.js";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { FaAngleRight } from "react-icons/fa6";
+import { CiDeliveryTruck } from "react-icons/ci";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [selectedDelivery, setSelectedDelivery] = React.useState("pickup");
   const { user, onClose } = useTelegram();
+  const selectedCity = useSelector((state) => state.cities.selectedCity);
 
   const handleDeliveryChange = (type) => {
     setSelectedDelivery(type);
@@ -43,11 +46,13 @@ const Header = () => {
             </div>
           </Link>
         </div>
-        <div className={styles.headerCity}>
+        <Link to={"/selectCity"} className={styles.headerCity}>
           <div className={styles.headerNameCity}>
-            <div className={styles.div}>Зилаир</div>
+            <div className={styles.div}>
+              {selectedCity?.name ? selectedCity?.name : ""}
+            </div>
           </div>
-        </div>
+        </Link>
         <div className={styles.searchBtn}>
           <div className={styles.iconSearch}>
             <svg
@@ -95,27 +100,33 @@ const Header = () => {
         </div>
         <div className={styles.selectAddress}>
           <div className={styles.menuContentItem}>
-            <svg
-              data-v-103ac670=""
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="18"
-              viewBox="0 0 16 18"
-              fill="none"
-            >
-              <path
-                data-v-103ac670=""
-                d="M15.125 7.5C15.0915 8.92533 14.7368 10.3247 14.0876 11.5941C13.4383 12.8634 12.5111 13.9699 11.375 14.8312V17.25C11.375 17.4489 11.296 17.6397 11.1553 17.7803C11.0147 17.921 10.8239 18 10.625 18C10.4261 18 10.2353 17.921 10.0947 17.7803C9.95402 17.6397 9.875 17.4489 9.875 17.25V1.5C9.86827 1.2182 9.94528 0.94073 10.0963 0.702697C10.2473 0.464663 10.4655 0.276758 10.7233 0.16275C11.0194 0.0422739 11.3442 0.0106726 11.658 0.0718081C11.9718 0.132944 12.261 0.284168 12.4902 0.507C14.2298 2.41572 15.1725 4.91797 15.125 7.5ZM6.875 0C6.67609 0 6.48532 0.0790176 6.34467 0.21967C6.20402 0.360322 6.125 0.551088 6.125 0.75V5.25C6.12308 5.7137 5.97794 6.16547 5.70943 6.54352C5.44093 6.92158 5.06218 7.20744 4.625 7.362V0.75C4.625 0.551088 4.54598 0.360322 4.40533 0.21967C4.26468 0.0790176 4.07391 0 3.875 0C3.67609 0 3.48532 0.0790176 3.34467 0.21967C3.20402 0.360322 3.125 0.551088 3.125 0.75V7.362C2.68782 7.20744 2.30907 6.92158 2.04057 6.54352C1.77206 6.16547 1.62692 5.7137 1.625 5.25V0.75C1.625 0.551088 1.54598 0.360322 1.40533 0.21967C1.26468 0.0790176 1.07391 0 0.875 0C0.676088 0 0.485322 0.0790176 0.34467 0.21967C0.204018 0.360322 0.125 0.551088 0.125 0.75V5.25C0.126091 6.11415 0.425068 6.95151 0.971539 7.62094C1.51801 8.29036 2.27856 8.75093 3.125 8.925V17.25C3.125 17.4489 3.20402 17.6397 3.34467 17.7803C3.48532 17.921 3.67609 18 3.875 18C4.07391 18 4.26468 17.921 4.40533 17.7803C4.54598 17.6397 4.625 17.4489 4.625 17.25V8.925C5.47144 8.75093 6.23199 8.29036 6.77846 7.62094C7.32493 6.95151 7.62391 6.11415 7.625 5.25V0.75C7.625 0.551088 7.54598 0.360322 7.40533 0.21967C7.26468 0.0790176 7.07391 0 6.875 0Z"
-              ></path>
-            </svg>
-            <div className={styles.text3}>
-              <Link to={"/select"}>
-                <div className={styles.address}>Зилаир, ул. Ленина 25</div>
-                <div className={styles.iconRight}>
-                  <FaAngleRight />
+            {selectedDelivery === "delivery" ? (
+              <>
+                <CiDeliveryTruck />
+                <div className={styles.text3}>
+                  <Link to={"/select"}>
+                    <div className={styles.address}>
+                      Выберите адрес доставки
+                    </div>
+                    <div className={styles.iconRight}>
+                      <FaAngleRight />
+                    </div>
+                  </Link>
                 </div>
-              </Link>
-            </div>
+              </>
+            ) : (
+              <>
+                <CiDeliveryTruck />
+                <div className={styles.text3}>
+                  <Link to={"/select"}>
+                    <div className={styles.address}>Выберите точку продаж</div>
+                    <div className={styles.iconRight}>
+                      <FaAngleRight />
+                    </div>
+                  </Link>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </section>
