@@ -48,7 +48,7 @@ const Menu = () => {
                   {tg.initDataUnsafe?.user?.username}
                 </div>
                 <div className={styles.userId}>
-                  {tg.initDataUnsafe?.user?.id}
+                  ID {tg.initDataUnsafe?.user?.id}
                 </div>
               </div>
             </div>
