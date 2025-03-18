@@ -38,13 +38,18 @@ const Menu = () => {
           <section className={styles.sectionProfile}>
             <div className={styles.sectionProfileInfo}>
               <div className={styles.avatar}>
-                <img src="" alt="" />
+                <img
+                  src={tg.initDataUnsafe?.user?.photo_url}
+                  alt="Telegram acc photo"
+                />
               </div>
               <div className={styles.info}>
                 <div className={styles.userName}>
                   {tg.initDataUnsafe?.user?.username}
                 </div>
-                <div className={styles.userId}></div>
+                <div className={styles.userId}>
+                  {tg.initDataUnsafe?.user?.id}
+                </div>
               </div>
             </div>
           </section>
