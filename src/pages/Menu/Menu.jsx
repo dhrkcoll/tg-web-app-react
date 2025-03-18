@@ -41,7 +41,9 @@ const Menu = () => {
                 <img src="" alt="" />
               </div>
               <div className={styles.info}>
-                <div className={tg.initDataUnsafe?.user?.username}></div>
+                <div className={styles.userName}>
+                  {tg.initDataUnsafe?.user?.username}
+                </div>
                 <div className={styles.userId}></div>
               </div>
             </div>
