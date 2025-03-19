@@ -89,9 +89,25 @@ const ProductItem = ({ product }) => {
           </div>
         </Link>
         {amountProduct?.count > 0 ? (
-          <div style={{ display: "flex", gap: "5px", alignSelf: "center" }}>
-            <Button type={"plus"} title={"+"} onClick={onIncreaseHandler} />{" "}
-            <Button type={"minus"} title={"-"} onClick={onDecreaseHandler} />
+          <div
+            style={{
+              display: "flex",
+              gap: "5px",
+              alignSelf: "center",
+            }}
+          >
+            <Button
+              type={"plus"}
+              title={"+"}
+              onClick={onIncreaseHandler}
+              style={{ minWidth: "43px" }}
+            />{" "}
+            <Button
+              type={"minus"}
+              title={"-"}
+              onClick={onDecreaseHandler}
+              style={{ minWidth: "43px" }}
+            />
           </div>
         ) : (
           <>
