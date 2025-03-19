@@ -1,9 +1,8 @@
 import { useState } from "react";
-
 import { Map, useYMaps } from "@pbe/react-yandex-maps";
 import styles from "./AddAdressPage.module.scss";
-import config from "../../../config/config.json";
 import { useTelegram } from "../../hooks/useTelegram.js";
+
 const CENTER = [52.233035839442266, 57.44059302107728];
 const ZOOM = 12;
 

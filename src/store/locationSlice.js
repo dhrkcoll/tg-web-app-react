@@ -71,8 +71,8 @@ const initialState = {
   error: null,
 };
 
-const loacationSlice = createSlice({
-  name: "loacation",
+const locationSlice = createSlice({
+  name: "location",
   initialState,
   reducers: {
     selectCity(state, action) {
@@ -113,5 +113,5 @@ export const selectStreetByCity = createSelector(
   }
 );
 export const { selectCity, selectStreet, setDeliveryMethod } =
-  loacationSlice.actions;
-export default loacationSlice.reducer;
+  locationSlice.actions;
+export default locationSlice.reducer;
