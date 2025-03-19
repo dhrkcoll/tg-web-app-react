@@ -2,10 +2,11 @@ import { useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 import styles from "./SelectDelieverPage.module.scss";
 import { IoAddCircleOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTelegram } from "../../hooks/useTelegram.js";
 
 const SelectDelieverPage = () => {
+  const navigate = useNavigate();
   const { tg } = useTelegram();
   const delieveryAdresses = useSelector(
     (state) => state.location.deliveryAdresses
