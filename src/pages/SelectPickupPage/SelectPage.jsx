@@ -1,17 +1,17 @@
 import { useEffect, useCallback } from "react";
-import styles from "./SelectPage.module.scss";
+import styles from "./SelectPickupPage.module.scss";
 import { FaCheck } from "react-icons/fa";
 import { useTelegram } from "../../hooks/useTelegram.js";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { selectStreet } from "../../store/citiesSlice";
+import { selectStreet } from "../../store/locationSlice";
 
-const SelectPage = () => {
+const SelectPickupPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { tg } = useTelegram();
-  const selectedCity = useSelector((state) => state.cities.selectedCity);
-  const selectedStreet = useSelector((state) => state.cities.selectedStreet);
+  const selectedCity = useSelector((state) => state.location.selectedCity);
+  const selectedStreet = useSelector((state) => state.location.selectedStreet);
 
   const onClickBackButton = useCallback(() => {
     navigate(-1);
@@ -51,6 +51,7 @@ const SelectPage = () => {
               {selectedCity.streets.map((street, index) => {
                 return (
                   <div
+                    key={index}
                     className={styles.listAddressesItem}
                     onClick={() => handleSelectStreet(street)}
                   >
@@ -83,4 +84,4 @@ const SelectPage = () => {
   );
 };
 
-export default SelectPage;
+export default SelectPickupPage;

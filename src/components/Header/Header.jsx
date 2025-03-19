@@ -5,15 +5,17 @@ import { useTelegram } from "../../hooks/useTelegram.js";
 import { Link, useSearchParams } from "react-router-dom";
 import { FaAngleRight } from "react-icons/fa6";
 import { CiDeliveryTruck } from "react-icons/ci";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setDeliveryMethod } from "../../store/locationSlice";
 
 const Header = () => {
-  const [selectedDelivery, setSelectedDelivery] = React.useState("pickup");
+  const dispatch = useDispatch();
+  const deliveryMethod = useSelector((state) => state.location.deliveryMethod);
   const { user, onClose } = useTelegram();
-  const selectedCity = useSelector((state) => state.cities.selectedCity);
+  const selectedCity = useSelector((state) => state.location.selectedCity);
 
   const handleDeliveryChange = (type) => {
-    setSelectedDelivery(type);
+    dispatch(setDeliveryMethod(type));
   };
 
   return (
@@ -46,7 +48,7 @@ const Header = () => {
             </div>
           </Link>
         </div>
-        <Link to={"/selectCity"} className={styles.headerCity}>
+        <Link to={"/select-city"} className={styles.headerCity}>
           <div className={styles.headerNameCity}>
             <div className={styles.div}>
               {selectedCity?.name ? selectedCity?.name : ""}
@@ -77,7 +79,7 @@ const Header = () => {
             <div className={styles.selectContent}>
               <div
                 className={`${styles.item} ${
-                  selectedDelivery === "delivery" ? styles.active : ""
+                  deliveryMethod === "delivery" ? styles.active : ""
                 }`}
                 onClick={() => handleDeliveryChange("delivery")}
               >
@@ -87,7 +89,7 @@ const Header = () => {
               </div>
               <div
                 className={`${styles.item} ${
-                  selectedDelivery === "pickup" ? styles.active : ""
+                  deliveryMethod === "pickup" ? styles.active : ""
                 }`}
                 onClick={() => handleDeliveryChange("pickup")}
               >
@@ -100,11 +102,11 @@ const Header = () => {
         </div>
         <div className={styles.selectAddress}>
           <div className={styles.menuContentItem}>
-            {selectedDelivery === "delivery" ? (
+            {deliveryMethod === "delivery" ? (
               <>
                 <CiDeliveryTruck />
                 <div className={styles.text3}>
-                  <Link to={"/select"}>
+                  <Link to={"/select-deliever"}>
                     <div className={styles.address}>
                       Выберите адрес доставки
                     </div>
@@ -118,7 +120,7 @@ const Header = () => {
               <>
                 <CiDeliveryTruck />
                 <div className={styles.text3}>
-                  <Link to={"/select"}>
+                  <Link to={"/select-pickup"}>
                     <div className={styles.address}>Выберите точку продаж</div>
                     <div className={styles.iconRight}>
                       <FaAngleRight />

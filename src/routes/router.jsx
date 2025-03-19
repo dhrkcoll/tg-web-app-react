@@ -5,8 +5,12 @@ import Cart from "../components/Cart/Cart.jsx";
 import ProductPage from "../pages/ProductPage/ProductPage.jsx";
 import App from "../App.jsx";
 import Menu from "../pages/Menu/Menu.jsx";
-import SelectPage from "../pages/SelectPage/SelectPage.jsx";
+import SelectPickupPage from "../pages/SelectPickupPage/SelectPage.jsx";
 import SelectCityPage from "../pages/SelectCityPage/SelectCityPage.jsx";
+import SelectDelieverPage from "../pages/SelectDelieverPage/SelectDelieverPage.jsx";
+import AddAdressPage from "../pages/AddAdressPage/AddAdressPage.jsx";
+import { YMaps } from "@pbe/react-yandex-maps";
+import config from "../../config/config.json";
 
 export const router = createBrowserRouter([
   { index: "/", element: <App /> },
@@ -14,7 +18,15 @@ export const router = createBrowserRouter([
   { path: "/cart", element: <Cart /> },
   { path: "/products/:productId", element: <ProductPage /> },
   { path: "/menu", element: <Menu /> },
-  { path: "/select", element: <SelectPage /> },
-  { path: "/menu", element: <Menu /> },
-  { path: "/selectCity", element: <SelectCityPage /> },
+  { path: "/select-pickup", element: <SelectPickupPage /> },
+  { path: "/select-city", element: <SelectCityPage /> },
+  { path: "/select-deliever", element: <SelectDelieverPage /> },
+  {
+    path: "/add-adress",
+    element: (
+      <YMaps query={{ apikey: config.YANDEX_API_KEY }}>
+        <AddAdressPage />
+      </YMaps>
+    ),
+  },
 ]);

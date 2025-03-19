@@ -65,12 +65,14 @@ const initialState = {
     ],
   },
   selectedStreet: {},
+  deliveryMethod: "",
+  deliveryAdresses: [],
   loading: false,
   error: null,
 };
 
-const citiesSlice = createSlice({
-  name: "cities",
+const loacationSlice = createSlice({
+  name: "loacation",
   initialState,
   reducers: {
     selectCity(state, action) {
@@ -78,6 +80,9 @@ const citiesSlice = createSlice({
     },
     selectStreet(state, action) {
       state.selectedStreet = action.payload;
+    },
+    setDeliveryMethod(state, action) {
+      state.deliveryMethod = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -99,13 +104,14 @@ const citiesSlice = createSlice({
 });
 
 export const selectStreetByCity = createSelector(
-  (state) => state.cities,
+  (state) => state.loacation,
   (state) => state.selectedCity,
-  (cities, selectedCity) => {
+  (loacation, selectedCity) => {
     if (!selectedCity) return [];
-    const city = cities.find((city) => city.id === selectedCity);
+    const city = loacation.find((city) => city.id === selectedCity);
     return city ? city.streets : [];
   }
 );
-export const { selectCity, selectStreet } = citiesSlice.actions;
-export default citiesSlice.reducer;
+export const { selectCity, selectStreet, setDeliveryMethod } =
+  loacationSlice.actions;
+export default loacationSlice.reducer;

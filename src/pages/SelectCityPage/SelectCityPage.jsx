@@ -4,14 +4,14 @@ import { FaCheck } from "react-icons/fa";
 import { useTelegram } from "../../hooks/useTelegram.js";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCity } from "../../store/citiesSlice";
+import { selectCity } from "../../store/locationSlice";
 
 const SelectCityPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { tg } = useTelegram();
-  const cities = useSelector((state) => state.cities.cities);
-  const selectedCity = useSelector((state) => state.cities.selectedCity);
+  const cities = useSelector((state) => state.location.cities);
+  const selectedCity = useSelector((state) => state.location.selectedCity);
 
   const onClickBackButton = useCallback(() => {
     navigate(-1);
