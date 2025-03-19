@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Map, useYMaps } from "@pbe/react-yandex-maps";
 import styles from "./AddAdressPage.module.scss";
 import { useTelegram } from "../../hooks/useTelegram.js";
+import { useNavigate } from "react-router-dom";
 
 const CENTER = [52.233035839442266, 57.44059302107728];
 const ZOOM = 12;
 
 const AddAdressPage = () => {
+  const navigate = useNavigate();
   const { tg, user } = useTelegram();
   const userAvatar = tg.initDataUnsafe?.user?.photo_url;
   const ymaps = useYMaps(["geocode"]);
@@ -41,6 +43,24 @@ const AddAdressPage = () => {
       }
     }
   };
+
+  const onClickBackButton = useCallback(() => {
+    navigate(-1);
+  }, [navigate]);
+  useEffect(() => {
+    if (!window.Telegram || !tg) {
+      return;
+    }
+    const backButton = tg.BackButton;
+
+    backButton.show();
+    backButton.onClick(onClickBackButton);
+
+    return () => {
+      backButton.hide();
+      backButton.offClick(onClickBackButton);
+    };
+  }, [tg, onClickBackButton]);
 
   return (
     <section className={styles.addAddressPage}>

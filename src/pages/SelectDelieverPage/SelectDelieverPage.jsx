@@ -1,12 +1,34 @@
+import { useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 import styles from "./SelectDelieverPage.module.scss";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { useTelegram } from "../../hooks/useTelegram.js";
 
 const SelectDelieverPage = () => {
+  const { tg } = useTelegram();
   const delieveryAdresses = useSelector(
     (state) => state.location.deliveryAdresses
   );
+
+  const onClickBackButton = useCallback(() => {
+    navigate(-1);
+  }, [navigate]);
+  useEffect(() => {
+    if (!window.Telegram || !tg) {
+      return;
+    }
+    const backButton = tg.BackButton;
+
+    backButton.show();
+    backButton.onClick(onClickBackButton);
+
+    return () => {
+      backButton.hide();
+      backButton.offClick(onClickBackButton);
+    };
+  }, [tg, onClickBackButton]);
+
   return (
     <section className={styles.container}>
       <div className={styles.delieverSection}>
