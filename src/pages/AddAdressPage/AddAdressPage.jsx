@@ -8,6 +8,7 @@ const ZOOM = 12;
 
 const AddAdressPage = () => {
   const { tg, user } = useTelegram();
+  const userAvatar = tg.initDataUnsafe?.user?.photo_url;
   const ymaps = useYMaps(["geocode"]);
   const [coordinates, setCoordinates] = useState(null);
 
@@ -40,6 +41,7 @@ const AddAdressPage = () => {
       }
     }
   };
+
   return (
     <section className={styles.addAddressPage}>
       <div className={styles.container}>
@@ -47,6 +49,7 @@ const AddAdressPage = () => {
           <div className={styles.body}>
             <div className={styles.content}>
               <div className={styles.map} id="mapMain">
+                <img src={userAvatar} alt="User" />
                 <Map
                   defaultState={{
                     center: CENTER,
