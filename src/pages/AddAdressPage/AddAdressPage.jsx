@@ -5,6 +5,7 @@ import { useTelegram } from "../../hooks/useTelegram.js";
 import { useNavigate } from "react-router-dom";
 import { addDeliveryAdress } from "../../store/locationSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { useTelegramButton } from "../../hooks/useTelegramButton.js";
 
 const CENTER = [52.233035839442266, 57.44059302107728];
 const ZOOM = 12;
@@ -79,7 +80,7 @@ const AddAdressPage = () => {
       return foundedAddress;
     }
   }
-
+  useTelegramButton("Сохранить", true);
   const onClickBackButton = useCallback(() => {
     navigate(-1);
   }, [navigate]);
