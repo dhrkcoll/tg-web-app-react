@@ -4,6 +4,7 @@ import styles from "./SelectDelieverPage.module.scss";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
 import { useTelegram } from "../../hooks/useTelegram.js";
+import { useTelegramButton } from "../../hooks/useTelegramButton.js";
 
 const SelectDelieverPage = () => {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ const SelectDelieverPage = () => {
     (state) => state.location.deliveryAdresses
   );
 
+  useTelegramButton("", false);
   const onClickBackButton = useCallback(() => {
     navigate(-1);
   }, [navigate]);

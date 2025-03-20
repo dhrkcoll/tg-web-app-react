@@ -85,7 +85,7 @@ const locationSlice = createSlice({
       state.deliveryMethod = action.payload;
     },
     addDeliveryAdress(state, action) {
-      // console.log(action.payload);
+      console.log(action.payload);
       state.deliveryAdresses.push(action.payload);
     },
   },

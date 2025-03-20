@@ -17,7 +17,12 @@ const AddAdressPage = () => {
   const userAvatar = tg.initDataUnsafe?.user?.photo_url;
   const ymaps = useYMaps(["geocode"]);
   const [coordinates, setCoordinates] = useState([]);
-  const [adress, setAdress] = useState("");
+  const [adress, setAdress] = useState({
+    entrance: "",
+    intercomCode: "",
+    floor: "",
+    apartment: "",
+  });
 
   const handleClickMap = (e) => {
     const mapInstance = e.get("target"); // Получаем экземпляр карты
@@ -31,7 +36,7 @@ const AddAdressPage = () => {
       setTimeout(() => {
         ymaps.geocode(centerCoords).then((result) => {
           const foundedAddress = handleGeoResult(result);
-          console.log(foundedAddress);
+
           setAdress(foundedAddress);
         });
       }, 1000); // 1000 миллисекунд = 1 секунду
@@ -81,6 +86,16 @@ const AddAdressPage = () => {
     }
   }
   useTelegramButton("Сохранить", true);
+  const onClickMainButton = useCallback(() => {
+    dispatch(addDeliveryAdress(adress));
+  }, []);
+  useEffect(() => {
+    tg.onEvent("mainButtonClicked", onClickMainButton);
+
+    return () => {
+      tg.offEvent("mainButtonClicked", onClickMainButton);
+    };
+  }, []);
   const onClickBackButton = useCallback(() => {
     navigate(-1);
   }, [navigate]);
@@ -146,13 +161,31 @@ const AddAdressPage = () => {
                   <div className={styles.inputGroup}>
                     <label className={styles.label}>Подъезд</label>
                     <div className={styles.inputWrapper}>
-                      <input className={styles.inputValue} placeholder="" />
+                      <input
+                        className={styles.inputValue}
+                        placeholder=""
+                        value={adress.entrance}
+                        onChange={(e) => {
+                          setAdress((prev) => {
+                            return { ...prev, entrance: e.target.value };
+                          });
+                        }}
+                      />
                     </div>
                   </div>
                   <div className={styles.inputGroup}>
                     <label className={styles.label}>Код домофона</label>
                     <div className={styles.inputWrapper}>
-                      <input className={styles.inputValue} placeholder="" />
+                      <input
+                        className={styles.inputValue}
+                        placeholder=""
+                        value={adress.intercomCode}
+                        onChange={(e) => {
+                          setAdress((prev) => {
+                            return { ...prev, intercomCode: e.target.value };
+                          });
+                        }}
+                      />
                     </div>
                   </div>
                 </div>
@@ -160,13 +193,31 @@ const AddAdressPage = () => {
                   <div className={styles.inputGroup}>
                     <label className={styles.label}>Этаж</label>
                     <div className={styles.inputWrapper}>
-                      <input className={styles.inputValue} placeholder="" />
+                      <input
+                        className={styles.inputValue}
+                        placeholder=""
+                        value={adress.floor}
+                        onChange={(e) => {
+                          setAdress((prev) => {
+                            return { ...prev, floor: e.target.value };
+                          });
+                        }}
+                      />
                     </div>
                   </div>
                   <div className={styles.inputGroup}>
                     <label className={styles.label}>Квартира</label>
                     <div className={styles.inputWrapper}>
-                      <input className={styles.inputValue} placeholder="" />
+                      <input
+                        className={styles.inputValue}
+                        placeholder=""
+                        value={adress.apartment}
+                        onChange={(e) => {
+                          setAdress((prev) => {
+                            return { ...prev, apartment: e.target.value };
+                          });
+                        }}
+                      />
                     </div>
                   </div>
                 </div>
