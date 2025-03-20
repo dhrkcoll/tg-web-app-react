@@ -84,6 +84,10 @@ const locationSlice = createSlice({
     setDeliveryMethod(state, action) {
       state.deliveryMethod = action.payload;
     },
+    addDeliveryAdress(state, action) {
+      // console.log(action.payload);
+      state.deliveryAdresses.push(action.payload);
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -112,6 +116,10 @@ export const selectStreetByCity = createSelector(
     return city ? city.streets : [];
   }
 );
-export const { selectCity, selectStreet, setDeliveryMethod } =
-  locationSlice.actions;
+export const {
+  selectCity,
+  selectStreet,
+  setDeliveryMethod,
+  addDeliveryAdress,
+} = locationSlice.actions;
 export default locationSlice.reducer;

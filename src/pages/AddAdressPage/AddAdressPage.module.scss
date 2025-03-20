@@ -1,5 +1,5 @@
 * {
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 .container {
   background: var(--tg-theme-secondary-bg-color);
@@ -101,4 +101,7 @@
     justify-content: center;
     width: calc(50% - 4px);
   }
+}
+.zoomControl {
+  height: 100px;
 }

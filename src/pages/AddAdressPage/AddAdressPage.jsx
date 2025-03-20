@@ -1,48 +1,84 @@
 import { useState, useEffect, useCallback } from "react";
-import { Map, useYMaps } from "@pbe/react-yandex-maps";
+import { Map, useYMaps, ZoomControl } from "@pbe/react-yandex-maps";
 import styles from "./AddAdressPage.module.scss";
 import { useTelegram } from "../../hooks/useTelegram.js";
 import { useNavigate } from "react-router-dom";
+import { addDeliveryAdress } from "../../store/locationSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const CENTER = [52.233035839442266, 57.44059302107728];
 const ZOOM = 12;
 
 const AddAdressPage = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { tg, user } = useTelegram();
   const userAvatar = tg.initDataUnsafe?.user?.photo_url;
   const ymaps = useYMaps(["geocode"]);
-  const [coordinates, setCoordinates] = useState(null);
+  const [coordinates, setCoordinates] = useState([]);
+  const [adress, setAdress] = useState("");
 
   const handleClickMap = (e) => {
-    const coords = e.get("coords");
+    const mapInstance = e.get("target"); // Получаем экземпляр карты
+    const centerCoords = mapInstance.getCenter(); // Получаем координаты центра карты
+    // console.log("Центр карты:", centerCoords);
+    // const coords = e.get("coords");
 
-    if (coords) {
-      setCoordinates(coords);
-    }
+    if (centerCoords) {
+      setCoordinates(centerCoords);
 
-    ymaps.geocode(coords).then((result) => {
-      console.log(handleGeoResult(result));
-    });
-
-    function handleGeoResult(result) {
-      const firstGeoObject = result.geoObjects.get(0);
-
-      if (firstGeoObject) {
-        const properties = firstGeoObject.properties;
-
-        const location = String(properties.get("description", {}));
-        const route = String(properties.get("name", {}));
-
-        const foundedAdress = {
-          location,
-          route,
-        };
-
-        return foundedAdress;
-      }
+      setTimeout(() => {
+        ymaps.geocode(centerCoords).then((result) => {
+          const foundedAddress = handleGeoResult(result);
+          console.log(foundedAddress);
+          setAdress(foundedAddress);
+        });
+      }, 1000); // 1000 миллисекунд = 1 секунду
     }
   };
+
+  function handleGeoResult(result) {
+    const firstGeoObject = result.geoObjects.get(0);
+
+    if (firstGeoObject) {
+      const properties = firstGeoObject.properties;
+      const metaData = properties.get("metaDataProperty").GeocoderMetaData;
+
+      // const location = String(properties.get("description", {}));
+      // const route = String(properties.get("name", {}));
+
+      const addressDetails = metaData.Address;
+      const formattedAddress = addressDetails.formatted; // Полный адрес
+      const country =
+        addressDetails.Components.find(
+          (component) => component.kind === "country"
+        )?.name || ""; // Страна
+      const locality =
+        addressDetails.Components.find(
+          (component) => component.kind === "locality"
+        )?.name || ""; // Город
+      const street =
+        addressDetails.Components.find(
+          (component) => component.kind === "street"
+        )?.name || ""; // Улица
+      const house =
+        addressDetails.Components.find(
+          (component) => component.kind === "house"
+        )?.name || ""; // Номер дома
+      const postalCode = addressDetails.postal_code; // Почтовый код
+
+      const foundedAddress = {
+        formattedAddress,
+        country,
+        locality,
+        street,
+        house,
+        postalCode,
+      };
+
+      return foundedAddress;
+    }
+  }
 
   const onClickBackButton = useCallback(() => {
     navigate(-1);
@@ -76,8 +112,13 @@ const AddAdressPage = () => {
                     zoom: ZOOM,
                   }}
                   style={{ width: "100%", height: "400px" }}
-                  onClick={(e) => handleClickMap(e)}
-                />
+                  onBoundsChange={handleClickMap}
+                >
+                  <ZoomControl
+                    options={{ float: "left" }}
+                    className={styles.zoomControl}
+                  />
+                </Map>
               </div>
               <div className={styles.formContent}>
                 <div className={styles.inputGroup}>
@@ -85,7 +126,9 @@ const AddAdressPage = () => {
                   <div className={styles.inputWrapper}>
                     <input
                       className={styles.inputValue}
-                      placeholder="Москва, ул. Ленина 15"
+                      placeholder="Зилаир, ул. Ленина 109"
+                      value={adress.formattedAddress || ""}
+                      onChange={(e) => setAdress(e.target.value)}
                     />
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
