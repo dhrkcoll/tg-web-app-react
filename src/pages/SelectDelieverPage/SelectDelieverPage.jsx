@@ -12,7 +12,7 @@ const SelectDelieverPage = () => {
   const delieveryAdresses = useSelector(
     (state) => state.location.deliveryAdresses
   );
-
+  console.log(delieveryAdresses);
   useTelegramButton("", false);
   const onClickBackButton = useCallback(() => {
     navigate(-1);
@@ -40,12 +40,16 @@ const SelectDelieverPage = () => {
             <h2 className={styles.adressesListTitle}>Выберите адрес</h2>
             <ul className={styles.adressesList}>
               {delieveryAdresses.map((adress, index) => {
-                <li key={index} className={styles.adressesListItem}>
-                  <div className={styles.adressesListText}>
-                    <p></p>
-                    <span></span>
-                  </div>
-                </li>;
+                return (
+                  <li key={index} className={styles.adressesListItem}>
+                    <div className={styles.adressesListText}>
+                      <div>
+                        <p>{adress.formattedAddress}</p>
+                        <span>{`${adress.entrance}, ${adress.floor}, ${adress.apartment}, ${adress.userComment}`}</span>
+                      </div>
+                    </div>
+                  </li>
+                );
               })}
             </ul>
           </div>

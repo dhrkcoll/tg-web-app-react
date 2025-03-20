@@ -44,6 +44,16 @@
   display: flex;
   justify-content: flex-start;
   position: relative;
+  padding: 0 16px 0 16px;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  align-self: stretch;
+  flex-shrink: 0;
+
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
   color: var(--tg-theme-hint-color, #8e8e93);
   text-align: left;
   font-size: var(--regular-uppercase-13-font-size, 13px);
@@ -74,6 +84,16 @@
   align-items: center;
   justify-content: flex-start;
   position: relative;
+  gap: 16px;
+  align-self: stretch;
+  flex-shrink: 0;
+}
+.adressesListText {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
   border-style: solid;
   border-color: var(--tg-theme-section-separator-color, #c8c7cc);
   border-width: 0 0 0.33px 0;
@@ -81,6 +101,33 @@
   gap: 6px;
   flex: 1;
   min-height: 44px;
+}
+.adressesListText div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+  justify-content: center;
+  flex: 1;
+  position: relative;
+}
+.adressesListText p {
+  text-align: left;
+  position: relative;
+  align-self: stretch;
+  color: var(--tg-theme-text-color, #000);
+  font-size: var(--regular-16-font-size, 16px);
+  line-height: var(--regular-16-line-height, 100%);
+  font-weight: var(--regular-16-font-weight, 400);
+}
+.adressesListText span {
+  text-align: left;
+  position: relative;
+  align-self: stretch;
+  color: var(--tg-theme-hint-color, #8e8e93);
+  font-size: var(--regular-paragarph-14-font-size, 14px);
+  line-height: var(--regular-paragarph-14-line-height, 125%);
+  font-weight: var(--regular-paragarph-14-font-weight, 400);
 }
 .addSection {
   border-radius: 10px;

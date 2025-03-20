@@ -22,6 +22,7 @@ const AddAdressPage = () => {
     intercomCode: "",
     floor: "",
     apartment: "",
+    userComment: "",
   });
 
   const handleClickMap = (e) => {
@@ -229,7 +230,14 @@ const AddAdressPage = () => {
                 <div className={styles.inputGroup}>
                   <label className={styles.label}>Комментарий</label>
                   <div className={styles.inputWrapper}>
-                    <input className={styles.inputValue} />
+                    <input
+                      className={styles.inputValue}
+                      onChange={(e) => {
+                        setAdress((prev) => {
+                          return { ...prev, userComment: e.target.value };
+                        });
+                      }}
+                    />
                   </div>
                 </div>
               </div>
