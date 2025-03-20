@@ -86,7 +86,9 @@ const AddAdressPage = () => {
       return foundedAddress;
     }
   }
+
   useTelegramButton("Сохранить", true);
+
   const onClickMainButton = useCallback(() => {
     dispatch(addDeliveryAdress(adress));
     navigate("/select-deliever");
@@ -97,7 +99,8 @@ const AddAdressPage = () => {
     return () => {
       tg.offEvent("mainButtonClicked", onClickMainButton);
     };
-  }, [dispatch]);
+  }, [dispatch, onClickMainButton]);
+
   const onClickBackButton = useCallback(() => {
     navigate(-1);
   }, [navigate]);
