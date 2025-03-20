@@ -88,14 +88,15 @@ const AddAdressPage = () => {
   useTelegramButton("Сохранить", true);
   const onClickMainButton = useCallback(() => {
     dispatch(addDeliveryAdress(adress));
-  }, []);
+    navigate("/select-deliever");
+  }, [dispatch, adress, navigate]);
   useEffect(() => {
     tg.onEvent("mainButtonClicked", onClickMainButton);
 
     return () => {
       tg.offEvent("mainButtonClicked", onClickMainButton);
     };
-  }, []);
+  }, [dispatch]);
   const onClickBackButton = useCallback(() => {
     navigate(-1);
   }, [navigate]);
@@ -144,7 +145,11 @@ const AddAdressPage = () => {
                       className={styles.inputValue}
                       placeholder="Зилаир, ул. Ленина 109"
                       value={adress.formattedAddress || ""}
-                      onChange={(e) => setAdress(e.target.value)}
+                      onChange={(e) => {
+                        setAdress((prev) => {
+                          return { ...prev, formattedAddress: e.target.value };
+                        });
+                      }}
                     />
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
