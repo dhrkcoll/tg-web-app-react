@@ -45,7 +45,15 @@ const SelectDelieverPage = () => {
                     <div className={styles.adressesListText}>
                       <div>
                         <p>{adress.formattedAddress}</p>
-                        <span>{`${adress.entrance}, ${adress.floor}, ${adress.apartment}, ${adress.userComment}`}</span>
+                        <span>{`Подъезд: ${
+                          adress.entrance ? adress.entrance : ""
+                        }, Этаж: ${
+                          adress.floor ? adress.floor : ""
+                        }, Квартира: ${
+                          adress.apartment ? adress.apartment : ""
+                        }, Комментарий: ${
+                          adress.userComment ? adress.userComment : ""
+                        }`}</span>
                       </div>
                     </div>
                   </li>
