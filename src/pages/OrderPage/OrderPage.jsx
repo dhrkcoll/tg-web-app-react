@@ -3,6 +3,7 @@ import styles from "./OrderPage.module.scss";
 import { FaPhoneAlt } from "react-icons/fa";
 import { CiDiscount1 } from "react-icons/ci";
 import { PiCashRegisterLight } from "react-icons/pi";
+import { FaAngleRight } from "react-icons/fa6";
 
 const OrderPage = () => {
   return (
@@ -28,10 +29,7 @@ const OrderPage = () => {
               <div className={styles.paymentContent}>
                 <div className={styles.paymentText}>Наличными</div>
                 <div className={styles.paymentArrow}>
-                  <img
-                    className={styles.arrowImage}
-                    src="/img/group-10.9d48cbdd.svg"
-                  />
+                  <FaAngleRight />
                 </div>
               </div>
             </div>
