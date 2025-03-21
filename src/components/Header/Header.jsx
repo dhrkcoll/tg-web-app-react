@@ -109,7 +109,9 @@ const Header = () => {
                 <div className={styles.text3}>
                   <Link to={"/select-deliever"}>
                     <div className={styles.address}>
-                      Выберите адрес доставки
+                      {selectedAdress
+                        ? selectedAdress?.formattedAdress
+                        : "Выберите адрес доставки"}
                     </div>
                     <div className={styles.iconRight}>
                       <FaAngleRight />

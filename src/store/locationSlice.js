@@ -76,6 +76,7 @@ const locationSlice = createSlice({
   initialState,
   reducers: {
     selectCity(state, action) {
+      console.log(action.payload);
       state.selectedCity = action.payload;
     },
     selectAdress(state, action) {
@@ -83,9 +84,11 @@ const locationSlice = createSlice({
       state.selectedAdress = action.payload;
     },
     setDeliveryMethod(state, action) {
+      console.log(action.payload);
       state.deliveryMethod = action.payload;
     },
     addDeliveryAdress(state, action) {
+      console.log(action.payload);
       state.deliveryAdresses.push(action.payload);
     },
   },

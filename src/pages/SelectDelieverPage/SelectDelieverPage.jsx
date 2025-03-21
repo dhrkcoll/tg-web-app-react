@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useTelegram } from "../../hooks/useTelegram.js";
 import { useTelegramButton } from "../../hooks/useTelegramButton.js";
 import { selectAdress } from "../../store/locationSlice";
+import { FaCheck } from "react-icons/fa";
 
 const SelectDelieverPage = () => {
   const dispatch = useDispatch();
@@ -70,6 +71,7 @@ const SelectDelieverPage = () => {
                         }`}</span>
                       </div>
                     </div>
+                    {}
                   </li>
                 );
               })}
