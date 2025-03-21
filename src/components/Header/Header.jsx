@@ -13,6 +13,7 @@ const Header = () => {
   const deliveryMethod = useSelector((state) => state.location.deliveryMethod);
   const { user, onClose } = useTelegram();
   const selectedCity = useSelector((state) => state.location.selectedCity);
+  const selectedAdress = useSelector((state) => state.location.selectedAdress);
 
   const handleDeliveryChange = (type) => {
     dispatch(setDeliveryMethod(type));
@@ -121,7 +122,11 @@ const Header = () => {
                 <CiDeliveryTruck />
                 <div className={styles.text3}>
                   <Link to={"/select-pickup"}>
-                    <div className={styles.address}>Выберите точку продаж</div>
+                    <div className={styles.address}>
+                      {selectedAdress && selectedAdress.street
+                        ? `ул.${selectedAdress.street}, ${selectedAdress.apartment}`
+                        : "Выберите точку продаж"}
+                    </div>
                     <div className={styles.iconRight}>
                       <FaAngleRight />
                     </div>

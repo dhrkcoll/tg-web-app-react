@@ -63,6 +63,7 @@
   align-self: stretch;
   flex-shrink: 0;
   position: relative;
+  color: var(--tg-theme-text-color, #000);
 }
 .menuContentItem > svg {
   border-radius: 8px;

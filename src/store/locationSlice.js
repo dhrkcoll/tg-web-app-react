@@ -60,12 +60,11 @@ const initialState = {
     id: 1,
     name: "Зилаир",
     streets: [
-      { id: 1, name: "Ленина", number: 25 },
-      { id: 2, name: "Салавата Юлаева", number: 28 },
+      { id: 1, street: "Ленина", apartment: 25 },
+      { id: 2, street: "Салавата Юлаева", apartment: 28 },
     ],
   },
-  selectedStreet: {},
-  selectedDeliveryAdress: {},
+  selectedAdress: {},
   deliveryMethod: "",
   deliveryAdresses: [],
   loading: false,
@@ -79,14 +78,14 @@ const locationSlice = createSlice({
     selectCity(state, action) {
       state.selectedCity = action.payload;
     },
-    selectStreet(state, action) {
-      state.selectedStreet = action.payload;
+    selectAdress(state, action) {
+      console.log(action.payload);
+      state.selectedAdress = action.payload;
     },
     setDeliveryMethod(state, action) {
       state.deliveryMethod = action.payload;
     },
     addDeliveryAdress(state, action) {
-      console.log(action.payload);
       state.deliveryAdresses.push(action.payload);
     },
   },
@@ -119,7 +118,7 @@ export const selectStreetByCity = createSelector(
 );
 export const {
   selectCity,
-  selectStreet,
+  selectAdress,
   setDeliveryMethod,
   addDeliveryAdress,
 } = locationSlice.actions;

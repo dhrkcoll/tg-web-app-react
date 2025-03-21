@@ -1,17 +1,25 @@
 import { useCallback, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./SelectDelieverPage.module.scss";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
 import { useTelegram } from "../../hooks/useTelegram.js";
 import { useTelegramButton } from "../../hooks/useTelegramButton.js";
+import { selectAdress } from "../../store/locationSlice";
 
 const SelectDelieverPage = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { tg } = useTelegram();
   const delieveryAdresses = useSelector(
     (state) => state.location.deliveryAdresses
   );
+
+  const handleSelectAdress = (street) => {
+    dispatch(selectAdress(street));
+    navigate("/");
+  };
+
   console.log(delieveryAdresses);
   useTelegramButton("", false);
   const onClickBackButton = useCallback(() => {
@@ -41,7 +49,13 @@ const SelectDelieverPage = () => {
             <ul className={styles.adressesList}>
               {delieveryAdresses.map((adress, index) => {
                 return (
-                  <li key={index} className={styles.adressesListItem}>
+                  <li
+                    key={index}
+                    className={styles.adressesListItem}
+                    onClick={() => {
+                      handleSelectAdress(adress);
+                    }}
+                  >
                     <div className={styles.adressesListText}>
                       <div>
                         <p>{adress.formattedAddress}</p>

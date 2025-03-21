@@ -4,14 +4,14 @@ import { FaCheck } from "react-icons/fa";
 import { useTelegram } from "../../hooks/useTelegram.js";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { selectStreet } from "../../store/locationSlice";
+import { selectAdress } from "../../store/locationSlice";
 
 const SelectPickupPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { tg } = useTelegram();
   const selectedCity = useSelector((state) => state.location.selectedCity);
-  const selectedStreet = useSelector((state) => state.location.selectedStreet);
+  const selectedAdress = useSelector((state) => state.location.selectedAdress);
 
   const onClickBackButton = useCallback(() => {
     navigate(-1);
@@ -33,8 +33,8 @@ const SelectPickupPage = () => {
     };
   }, [tg, onClickBackButton]);
 
-  const handleSelectStreet = (street) => {
-    dispatch(selectStreet(street));
+  const handleSelectAdress = (street) => {
+    dispatch(selectAdress(street));
     navigate("/");
   };
 
@@ -53,19 +53,21 @@ const SelectPickupPage = () => {
                   <div
                     key={index}
                     className={styles.listAddressesItem}
-                    onClick={() => handleSelectStreet(street)}
+                    onClick={() => handleSelectAdress(street)}
                   >
                     <div className={styles.content}>
                       <div className={styles.text}>
                         <div className={styles.address}>
-                          {selectedCity.name}, ул. {street.name} {street.number}
+                          {selectedCity.name}, ул. {street.street}{" "}
+                          {street.apartment}
                         </div>
                         <div className={styles.fullAddress}>
-                          Россия, {selectedCity.name}, {street.name},{" "}
-                          {street.number}
+                          Россия, {selectedCity.name}, {street.street},{" "}
+                          {street.apartment}
                         </div>
                       </div>
-                      {selectedStreet === street ? (
+                      {selectedAdress?.street === street.street &&
+                      selectedAdress?.street === street.street ? (
                         <div className={styles.checkmarkIcon}>
                           <FaCheck />
                         </div>
