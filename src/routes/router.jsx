@@ -11,6 +11,7 @@ import SelectDelieverPage from "../pages/SelectDelieverPage/SelectDelieverPage.j
 import AddAdressPage from "../pages/AddAdressPage/AddAdressPage.jsx";
 import { YMaps } from "@pbe/react-yandex-maps";
 import config from "../../config/config.json";
+import OrderPage from "../pages/OrderPage/OrderPage.jsx";
 
 export const router = createBrowserRouter([
   { index: "/", element: <App /> },
@@ -29,4 +30,5 @@ export const router = createBrowserRouter([
       </YMaps>
     ),
   },
+  { path: "/order", element: <OrderPage /> },
 ]);

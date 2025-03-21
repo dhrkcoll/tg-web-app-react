@@ -41,6 +41,17 @@ const Cart = () => {
     };
   }, [tg, onClickBackButton]);
 
+  const onClickMainButton = useCallback(() => {
+    navigate("/order");
+  }, []);
+  useEffect(() => {
+    tg.onEvent("mainButtonClicked", onClickMainButton);
+
+    return () => {
+      tg.offEvent("mainButtonClicked", onClickMainButton);
+    };
+  }, []);
+
   if (!cartItems) {
     return <div>Корзина пуста</div>;
   }
