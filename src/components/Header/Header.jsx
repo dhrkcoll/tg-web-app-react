@@ -109,7 +109,7 @@ const Header = () => {
                 <div className={styles.text3}>
                   <Link to={"/select-deliever"}>
                     <div className={styles.address}>
-                      {selectedAdress
+                      {selectedAdress.formattedAdress
                         ? selectedAdress?.formattedAdress
                         : "Выберите адрес доставки"}
                     </div>

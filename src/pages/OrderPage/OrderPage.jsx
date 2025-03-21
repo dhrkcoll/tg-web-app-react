@@ -4,16 +4,25 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { CiDiscount1 } from "react-icons/ci";
 import { PiCashRegisterLight } from "react-icons/pi";
 import { FaAngleRight } from "react-icons/fa6";
+import { useSelector } from "react-redux";
 
 const OrderPage = () => {
+  const goodsPrice = useSelector((state) => state.cart.totalPrice);
+  const delieverPrice = 100;
+  const totalPrice = goodsPrice + delieverPrice;
+  const deliveryMethod = useSelector((state) => state.location.deliveryMethod);
+  const selectAdress = useSelector((state) => state.location.selectedAdress);
+
   return (
     <div className={styles.deliveryModule}>
       <div className={styles.deliveryBody}>
-        <div className={styles.deliveryHeader}>Доставка</div>
+        <div className={styles.deliveryHeader}>
+          {deliveryMethod === "delivery" ? "Доставка" : "Самовывоз"}
+        </div>
         <div className={styles.deliveryAddress}>
           <div className={styles.addressContent}>
             <div className={styles.addressText}>
-              <p>Россия, Самара, Чапаевская улица</p>
+              <p>{selectAdress ? selectAdress.street : ""}</p>
             </div>
           </div>
         </div>
@@ -60,8 +69,7 @@ const OrderPage = () => {
           <div className={styles.paymentHint}>
             <div className={styles.hintText}>
               <span>
-                У вас есть 860.00 бонусных рублей, из них вы можете списать
-                162.00₽
+                У вас есть 00.00 бонусных рублей, из них вы можете списать 0.00₽
               </span>
             </div>
           </div>
@@ -121,7 +129,7 @@ const OrderPage = () => {
           </div>
           <div className={styles.inputWrapper}>
             <input
-              placeholder="Например, завтра в 15:00"
+              placeholder="Например, через два часа"
               type="text"
               className={styles.inputField}
             />
@@ -131,16 +139,20 @@ const OrderPage = () => {
           <div className={styles.summaryContent}>
             <div className={styles.summaryRow}>
               <div className={styles.rowTitle}>Сумма заказа</div>
-              <div className={styles.rowValue}>1&nbsp;620,00&nbsp;₽</div>
+              <div className={styles.rowValue}>{goodsPrice}₽</div>
             </div>
-            <div className={styles.summaryRow}>
-              <div className={styles.rowTitle}>Доставка</div>
-              <div className={styles.rowValue}>100,00&nbsp;₽</div>
-            </div>
+            {deliveryMethod === "delivery" && (
+              <div className={styles.summaryRow}>
+                <div className={styles.rowTitle}>Доставка</div>
+                <div className={styles.rowValue}>100,00&nbsp;₽</div>
+              </div>
+            )}
           </div>
           <div className={styles.totalSummary}>
             <div className={styles.totalTitle}>Итого</div>
-            <div className={styles.totalValue}>2&nbsp;020,00&nbsp;₽</div>
+            <div className={styles.totalValue}>
+              {deliveryMethod === "delivery" ? totalPrice : goodsPrice}₽
+            </div>
           </div>
         </div>
         <div className={styles.policySection}>
