@@ -40,7 +40,7 @@ const AddAdressPage = () => {
 
           setAdress(foundedAddress);
         });
-      }, 1000); // 1000 миллисекунд = 1 секунду
+      }, 1000);
     }
   };
 

@@ -65,6 +65,7 @@ const initialState = {
     ],
   },
   selectedStreet: {},
+  selectedDeliveryAdress: {},
   deliveryMethod: "",
   deliveryAdresses: [],
   loading: false,

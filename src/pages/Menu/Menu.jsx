@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from "react";
 import styles from "./Menu.module.scss";
 import { useTelegram } from "../../hooks/useTelegram.js";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { MdOutlineHomeWork } from "react-icons/md";
 import { AiTwotoneShop } from "react-icons/ai";
 import { MdOutlineAccountBalanceWallet } from "react-icons/md";
@@ -55,7 +55,7 @@ const Menu = () => {
           </section>
           <div className={styles.menuSection}>
             <div className={styles.menuContent}>
-              <div className={styles.menuContentItem}>
+              <Link to={"/orders"} className={styles.menuContentItem}>
                 <AiTwotoneShop />
                 <div className={styles.menuContentItemInner}>
                   <div className={styles.menuContentText}>Мои заказы</div>
@@ -63,7 +63,7 @@ const Menu = () => {
                     <FaAngleRight />
                   </div>
                 </div>
-              </div>
+              </Link>
               <div className={styles.menuContentItem}>
                 <MdOutlineAccountBalanceWallet />
                 <div className={styles.menuContentItemInner}>
@@ -71,7 +71,7 @@ const Menu = () => {
                   <div className="_890">500,00&nbsp;₽</div>
                 </div>
               </div>
-              <div className={styles.menuContentItem}>
+              <Link to={"/select-deliever"} className={styles.menuContentItem}>
                 <MdOutlineHomeWork />
                 <div className={styles.menuContentItemInner}>
                   <div className={styles.menuContentText}>Мои адреса</div>
@@ -79,7 +79,7 @@ const Menu = () => {
                     <FaAngleRight />
                   </div>
                 </div>
-              </div>
+              </Link>
             </div>
           </div>
           <div className={styles.menuSection}>
