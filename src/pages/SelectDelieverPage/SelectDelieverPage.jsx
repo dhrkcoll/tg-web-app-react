@@ -15,6 +15,7 @@ const SelectDelieverPage = () => {
   const delieveryAdresses = useSelector(
     (state) => state.location.deliveryAdresses
   );
+  const selectedAdress = useSelector((state) => state.location.selectedAdress);
 
   const handleSelectAdress = (street) => {
     dispatch(selectAdress(street));
@@ -71,7 +72,11 @@ const SelectDelieverPage = () => {
                         }`}</span>
                       </div>
                     </div>
-                    {}
+                    {adress.locality === selectAdress.locality ? (
+                      <FaCheck />
+                    ) : (
+                      ""
+                    )}
                   </li>
                 );
               })}
