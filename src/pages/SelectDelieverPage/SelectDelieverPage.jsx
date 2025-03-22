@@ -50,6 +50,7 @@ const SelectDelieverPage = () => {
             <h2 className={styles.adressesListTitle}>Выберите адрес</h2>
             <ul className={styles.adressesList}>
               {delieveryAdresses.map((adress, index) => {
+                console.log(adress);
                 return (
                   <li
                     key={index}
@@ -62,17 +63,18 @@ const SelectDelieverPage = () => {
                       <div>
                         <p>{adress.formattedAddress}</p>
                         <span>{`Подъезд: ${
-                          adress.entrance ? adress.entrance : ""
+                          adress.entrance ? adress.entrance : "-"
                         }, Этаж: ${
-                          adress.floor ? adress.floor : ""
+                          adress.floor ? adress.floor : "-"
                         }, Квартира: ${
-                          adress.apartment ? adress.apartment : ""
+                          adress.house ? adress.house : "-"
                         }, Комментарий: ${
-                          adress.userComment ? adress.userComment : ""
+                          adress.userComment ? adress.userComment : "-"
                         }`}</span>
                       </div>
                     </div>
-                    {adress.locality === selectAdress.locality ? (
+                    {adress.formattedAddress ===
+                    selectedAdress.formattedAddress ? (
                       <FaCheck />
                     ) : (
                       ""

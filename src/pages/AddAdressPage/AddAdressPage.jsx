@@ -51,9 +51,6 @@ const AddAdressPage = () => {
       const properties = firstGeoObject.properties;
       const metaData = properties.get("metaDataProperty").GeocoderMetaData;
 
-      // const location = String(properties.get("description", {}));
-      // const route = String(properties.get("name", {}));
-
       const addressDetails = metaData.Address;
       const formattedAddress = addressDetails.formatted; // Полный адрес
       const country =
@@ -86,10 +83,19 @@ const AddAdressPage = () => {
       return foundedAddress;
     }
   }
+  const transformAddress = (foundedAddress) => {
+    return {
+      city: foundedAddress.locality,
+      street: foundedAddress.street,
+      house: foundedAddress.house,
+      postalCode: foundedAddress.postalCode,
+    };
+  };
 
   useTelegramButton("Сохранить", true);
 
   const onClickMainButton = useCallback(() => {
+    // const transformedAdress = transformAddress(adress);
     dispatch(addDeliveryAdress(adress));
     navigate("/select-deliever");
   }, [dispatch, adress, navigate]);
@@ -118,6 +124,11 @@ const AddAdressPage = () => {
       backButton.offClick(onClickBackButton);
     };
   }, [tg, onClickBackButton]);
+
+  const onClickAdd = () => {
+    // const transformedAdress = transformAddress(adress);
+    dispatch(addDeliveryAdress(adress));
+  };
 
   return (
     <section className={styles.addAddressPage}>
@@ -248,6 +259,7 @@ const AddAdressPage = () => {
           </div>
         </div>
       </div>
+      <button onClick={onClickAdd}>ADD</button>
     </section>
   );
 };

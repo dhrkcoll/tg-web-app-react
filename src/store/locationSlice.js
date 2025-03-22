@@ -60,8 +60,8 @@ const initialState = {
     id: 1,
     name: "Зилаир",
     streets: [
-      { id: 1, street: "Ленина", apartment: 25 },
-      { id: 2, street: "Салавата Юлаева", apartment: 28 },
+      { id: 1, street: "Ленина", house: 25 },
+      { id: 2, street: "Салавата Юлаева", house: 28 },
     ],
   },
   selectedAdress: {},
@@ -76,20 +76,27 @@ const locationSlice = createSlice({
   initialState,
   reducers: {
     selectCity(state, action) {
-      console.log(action.payload);
       state.selectedCity = action.payload;
     },
     selectAdress(state, action) {
-      console.log(action.payload);
       state.selectedAdress = action.payload;
     },
     setDeliveryMethod(state, action) {
-      console.log(action.payload);
       state.deliveryMethod = action.payload;
     },
     addDeliveryAdress(state, action) {
-      console.log(action.payload);
-      state.deliveryAdresses.push(action.payload);
+      const newAddress = action.payload;
+      console.log(newAddress);
+      const addressExists = state.deliveryAdresses.some(
+        (address) => address.formattedAddress === newAddress.formattedAddress
+        // (address.city === newAddress.city &&
+        //   address.street === newAddress.street &&
+        //   address.house === newAddress.house)
+      );
+
+      if (!addressExists) {
+        state.deliveryAdresses.push(newAddress);
+      }
     },
   },
   extraReducers: (builder) => {
