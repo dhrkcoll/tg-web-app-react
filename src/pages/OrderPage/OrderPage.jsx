@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styles from "./OrderPage.module.scss";
 import { FaPhoneAlt } from "react-icons/fa";
 import { CiDiscount1 } from "react-icons/ci";
@@ -14,6 +14,7 @@ const OrderPage = () => {
   const totalPrice = goodsPrice + delieverPrice;
   const deliveryMethod = useSelector((state) => state.location.deliveryMethod);
   const selectAdress = useSelector((state) => state.location.selectedAdress);
+  const [userPhone, setUserPhone] = useState();
 
   const sharedPhoneNumber = () => {
     // Запрос номера телефона
@@ -97,7 +98,7 @@ const OrderPage = () => {
               <FaPhoneAlt />
             </div>
             <div className={styles.phoneContent}>
-              <div className={styles.phoneNumber}>79659271079</div>
+              <div className={styles.phoneNumber}>{userPhone}</div>
               <div className={styles.phoneEdit} onClick={sharedPhoneNumber}>
                 Указать
               </div>
