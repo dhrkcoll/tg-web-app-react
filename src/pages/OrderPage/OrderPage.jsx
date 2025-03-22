@@ -5,13 +5,19 @@ import { CiDiscount1 } from "react-icons/ci";
 import { PiCashRegisterLight } from "react-icons/pi";
 import { FaAngleRight } from "react-icons/fa6";
 import { useSelector } from "react-redux";
+import { useTelegram } from "../../hooks/useTelegram.js";
 
 const OrderPage = () => {
+  const { tg } = useTelegram();
   const goodsPrice = useSelector((state) => state.cart.totalPrice);
   const delieverPrice = 100;
   const totalPrice = goodsPrice + delieverPrice;
   const deliveryMethod = useSelector((state) => state.location.deliveryMethod);
   const selectAdress = useSelector((state) => state.location.selectedAdress);
+
+  const sharedPhoneNumber = () => {
+    tg.sendData("request_contact");
+  };
 
   return (
     <div className={styles.deliveryModule}>
@@ -81,7 +87,12 @@ const OrderPage = () => {
             </div>
             <div className={styles.phoneContent}>
               <div className={styles.phoneNumber}>79659271079</div>
-              <div className={styles.phoneEdit}>Указать</div>
+              <div
+                className={styles.phoneEdit}
+                onClick={() => sharedPhoneNumber()}
+              >
+                Указать
+              </div>
             </div>
           </div>
         </div>
