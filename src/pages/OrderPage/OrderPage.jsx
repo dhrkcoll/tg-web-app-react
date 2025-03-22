@@ -16,9 +16,9 @@ const OrderPage = () => {
   const selectAdress = useSelector((state) => state.location.selectedAdress);
   const [userPhone, setUserPhone] = useState();
 
-  const sharedPhoneNumber = () => {
-    // Запрос номера телефона
-    tg.sendData(JSON.stringify("hello"));
+  const handleSendData = () => {
+    const data = JSON.stringify({ phone: "1234567890" });
+    tg.sendData(data); // Отправляем данные
   };
 
   useEffect(() => {
@@ -100,7 +100,7 @@ const OrderPage = () => {
             </div>
             <div className={styles.phoneContent}>
               <div className={styles.phoneNumber}>{userPhone}</div>
-              <div className={styles.phoneEdit} onClick={sharedPhoneNumber}>
+              <div className={styles.phoneEdit} onClick={handleSendData}>
                 Указать
               </div>
             </div>
