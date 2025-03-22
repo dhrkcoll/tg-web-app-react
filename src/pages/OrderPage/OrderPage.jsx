@@ -16,7 +16,13 @@ const OrderPage = () => {
   const selectAdress = useSelector((state) => state.location.selectedAdress);
 
   const sharedPhoneNumber = () => {
-    tg.sendData("request_contact");
+    // Создаем кнопку для запроса контакта
+    const contactButton = {
+      text: "Поделиться номером телефона",
+      request_contact: true,
+    };
+
+    tg.sendData(JSON.stringify(contactButton));
   };
 
   return (
@@ -87,10 +93,7 @@ const OrderPage = () => {
             </div>
             <div className={styles.phoneContent}>
               <div className={styles.phoneNumber}>79659271079</div>
-              <div
-                className={styles.phoneEdit}
-                onClick={() => sharedPhoneNumber()}
-              >
+              <div className={styles.phoneEdit} onClick={sharedPhoneNumber}>
                 Указать
               </div>
             </div>
