@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import styles from "./OrderPage.module.scss";
 import { FaPhoneAlt } from "react-icons/fa";
 import { CiDiscount1 } from "react-icons/ci";
@@ -16,14 +16,19 @@ const OrderPage = () => {
   const selectAdress = useSelector((state) => state.location.selectedAdress);
 
   const sharedPhoneNumber = () => {
-    // Создаем кнопку для запроса контакта
-    const contactButton = {
-      text: "Поделиться номером телефона",
-      request_contact: true,
-    };
-
-    tg.sendData(JSON.stringify(contactButton));
+    // Запрос номера телефона
+    tg.sendData("request_contact");
   };
+
+  useEffect(() => {
+    tg.onEvent("dataReceived", (data) => {
+      const contact = JSON.parse(data);
+      if (contact && contact.phone_number) {
+        console.log("Получен номер телефона:", contact.phone_number);
+        // Здесь вы можете сохранить номер телефона в состоянии или отправить его на сервер
+      }
+    });
+  }, [tg]);
 
   return (
     <div className={styles.deliveryModule}>
