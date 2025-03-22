@@ -109,7 +109,8 @@ const Header = () => {
                 <div className={styles.text3}>
                   <Link to={"/select-deliever"}>
                     <div className={styles.address}>
-                      {selectedAdress.formattedAdress
+                      {selectedAdress.formattedAdress &&
+                      deliveryMethod === "delivery"
                         ? selectedAdress?.formattedAdress
                         : "Выберите адрес доставки"}
                     </div>
@@ -125,7 +126,7 @@ const Header = () => {
                 <div className={styles.text3}>
                   <Link to={"/select-pickup"}>
                     <div className={styles.address}>
-                      {selectedAdress && selectedAdress.street
+                      {selectedAdress && deliveryMethod === "pickup"
                         ? `ул.${selectedAdress.street}, ${selectedAdress.apartment}`
                         : "Выберите точку продаж"}
                     </div>
