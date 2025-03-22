@@ -18,11 +18,12 @@ const OrderPage = () => {
 
   const sharedPhoneNumber = () => {
     // Запрос номера телефона
-    tg.sendData("request_contact");
+    tg.sendData(JSON.stringify("hello"));
   };
 
   useEffect(() => {
     tg.onEvent("dataReceived", (data) => {
+      console.log(data);
       const contact = JSON.parse(data);
       if (contact && contact.phone_number) {
         console.log("Получен номер телефона:", contact.phone_number);
