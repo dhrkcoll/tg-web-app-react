@@ -16,9 +16,14 @@ const OrderPage = () => {
   const selectAdress = useSelector((state) => state.location.selectedAdress);
   const [userPhone, setUserPhone] = useState();
 
-  const handleSendData = () => {
-    const data = JSON.stringify({ phone: "1234567890" });
-    tg.sendData(data); // Отправляем данные
+  const handleRequestPhone = () => {
+    tg.requestContact((contact) => {
+      if (contact && contact.phone_number) {
+        setUserPhone(contact.phone_number);
+        const data = JSON.stringify({ phone: contact.phone_number });
+        tg.sendData(data); // Отправляем номер телефона в бот
+      }
+    });
   };
 
   useEffect(() => {
@@ -27,7 +32,6 @@ const OrderPage = () => {
       const contact = JSON.parse(data);
       if (contact && contact.phone_number) {
         console.log("Получен номер телефона:", contact.phone_number);
-        // Здесь вы можете сохранить номер телефона в состоянии или отправить его на сервер
       }
     });
   }, [tg]);
@@ -100,7 +104,7 @@ const OrderPage = () => {
             </div>
             <div className={styles.phoneContent}>
               <div className={styles.phoneNumber}>{userPhone}</div>
-              <div className={styles.phoneEdit} onClick={handleSendData}>
+              <div className={styles.phoneEdit} onClick={handleRequestPhone}>
                 Указать
               </div>
             </div>
