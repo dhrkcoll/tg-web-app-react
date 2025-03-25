@@ -15,10 +15,11 @@ const OrderPage = () => {
   const deliveryMethod = useSelector((state) => state.location.deliveryMethod);
   const selectAdress = useSelector((state) => state.location.selectedAdress);
   const [userPhone, setUserPhone] = useState();
+  const [phone, setPhone] = useState();
 
   const handleRequestPhone = () => {
     tg.requestContact((contact) => {
-      console.log(contact);
+      setPhone(contact);
       if (contact && contact.phone_number) {
         setUserPhone(contact.phone_number);
         const data = JSON.stringify({ phone: contact.phone_number });
@@ -104,7 +105,10 @@ const OrderPage = () => {
               <FaPhoneAlt />
             </div>
             <div className={styles.phoneContent}>
-              <div className={styles.phoneNumber}>{userPhone}</div>
+              <div className={styles.phoneNumber}>
+                {phone}
+                {userPhone}
+              </div>
               <div className={styles.phoneEdit} onClick={handleRequestPhone}>
                 Указать
               </div>
