@@ -18,6 +18,7 @@ const OrderPage = () => {
 
   const handleRequestPhone = () => {
     tg.requestContact((contact) => {
+      console.log(contact);
       if (contact?.phone_number) {
         setUserPhone(contact?.phone_number);
         // const data = JSON.stringify({ phone: contact.phone_number });
