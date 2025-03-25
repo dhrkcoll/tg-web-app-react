@@ -14,12 +14,12 @@ const OrderPage = () => {
   const totalPrice = goodsPrice + delieverPrice;
   const deliveryMethod = useSelector((state) => state.location.deliveryMethod);
   const selectAdress = useSelector((state) => state.location.selectedAdress);
-  const [userPhone, setUserPhone] = useState("");
+  const [userPhone, setUserPhone] = useState("8927");
 
   const handleRequestPhone = () => {
     tg.requestContact((contact) => {
       if (contact?.phone_number) {
-        setUserPhone(contact.phone_number);
+        setUserPhone(contact?.phone_number);
         // const data = JSON.stringify({ phone: contact.phone_number });
         // tg.sendData(data);
       }
