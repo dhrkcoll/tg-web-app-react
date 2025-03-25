@@ -18,10 +18,11 @@ const OrderPage = () => {
 
   const handleRequestPhone = () => {
     tg.requestContact((contact) => {
+      console.log(contact);
       if (contact && contact.phone_number) {
         setUserPhone(contact.phone_number);
         const data = JSON.stringify({ phone: contact.phone_number });
-        tg.sendData(data); // Отправляем номер телефона в бот
+        tg.sendData(data);
       }
     });
   };
