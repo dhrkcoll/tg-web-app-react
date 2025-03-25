@@ -19,22 +19,21 @@ const OrderPage = () => {
   const handleRequestPhone = () => {
     tg.requestContact((contact) => {
       if (contact && contact.phone_number) {
-        setUserPhone(contact.phone_number);
-        // const data = JSON.stringify({ phone: contact.phone_number });
-        // tg.sendData(data);
+        const data = JSON.stringify({ phone: contact.phone_number });
+        tg.sendData(data);
       }
     });
   };
 
-  // useEffect(() => {
-  //   tg.onEvent("dataReceived", (data) => {
-  //     console.log(data);
-  //     const contact = JSON.parse(data);
-  //     if (contact && contact.phone_number) {
-  //       console.log("Получен номер телефона:", contact.phone_number);
-  //     }
-  //   });
-  // }, [tg]);
+  useEffect(() => {
+    tg.onEvent("dataReceived", (data) => {
+      const contact = JSON.parse(data);
+      if (contact && contact.phone_number) {
+        setUserPhone(contact.phone_number);
+        console.log("Получен номер телефона:", contact.phone_number);
+      }
+    });
+  }, [tg]);
 
   return (
     <div className={styles.deliveryModule}>
