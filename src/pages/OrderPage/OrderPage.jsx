@@ -18,11 +18,12 @@ const OrderPage = () => {
 
   const handleRequestPhone = () => {
     tg.requestContact((contact) => {
-      if (contact?.phone_number) {
+      if (contact?.result) {
         const decodedResult = decodeURIComponent(contact.result);
 
         const params = new URLSearchParams(decodedResult);
         const contactParam = params.get("contact");
+        console.log(contactParam);
 
         if (contactParam) {
           try {
