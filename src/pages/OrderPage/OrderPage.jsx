@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import styles from "./OrderPage.module.scss";
 import { FaPhoneAlt } from "react-icons/fa";
 import { CiDiscount1 } from "react-icons/ci";
@@ -6,9 +6,11 @@ import { PiCashRegisterLight } from "react-icons/pi";
 import { FaAngleRight } from "react-icons/fa6";
 import { useSelector } from "react-redux";
 import { useTelegram } from "../../hooks/useTelegram.js";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useTelegramButton } from "../../hooks/useTelegramButton.js";
 
 const OrderPage = () => {
+  const navigate = useNavigate();
   const { tg } = useTelegram();
   const goodsPrice = useSelector((state) => state.cart.totalPrice);
   const delieverPrice = 100;
@@ -30,6 +32,25 @@ const OrderPage = () => {
       }
     });
   };
+
+  useTelegramButton("ОФОРМИТЬ ЗАКАЗ", true);
+  const onClickBackButton = useCallback(() => {
+    navigate(-1);
+  }, [navigate]);
+  useEffect(() => {
+    if (!window.Telegram || !tg) {
+      return;
+    }
+    const backButton = tg.BackButton;
+
+    backButton.show();
+    backButton.onClick(onClickBackButton);
+
+    return () => {
+      backButton.hide();
+      backButton.offClick(onClickBackButton);
+    };
+  }, [tg, onClickBackButton]);
 
   return (
     <div className={styles.deliveryModule}>
