@@ -75,7 +75,7 @@ const OrderPage = () => {
     window.Telegram.WebApp.requestContact((status, event) => {
       if (status) {
         const phone = event?.responseUnsafe?.contact?.phone_number || null;
-        setUserPhone({ phone });
+        setUserPhone(phone);
       }
     });
   };
