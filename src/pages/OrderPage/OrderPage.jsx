@@ -39,41 +39,12 @@ const OrderPage = () => {
   //     }
   //   });
   // };
-  // const handleRequestPhone = () => {
-  //   tg.requestContact((contact) => {
-  //     console.log("Полученные контактные данные:", contact);
 
-  //     if (!contact) {
-  //       console.error("Контактные данные не получены");
-  //       return;
-  //     }
-
-  //     try {
-  //       const params = new URLSearchParams(contact);
-  //       const contactParam = params.get("contact");
-
-  //       if (!contactParam) {
-  //         console.error("Параметр contact отсутствует");
-  //         return;
-  //       }
-
-  //       const contactData = JSON.parse(decodeURIComponent(contactParam));
-
-  //       if (contactData?.phone_number) {
-  //         setUserPhone(contactData.phone_number);
-  //         console.log("Номер успешно сохранён:", contactData.phone_number);
-  //       } else {
-  //         console.error("Номер телефона отсутствует в данных");
-  //       }
-  //     } catch (error) {
-  //       console.error("Ошибка обработки контакта:", error);
-  //     }
-  //   });
-  // };
   const handleRequestPhone = () => {
-    window.Telegram.WebApp.HapticFeedback.selectionChanged();
-    window.Telegram.WebApp.requestContact((status, event) => {
+    tg.HapticFeedback.selectionChanged();
+    tg.requestContact((status, event) => {
       if (status) {
+        console.log(event);
         const phone = event?.responseUnsafe?.contact?.phone_number || null;
         setUserPhone(phone);
       }
