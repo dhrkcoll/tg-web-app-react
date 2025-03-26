@@ -15,6 +15,7 @@ const SelectPaymentMethod = () => {
 
   const handleSelect = (methodId) => {
     dispatch(setPaymentMethod(methodId));
+    navigate(-1);
   };
 
   const onClickBackButton = useCallback(() => {

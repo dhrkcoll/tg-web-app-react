@@ -16,6 +16,7 @@ const OrderPage = () => {
   const deliveryMethod = useSelector((state) => state.location.deliveryMethod);
   const selectAdress = useSelector((state) => state.location.selectedAdress);
   const [userPhone, setUserPhone] = useState("");
+  const paymentMethod = useSelector((state) => state.payment.paymentMethod);
 
   // const handleRequestPhone = () => {
   //   tg.requestContact((contact) => {
@@ -84,7 +85,7 @@ const OrderPage = () => {
                 <PiCashRegisterLight />
               </div>
               <Link to={"/payment-method"} className={styles.paymentContent}>
-                <div className={styles.paymentText}>Наличными</div>
+                <div className={styles.paymentText}>{paymentMethod}</div>
                 <div className={styles.paymentArrow}>
                   <FaAngleRight />
                 </div>
@@ -128,7 +129,7 @@ const OrderPage = () => {
               <FaPhoneAlt />
             </div>
             <div className={styles.phoneContent}>
-              <div className={styles.phoneNumber}>+{userPhone}</div>
+              <div className={styles.phoneNumber}>{userPhone}</div>
               <div className={styles.phoneEdit} onClick={handleRequestPhone}>
                 Указать
               </div>
