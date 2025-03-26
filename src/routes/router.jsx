@@ -12,6 +12,7 @@ import AddAdressPage from "../pages/AddAdressPage/AddAdressPage.jsx";
 import { YMaps } from "@pbe/react-yandex-maps";
 import config from "../../config/config.json";
 import OrderPage from "../pages/OrderPage/OrderPage.jsx";
+import SelectPaymentMethod from "../pages/SelectPaymentMethod/SelectPaymentMethod.jsx";
 
 export const router = createBrowserRouter([
   { index: "/", element: <App /> },
@@ -31,4 +32,5 @@ export const router = createBrowserRouter([
     ),
   },
   { path: "/order", element: <OrderPage /> },
+  { path: "/payment-method", element: <SelectPaymentMethod /> },
 ]);

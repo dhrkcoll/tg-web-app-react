@@ -1,0 +1,133 @@
+// PaymentOptions.module.scss
+.iosCatalogCities,
+.iosCatalogCities * {
+  box-sizing: border-box;
+}
+
+.iosCatalogCities {
+  padding: 0 0 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.body {
+  padding: calc(
+      var(--tg-safe-area-inset-top, 0px) +
+        var(--tg-content-safe-area-inset-top, 0px) + 12px
+    )
+    0 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.sectionListAddresses {
+  border-radius: 10px;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+  box-shadow: var(--shadow-light-box-shadow, 0 0 0 0 rgba(0, 0, 0, 0.06));
+  overflow: hidden;
+}
+
+.head {
+  padding: 0 16px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.div {
+  color: var(--tg-theme-hint-color, #8e8e93);
+  text-align: left;
+  font-size: var(--regular-uppercase-13-font-size, 13px);
+  line-height: var(--regular-uppercase-13-line-height, 110%);
+  letter-spacing: var(--regular-uppercase-13-letter-spacing, 0.01em);
+  font-weight: var(--regular-uppercase-13-font-weight, 400);
+  text-transform: uppercase;
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+.listCities {
+  background: var(--tg-theme-section-bg-color, #ffffff);
+  border-radius: 10px;
+  padding: 0 0 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: flex-start;
+  justify-content: center;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.listCitiesItem {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.content {
+  border-style: solid;
+  border-color: var(--tg-theme-section-separator-color, #c8c7cc);
+  border-width: 0px 0px 0.33px 0px;
+  padding: 14px 16px 14px 0px;
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 1;
+  position: relative;
+}
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+  justify-content: center;
+  flex: 1;
+  position: relative;
+}
+.div2 {
+  color: var(--tg-theme-text-color, #000000);
+  text-align: left;
+
+  font-size: var(--regular-16-font-size, 16px);
+  line-height: var(--regular-16-line-height, 100%);
+  font-weight: var(--regular-16-font-weight, 400);
+  position: relative;
+  align-self: stretch;
+}

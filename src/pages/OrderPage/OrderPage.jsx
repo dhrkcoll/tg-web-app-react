@@ -6,6 +6,7 @@ import { PiCashRegisterLight } from "react-icons/pi";
 import { FaAngleRight } from "react-icons/fa6";
 import { useSelector } from "react-redux";
 import { useTelegram } from "../../hooks/useTelegram.js";
+import { Link } from "react-router-dom";
 
 const OrderPage = () => {
   const { tg } = useTelegram();
@@ -14,7 +15,7 @@ const OrderPage = () => {
   const totalPrice = goodsPrice + delieverPrice;
   const deliveryMethod = useSelector((state) => state.location.deliveryMethod);
   const selectAdress = useSelector((state) => state.location.selectedAdress);
-  const [userPhone, setUserPhone] = useState("8927");
+  const [userPhone, setUserPhone] = useState("");
 
   // const handleRequestPhone = () => {
   //   tg.requestContact((contact) => {
@@ -82,12 +83,12 @@ const OrderPage = () => {
               <div className={styles.paymentIcon}>
                 <PiCashRegisterLight />
               </div>
-              <div className={styles.paymentContent}>
+              <Link to={"/payment-method"} className={styles.paymentContent}>
                 <div className={styles.paymentText}>Наличными</div>
                 <div className={styles.paymentArrow}>
                   <FaAngleRight />
                 </div>
-              </div>
+              </Link>
             </div>
             <div className={styles.paymentMethodItem}>
               <div className={styles.promoCodeIcon}>
@@ -127,7 +128,7 @@ const OrderPage = () => {
               <FaPhoneAlt />
             </div>
             <div className={styles.phoneContent}>
-              <div className={styles.phoneNumber}>{userPhone}</div>
+              <div className={styles.phoneNumber}>+{userPhone}</div>
               <div className={styles.phoneEdit} onClick={handleRequestPhone}>
                 Указать
               </div>
