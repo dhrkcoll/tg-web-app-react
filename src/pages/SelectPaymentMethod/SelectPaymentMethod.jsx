@@ -2,7 +2,10 @@ import { useEffect, useCallback } from "react";
 import styles from "./SelectPaymentMethod.module.scss";
 import { FaCheck } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { selectPaymentMethods } from "../../store/paymentSlice";
+import {
+  selectPaymentMethods,
+  setPaymentMethod,
+} from "../../store/paymentSlice";
 import { useTelegram } from "../../hooks/useTelegram.js";
 import { useNavigate } from "react-router-dom";
 
@@ -13,8 +16,8 @@ const SelectPaymentMethod = () => {
   const possiblePayments = useSelector(selectPaymentMethods);
   const paymentMethodId = useSelector((state) => state.payment.paymentMethod);
 
-  const handleSelect = (methodId) => {
-    dispatch(setPaymentMethod(methodId));
+  const handleSelect = (method) => {
+    dispatch(setPaymentMethod(method));
     navigate(-1);
   };
 
@@ -51,14 +54,14 @@ const SelectPaymentMethod = () => {
                   key={item.id}
                   className={styles.listCitiesItem}
                   onClick={() => {
-                    handleSelect(item.id);
+                    handleSelect(item);
                   }}
                 >
                   <div className={styles.content}>
                     <div className={styles.text}>
                       <div className={styles.div2}>{item.name}</div>
                     </div>
-                    {item.id === paymentMethodId && (
+                    {item.id === paymentMethodId.id && (
                       <div className={styles.icons16Checkmark}>
                         <FaCheck />
                       </div>

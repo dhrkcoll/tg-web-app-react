@@ -18,29 +18,7 @@ const OrderPage = () => {
   const [userPhone, setUserPhone] = useState("");
   const paymentMethod = useSelector((state) => state.payment.paymentMethod);
 
-  // const handleRequestPhone = () => {
-  //   tg.requestContact((contact) => {
-  //     if (contact?.result) {
-  //       const decodedResult = decodeURIComponent(contact.result);
-
-  //       const params = new URLSearchParams(decodedResult);
-  //       const contactParam = params.get("contact");
-  //       console.log(contactParam);
-
-  //       if (contactParam) {
-  //         try {
-  //           const contactData = JSON.parse(contactParam);
-  //           if (contactData.phone_number) {
-  //             setUserPhone(contactData.phone_number);
-  //             console.log("Номер телефона:", contactData.phone_number);
-  //           }
-  //         } catch (error) {
-  //           console.error("Ошибка при парсинге contact:", error);
-  //         }
-  //       }
-  //     }
-  //   });
-  // };
+  const [isBonus, setIsBonus] = useState(false);
 
   const handleRequestPhone = () => {
     tg.HapticFeedback.selectionChanged();
@@ -52,15 +30,6 @@ const OrderPage = () => {
       }
     });
   };
-
-  // useEffect(() => {
-  //   tg.onEvent("dataReceived", (data) => {
-  //     const contact = JSON.parse(data);
-  //     if (contact && contact.phone_number) {
-  //       console.log("Получен номер телефона:", contact.phone_number);
-  //     }
-  //   });
-  // }, [tg]);
 
   return (
     <div className={styles.deliveryModule}>
@@ -85,7 +54,7 @@ const OrderPage = () => {
                 <PiCashRegisterLight />
               </div>
               <Link to={"/payment-method"} className={styles.paymentContent}>
-                <div className={styles.paymentText}>{paymentMethod}</div>
+                <div className={styles.paymentText}>{paymentMethod.name}</div>
                 <div className={styles.paymentArrow}>
                   <FaAngleRight />
                 </div>
@@ -107,9 +76,16 @@ const OrderPage = () => {
                   src="/img/wallet.6422cead.svg"
                 />
               </div>
-              <div className={styles.paymentContent}>
+              <div
+                className={styles.paymentContent}
+                onClick={() => setIsBonus((prev) => !prev)}
+              >
                 <div className={styles.paymentText}>Списать бонусы</div>
-                <div className={styles.bonusSwitch}>
+                <div
+                  className={`${styles.bonusSwitch} ${
+                    isBonus ? styles.bonusSwitchActive : ""
+                  }`}
+                >
                   <div className={styles.switchElement}></div>
                 </div>
               </div>

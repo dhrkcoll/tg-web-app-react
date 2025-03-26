@@ -22,7 +22,6 @@ const SelectDelieverPage = () => {
     navigate("/");
   };
 
-  console.log(delieveryAdresses);
   useTelegramButton("", false);
   const onClickBackButton = useCallback(() => {
     navigate(-1);

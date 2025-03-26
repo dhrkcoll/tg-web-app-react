@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  paymentMethod: "",
+  paymentMethod: { id: "1", name: "Наличными" },
   paymentMethods: [
     { id: "1", name: "Наличными" },
     { id: "2", name: "Перевод" },
@@ -13,8 +13,14 @@ const initialState = {
 const paymentSlice = createSlice({
   name: "payment",
   initialState,
-  reducers: {},
+  reducers: {
+    setPaymentMethod(state, action) {
+      console.log(action.payload);
+      state.paymentMethod = action.payload;
+    },
+  },
 });
 
 export const selectPaymentMethods = (state) => state.payment.paymentMethods;
+export const { setPaymentMethod } = paymentSlice.actions;
 export default paymentSlice.reducer;
