@@ -1,4 +1,6 @@
-// PaymentOptions.module.scss
+.paymentMethods {
+  background: var(--tg-theme-secondary-bg-color);
+}
 .iosCatalogCities,
 .iosCatalogCities * {
   box-sizing: border-box;
@@ -77,7 +79,7 @@
 .listCities {
   background: var(--tg-theme-section-bg-color, #ffffff);
   border-radius: 10px;
-  padding: 0 0 0 16px;
+  padding: 0 16px 0 16px;
   display: flex;
   flex-direction: column;
   gap: 0;

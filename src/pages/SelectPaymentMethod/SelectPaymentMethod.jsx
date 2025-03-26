@@ -37,38 +37,40 @@ const SelectPaymentMethod = () => {
   }, [tg, onClickBackButton]);
 
   return (
-    <div className={styles.iosCatalogCities}>
-      <div className={styles.body}>
-        <div className={styles.sectionListAddresses}>
-          <div className={styles.head}>
-            <div className={styles.div}>Payment Options</div>
-          </div>
+    <section className={styles.paymentMethods}>
+      <div className={styles.iosCatalogCities}>
+        <div className={styles.body}>
+          <div className={styles.sectionListAddresses}>
+            <div className={styles.head}>
+              <div className={styles.div}>Payment Options</div>
+            </div>
 
-          <div className={styles.listCities}>
-            {possiblePayments.map((item, index) => (
-              <div
-                key={item.id}
-                className={styles.listCitiesItem}
-                onClick={() => {
-                  handleSelect(item.id);
-                }}
-              >
-                <div className={styles.content}>
-                  <div className={styles.text}>
-                    <div className={styles.div2}>{item.name}</div>
-                  </div>
-                  {item.id === paymentMethodId && (
-                    <div className={styles.icons16Checkmark}>
-                      <FaCheck />
+            <div className={styles.listCities}>
+              {possiblePayments.map((item, index) => (
+                <div
+                  key={item.id}
+                  className={styles.listCitiesItem}
+                  onClick={() => {
+                    handleSelect(item.id);
+                  }}
+                >
+                  <div className={styles.content}>
+                    <div className={styles.text}>
+                      <div className={styles.div2}>{item.name}</div>
                     </div>
-                  )}
+                    {item.id === paymentMethodId && (
+                      <div className={styles.icons16Checkmark}>
+                        <FaCheck />
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
