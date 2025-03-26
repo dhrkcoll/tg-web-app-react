@@ -16,26 +16,66 @@ const OrderPage = () => {
   const selectAdress = useSelector((state) => state.location.selectedAdress);
   const [userPhone, setUserPhone] = useState("8927");
 
+  // const handleRequestPhone = () => {
+  //   tg.requestContact((contact) => {
+  //     if (contact?.result) {
+  //       const decodedResult = decodeURIComponent(contact.result);
+
+  //       const params = new URLSearchParams(decodedResult);
+  //       const contactParam = params.get("contact");
+  //       console.log(contactParam);
+
+  //       if (contactParam) {
+  //         try {
+  //           const contactData = JSON.parse(contactParam);
+  //           if (contactData.phone_number) {
+  //             setUserPhone(contactData.phone_number);
+  //             console.log("Номер телефона:", contactData.phone_number);
+  //           }
+  //         } catch (error) {
+  //           console.error("Ошибка при парсинге contact:", error);
+  //         }
+  //       }
+  //     }
+  //   });
+  // };
+  // const handleRequestPhone = () => {
+  //   tg.requestContact((contact) => {
+  //     console.log("Полученные контактные данные:", contact);
+
+  //     if (!contact) {
+  //       console.error("Контактные данные не получены");
+  //       return;
+  //     }
+
+  //     try {
+  //       const params = new URLSearchParams(contact);
+  //       const contactParam = params.get("contact");
+
+  //       if (!contactParam) {
+  //         console.error("Параметр contact отсутствует");
+  //         return;
+  //       }
+
+  //       const contactData = JSON.parse(decodeURIComponent(contactParam));
+
+  //       if (contactData?.phone_number) {
+  //         setUserPhone(contactData.phone_number);
+  //         console.log("Номер успешно сохранён:", contactData.phone_number);
+  //       } else {
+  //         console.error("Номер телефона отсутствует в данных");
+  //       }
+  //     } catch (error) {
+  //       console.error("Ошибка обработки контакта:", error);
+  //     }
+  //   });
+  // };
   const handleRequestPhone = () => {
-    tg.requestContact((contact) => {
-      if (contact?.result) {
-        const decodedResult = decodeURIComponent(contact.result);
-
-        const params = new URLSearchParams(decodedResult);
-        const contactParam = params.get("contact");
-        console.log(contactParam);
-
-        if (contactParam) {
-          try {
-            const contactData = JSON.parse(contactParam);
-            if (contactData.phone_number) {
-              setUserPhone(contactData.phone_number);
-              console.log("Номер телефона:", contactData.phone_number);
-            }
-          } catch (error) {
-            console.error("Ошибка при парсинге contact:", error);
-          }
-        }
+    window.Telegram.WebApp.HapticFeedback.selectionChanged();
+    window.Telegram.WebApp.requestContact((status, event) => {
+      if (status) {
+        const phone = event?.responseUnsafe?.contact?.phone_number || null;
+        setUserPhone({ phone });
       }
     });
   };
