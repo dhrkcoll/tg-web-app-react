@@ -63,7 +63,7 @@ const SelectPickupPage = () => {
                         </div>
                         <div className={styles.fullAddress}>
                           Россия, {selectedCity.name}, {street.street},{" "}
-                          {street.apartment}
+                          {street.house}
                         </div>
                       </div>
                       {selectedAdress?.street === street.street &&

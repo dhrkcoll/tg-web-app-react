@@ -126,9 +126,12 @@ const Header = () => {
                 <div className={styles.text3}>
                   <Link to={"/select-pickup"}>
                     <div className={styles.address}>
-                      {!selectedAdress.formattedAddress &&
-                      deliveryMethod === "pickup"
-                        ? `${selectedCity?.name}, ул.${selectedAdress.street}, ${selectedAdress.house}`
+                      {selectedAdress.id && deliveryMethod === "pickup"
+                        ? `${selectedCity?.name}, ул.${
+                            selectedAdress.street
+                          }, ${
+                            selectedAdress?.house ? selectedAdress?.house : ""
+                          }`
                         : "Выберите точку продаж"}
                     </div>
                     <div className={styles.iconRight}>

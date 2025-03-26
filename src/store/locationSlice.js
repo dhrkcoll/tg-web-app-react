@@ -30,30 +30,30 @@ const initialState = {
       id: 1,
       name: "Зилаир",
       streets: [
-        { id: 1, name: "Ленина" },
-        { id: 2, name: "Салавата Юлаева" },
+        { id: 1, street: "Ленина", house: 25 },
+        { id: 2, street: "Салавата Юлаева", house: 28 },
       ],
     },
     {
       id: 2,
       name: "Москва",
       streets: [
-        { id: 3, name: "Тверская" },
-        { id: 4, name: "Арбат" },
+        { id: 3, street: "Тверская" },
+        { id: 4, street: "Арбат" },
       ],
     },
     {
       id: 3,
       name: "Санкт-Петербург",
       streets: [
-        { id: 5, name: "Невский проспект" },
-        { id: 6, name: "Лиговский проспект" },
+        { id: 5, street: "Невский проспект" },
+        { id: 6, street: "Лиговский проспект" },
       ],
     },
     {
       id: 4,
       name: "Новосибирск",
-      streets: [{ id: 7, name: "Красный проспект" }],
+      streets: [{ id: 7, street: "Красный проспект" }],
     },
   ],
   selectedCity: {
@@ -65,7 +65,7 @@ const initialState = {
     ],
   },
   selectedAdress: {},
-  deliveryMethod: "",
+  deliveryMethod: "pickup",
   deliveryAdresses: [],
   loading: false,
   error: null,
@@ -86,7 +86,7 @@ const locationSlice = createSlice({
     },
     addDeliveryAdress(state, action) {
       const newAddress = action.payload;
-      console.log(newAddress);
+
       const addressExists = state.deliveryAdresses.some(
         (address) => address.formattedAddress === newAddress.formattedAddress
         // (address.city === newAddress.city &&
