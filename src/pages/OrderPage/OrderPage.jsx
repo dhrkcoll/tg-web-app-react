@@ -19,6 +19,7 @@ const OrderPage = () => {
   const selectAdress = useSelector((state) => state.location.selectedAdress);
   const [userPhone, setUserPhone] = useState("");
   const paymentMethod = useSelector((state) => state.payment.paymentMethod);
+  const selectCity = useSelector((state) => state.location.selectedCity);
 
   const [isBonus, setIsBonus] = useState(false);
 
@@ -61,7 +62,14 @@ const OrderPage = () => {
         <div className={styles.deliveryAddress}>
           <div className={styles.addressContent}>
             <div className={styles.addressText}>
-              <p>{selectAdress ? selectAdress.street : ""}</p>
+              <p>
+                {deliveryMethod === "dilivery"
+                  ? selectAdress.locality
+                  : selectCity.name}
+                {deliveryMethod === "dilivery"
+                  ? `${selectAdress.formattedAddress}`
+                  : `${selectAdress.street}, ${selectAdress.house}`}
+              </p>
             </div>
           </div>
         </div>
