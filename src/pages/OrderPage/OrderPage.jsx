@@ -18,11 +18,23 @@ const OrderPage = () => {
 
   const handleRequestPhone = () => {
     tg.requestContact((contact) => {
-      console.log(contact);
       if (contact?.phone_number) {
-        setUserPhone(contact?.phone_number);
-        // const data = JSON.stringify({ phone: contact.phone_number });
-        // tg.sendData(data);
+        const decodedResult = decodeURIComponent(contact.result);
+
+        const params = new URLSearchParams(decodedResult);
+        const contactParam = params.get("contact");
+
+        if (contactParam) {
+          try {
+            const contactData = JSON.parse(contactParam);
+            if (contactData.phone_number) {
+              setUserPhone(contactData.phone_number);
+              console.log("Номер телефона:", contactData.phone_number);
+            }
+          } catch (error) {
+            console.error("Ошибка при парсинге contact:", error);
+          }
+        }
       }
     });
   };
