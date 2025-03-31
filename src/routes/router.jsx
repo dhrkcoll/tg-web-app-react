@@ -13,24 +13,34 @@ import { YMaps } from "@pbe/react-yandex-maps";
 import config from "../../config/config.json";
 import OrderPage from "../pages/OrderPage/OrderPage.jsx";
 import SelectPaymentMethod from "../pages/SelectPaymentMethod/SelectPaymentMethod.jsx";
+import MainPage from "../pages/MainPage/MainPage.jsx";
 
 export const router = createBrowserRouter([
-  { index: "/", element: <App /> },
-  { path: "/form", element: <Form /> },
-  { path: "/cart", element: <Cart /> },
-  { path: "/products/:productId", element: <ProductPage /> },
-  { path: "/menu", element: <Menu /> },
-  { path: "/select-pickup", element: <SelectPickupPage /> },
-  { path: "/select-city", element: <SelectCityPage /> },
-  { path: "/select-deliever", element: <SelectDelieverPage /> },
   {
-    path: "/add-adress",
-    element: (
-      <YMaps query={{ apikey: config.YANDEX_API_KEY }}>
-        <AddAdressPage />
-      </YMaps>
-    ),
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        index: true,
+        element: <MainPage />,
+      },
+      { path: "/form", element: <Form /> },
+      { path: "/cart", element: <Cart /> },
+      { path: "/products/:productId", element: <ProductPage /> },
+      { path: "/menu", element: <Menu /> },
+      { path: "/select-pickup", element: <SelectPickupPage /> },
+      { path: "/select-city", element: <SelectCityPage /> },
+      { path: "/select-deliever", element: <SelectDelieverPage /> },
+      {
+        path: "/add-adress",
+        element: (
+          <YMaps query={{ apikey: config.YANDEX_API_KEY }}>
+            <AddAdressPage />
+          </YMaps>
+        ),
+      },
+      { path: "/order", element: <OrderPage /> },
+      { path: "/payment-method", element: <SelectPaymentMethod /> },
+    ],
   },
-  { path: "/order", element: <OrderPage /> },
-  { path: "/payment-method", element: <SelectPaymentMethod /> },
 ]);

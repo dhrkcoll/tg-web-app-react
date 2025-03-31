@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import "./App.css";
 import { useTelegram } from "./hooks/useTelegram.js";
 import Header from "./components/Header/Header";
-import { Outlet } from "react-router-dom";
 import ProductList from "./components/ProductList/ProductList";
+import { Outlet } from "react-router-dom";
 
 function App() {
   const { tg } = useTelegram();
@@ -14,10 +14,9 @@ function App() {
   }, [tg]);
 
   return (
-    <div>
-      <Header />
-      <ProductList />
-    </div>
+    <>
+      <Outlet />
+    </>
   );
 }
 
