@@ -1,9 +1,5 @@
-import { useEffect } from "react";
-import "./App.css";
-import { useTelegram } from "./hooks/useTelegram.js";
-import Header from "./components/Header/Header";
-import { Outlet } from "react-router-dom";
-import ProductList from "./components/ProductList/ProductList";
+import Header from "../../components/Header/Header.jsx";
+import ProductList from "../../components/ProductList/ProductList";
 
 const MainPage = () => {
   return (
