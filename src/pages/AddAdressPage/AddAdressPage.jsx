@@ -3,7 +3,7 @@ import { Map, useYMaps, ZoomControl } from "@pbe/react-yandex-maps";
 import styles from "./AddAdressPage.module.scss";
 import { useTelegram } from "../../hooks/useTelegram.js";
 import { useNavigate } from "react-router-dom";
-import { addDeliveryAdress } from "../../store/locationSlice";
+import { addAddress } from "../../store/adressesSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useTelegramButton } from "../../hooks/useTelegramButton.js";
 
@@ -127,7 +127,8 @@ const AddAdressPage = () => {
 
   const onClickAdd = () => {
     // const transformedAdress = transformAddress(adress);
-    dispatch(addDeliveryAdress(adress));
+    dispatch(addAddress(adress));
+    navigate("/select-deliever");
   };
 
   return (

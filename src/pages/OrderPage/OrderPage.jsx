@@ -4,12 +4,13 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { CiDiscount1 } from "react-icons/ci";
 import { PiCashRegisterLight } from "react-icons/pi";
 import { FaAngleRight } from "react-icons/fa6";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useTelegram } from "../../hooks/useTelegram.js";
 import { Link, useNavigate } from "react-router-dom";
 import { useTelegramButton } from "../../hooks/useTelegramButton.js";
 
 const OrderPage = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { tg } = useTelegram();
   const goodsPrice = useSelector((state) => state.cart.totalPrice);
@@ -32,6 +33,19 @@ const OrderPage = () => {
         setUserPhone(phone);
       }
     });
+  };
+
+  const createInvoice = (orderData) => {};
+
+  const handleSubmitOrder = () => {
+    const orderData = {
+      userId: "1",
+      items: [],
+      comment: "",
+    };
+
+    dispatch(setOrderDetails(orderData));
+    createInvoice(orderData);
   };
 
   useTelegramButton("ОФОРМИТЬ ЗАКАЗ", true);
@@ -65,7 +79,7 @@ const OrderPage = () => {
               <p>
                 {deliveryMethod === "dilivery"
                   ? selectAdress.locality
-                  : selectCity.name}
+                  : selectCity.name}{" "}
                 {deliveryMethod === "dilivery"
                   ? `${selectAdress.formattedAddress}`
                   : `${selectAdress.street}, ${selectAdress.house}`}

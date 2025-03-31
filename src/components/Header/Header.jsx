@@ -6,17 +6,20 @@ import { Link, useSearchParams } from "react-router-dom";
 import { FaAngleRight } from "react-icons/fa6";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { useDispatch, useSelector } from "react-redux";
-import { setDeliveryMethod } from "../../store/locationSlice";
+import { setDeliveryMethod, selectAddress } from "../../store/locationSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const deliveryMethod = useSelector((state) => state.location.deliveryMethod);
   const { user, onClose } = useTelegram();
+
+  const deliveryMethod = useSelector((state) => state.location.deliveryMethod);
+
   const selectedCity = useSelector((state) => state.location.selectedCity);
-  const selectedAdress = useSelector((state) => state.location.selectedAdress);
-  console.log(deliveryMethod);
+  const selectedAdress = useSelector((state) => state.location.selectedAddress);
+
   const handleDeliveryChange = (type) => {
     dispatch(setDeliveryMethod(type));
+    dispatch(selectAddress(null));
   };
 
   return (
@@ -52,7 +55,7 @@ const Header = () => {
         <Link to={"/select-city"} className={styles.headerCity}>
           <div className={styles.headerNameCity}>
             <div className={styles.div}>
-              {selectedCity?.name ? selectedCity?.name : ""}
+              {selectedCity?.name ? selectedCity?.name : "Выберите город"}
             </div>
           </div>
         </Link>
@@ -109,7 +112,7 @@ const Header = () => {
                 <div className={styles.text3}>
                   <Link to={"/select-deliever"}>
                     <div className={styles.address}>
-                      {selectedAdress.formattedAddress &&
+                      {selectedAdress?.formattedAddress &&
                       deliveryMethod === "delivery"
                         ? `${selectedAdress.formattedAddress}`
                         : "Выберите адрес доставки"}
@@ -126,9 +129,9 @@ const Header = () => {
                 <div className={styles.text3}>
                   <Link to={"/select-pickup"}>
                     <div className={styles.address}>
-                      {selectedAdress.id && deliveryMethod === "pickup"
+                      {selectedAdress?.id && deliveryMethod === "pickup"
                         ? `${selectedCity?.name}, ул.${
-                            selectedAdress.street
+                            selectedAdress?.street
                           }, ${
                             selectedAdress?.house ? selectedAdress?.house : ""
                           }`

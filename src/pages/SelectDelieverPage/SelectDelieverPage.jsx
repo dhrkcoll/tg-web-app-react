@@ -5,20 +5,23 @@ import { IoAddCircleOutline } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
 import { useTelegram } from "../../hooks/useTelegram.js";
 import { useTelegramButton } from "../../hooks/useTelegramButton.js";
-import { selectAdress } from "../../store/locationSlice";
+import { selectAddress } from "../../store/locationSlice";
 import { FaCheck } from "react-icons/fa";
 
 const SelectDelieverPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { tg } = useTelegram();
+
   const delieveryAdresses = useSelector(
-    (state) => state.location.deliveryAdresses
+    (state) => state.adresses.savedAddresses
   );
-  const selectedAdress = useSelector((state) => state.location.selectedAdress);
+  const selectedAddress = useSelector(
+    (state) => state.location.selectedAddress
+  );
 
   const handleSelectAdress = (street) => {
-    dispatch(selectAdress(street));
+    dispatch(selectAddress(street));
     navigate("/");
   };
 
@@ -58,26 +61,30 @@ const SelectDelieverPage = () => {
                       handleSelectAdress(adress);
                     }}
                   >
-                    <div className={styles.adressesListText}>
-                      <div>
-                        <p>{adress.formattedAddress}</p>
-                        <span>{`Подъезд: ${
-                          adress.entrance ? adress.entrance : "-"
-                        }, Этаж: ${
-                          adress.floor ? adress.floor : "-"
-                        }, Квартира: ${
-                          adress.house ? adress.house : "-"
-                        }, Комментарий: ${
-                          adress.userComment ? adress.userComment : "-"
-                        }`}</span>
+                    <div className={styles.content}>
+                      <div className={styles.adressesListText}>
+                        <div>
+                          <p>{adress.formattedAddress}</p>
+                          <span>{`Подъезд: ${
+                            adress.entrance ? adress.entrance : "-"
+                          }, Этаж: ${
+                            adress.floor ? adress.floor : "-"
+                          }, Квартира: ${
+                            adress.house ? adress.house : "-"
+                          }, Комментарий: ${
+                            adress.userComment ? adress.userComment : "-"
+                          }`}</span>
+                        </div>
                       </div>
+                      {adress.formattedAddress ===
+                      selectedAddress?.formattedAddress ? (
+                        <div className={styles.checkmarkIcon}>
+                          <FaCheck />
+                        </div>
+                      ) : (
+                        ""
+                      )}
                     </div>
-                    {adress.formattedAddress ===
-                    selectedAdress.formattedAddress ? (
-                      <FaCheck />
-                    ) : (
-                      ""
-                    )}
                   </li>
                 );
               })}

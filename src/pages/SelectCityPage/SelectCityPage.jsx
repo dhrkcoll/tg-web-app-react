@@ -10,7 +10,8 @@ const SelectCityPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { tg } = useTelegram();
-  const cities = useSelector((state) => state.location.cities);
+
+  const cities = useSelector((state) => state.shops.cities);
   const selectedCity = useSelector((state) => state.location.selectedCity);
 
   const onClickBackButton = useCallback(() => {
@@ -57,7 +58,7 @@ const SelectCityPage = () => {
                       <div className={styles.text}>
                         <div className={styles.address}>{city.name}</div>
                       </div>
-                      {city.id === selectedCity.id && (
+                      {city.id === selectedCity?.id && (
                         <div className={styles.checkmarkIcon}>
                           <FaCheck />
                         </div>

@@ -4,14 +4,16 @@ import { FaCheck } from "react-icons/fa";
 import { useTelegram } from "../../hooks/useTelegram.js";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { selectAdress } from "../../store/locationSlice";
+import { selectAddress } from "../../store/locationSlice.js";
 
 const SelectPickupPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { tg } = useTelegram();
   const selectedCity = useSelector((state) => state.location.selectedCity);
-  const selectedAdress = useSelector((state) => state.location.selectedAdress);
+  const selectedAddress = useSelector(
+    (state) => state.location.selectedAddress
+  );
 
   const onClickBackButton = useCallback(() => {
     navigate(-1);
@@ -34,7 +36,7 @@ const SelectPickupPage = () => {
   }, [tg, onClickBackButton]);
 
   const handleSelectAdress = (street) => {
-    dispatch(selectAdress(street));
+    dispatch(selectAddress(street));
     navigate("/");
   };
 
@@ -66,8 +68,8 @@ const SelectPickupPage = () => {
                           {street.house}
                         </div>
                       </div>
-                      {selectedAdress?.street === street.street &&
-                      selectedAdress?.street === street.street ? (
+                      {selectedAddress?.street === street.street &&
+                      selectedAddress?.street === street.street ? (
                         <div className={styles.checkmarkIcon}>
                           <FaCheck />
                         </div>
