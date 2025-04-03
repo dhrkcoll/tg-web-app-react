@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import styles from "./ProductItem.module.scss";
-import Button from "../Button/Button.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { addItem, increaseItem } from "../../store/cartSlice.js";
+import { addItem } from "../../store/cartSlice.js";
 import { decreaseItem } from "../../store/cartSlice.js";
 import { Link } from "react-router-dom";
+import Button from "../UI/Button/Button.jsx";
 
 const ProductItem = ({ product }) => {
   const dispatch = useDispatch();
@@ -97,25 +97,22 @@ const ProductItem = ({ product }) => {
             }}
           >
             <Button
-              type={"plus"}
               title={"+"}
               onClick={onIncreaseHandler}
-              style={{ minWidth: "43px" }}
-            />{" "}
+              className={styles.plus}
+            />
             <Button
-              type={"minus"}
               title={"-"}
               onClick={onDecreaseHandler}
-              style={{ minWidth: "43px" }}
+              className={styles.minus}
             />
           </div>
         ) : (
           <>
             <Button
-              type={"add"}
               title={"Добавить"}
               onClick={onAddHandler}
-              style={{ alignSelf: "center" }}
+              className={styles.add}
             />
           </>
         )}

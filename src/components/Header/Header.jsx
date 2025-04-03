@@ -1,12 +1,13 @@
 import React from "react";
 import styles from "./Header.module.scss";
-import Button from "../Button/Button";
+import Button from "../UI/Button/Button";
 import { useTelegram } from "../../hooks/useTelegram.js";
 import { Link, useSearchParams } from "react-router-dom";
 import { FaAngleRight } from "react-icons/fa6";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { useDispatch, useSelector } from "react-redux";
 import { setDeliveryMethod, selectAddress } from "../../store/locationSlice";
+import { clearItems } from "../../store/cartSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const Header = () => {
   const handleDeliveryChange = (type) => {
     dispatch(setDeliveryMethod(type));
     dispatch(selectAddress(null));
+    dispatch(clearItems());
   };
 
   return (

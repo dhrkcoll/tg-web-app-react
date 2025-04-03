@@ -144,3 +144,21 @@ a {
   position: relative;
   overflow: hidden;
 }
+// Buttons
+.add {
+  background-color: orange;
+  color: white;
+  align-self: center;
+}
+.plus {
+  background-color: orange;
+  color: white;
+  flex: 1 0 auto;
+  min-width: 43px;
+}
+.minus {
+  background-color: red;
+  color: white;
+  flex: 1 0 auto;
+  min-width: 43px;
+}

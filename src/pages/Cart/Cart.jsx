@@ -2,7 +2,7 @@ import { useEffect, useCallback } from "react";
 import styles from "./Cart.module.scss";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import CartItem from "../CartItem/CartItem";
+import CartItem from "../../components/CartItem/CartItem";
 import { useTelegram } from "../../hooks/useTelegram.js";
 import { useTelegramButton } from "../../hooks/useTelegramButton";
 
@@ -15,16 +15,7 @@ const Cart = () => {
   const onClickBackButton = useCallback(() => {
     navigate(-1);
   }, [navigate]);
-  // useEffect(() => {
-  //   if (productsInCart.length === 0) {
-  //     tg.MainButton.hide();
-  //   } else {
-  //     tg.MainButton.show();
-  //     tg.MainButton.setParams({
-  //       text: `Сделать заказ на ${totalPrice}`,
-  //     });
-  //   }
-  // }, [productsInCart]);
+
   useTelegramButton(`Сделать заказ на ${totalPrice}₽`, cartItems !== 0);
   useEffect(() => {
     if (!window.Telegram || !tg) {

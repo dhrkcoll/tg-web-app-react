@@ -1,6 +1,4 @@
 import { createBrowserRouter } from "react-router-dom";
-import Form from "../components/Form/Form.jsx";
-import Cart from "../components/Cart/Cart.jsx";
 import ProductPage from "../pages/ProductPage/ProductPage.jsx";
 import App from "../App.jsx";
 import Menu from "../pages/Menu/Menu.jsx";
@@ -13,6 +11,7 @@ import config from "../../config/config.json";
 import OrderPage from "../pages/OrderPage/OrderPage.jsx";
 import SelectPaymentMethod from "../pages/SelectPaymentMethod/SelectPaymentMethod.jsx";
 import MainPage from "../pages/MainPage/MainPage.jsx";
+import Cart from "../pages/Cart/Cart.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -23,7 +22,6 @@ export const router = createBrowserRouter([
         index: true,
         element: <MainPage />,
       },
-      { path: "/form", element: <Form /> },
       { path: "/cart", element: <Cart /> },
       { path: "/products/:productId", element: <ProductPage /> },
       { path: "/menu", element: <Menu /> },
