@@ -13,6 +13,7 @@ const OrderPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { tg } = useTelegram();
+
   const goodsPrice = useSelector((state) => state.cart.totalPrice);
   const delieverPrice = 100;
   const totalPrice = goodsPrice + delieverPrice;
@@ -78,11 +79,11 @@ const OrderPage = () => {
             <div className={styles.addressText}>
               <p>
                 {deliveryMethod === "dilivery"
-                  ? selectAdress.locality
+                  ? selectAdress?.locality
                   : selectCity.name}{" "}
                 {deliveryMethod === "dilivery"
-                  ? `${selectAdress.formattedAddress}`
-                  : `${selectAdress.street}, ${selectAdress.house}`}
+                  ? `${selectAdress?.formattedAddress}`
+                  : `${selectAdress?.street}, ${selectAdress?.house}`}
               </p>
             </div>
           </div>
