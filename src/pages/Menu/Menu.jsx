@@ -6,30 +6,13 @@ import { MdOutlineHomeWork } from "react-icons/md";
 import { AiTwotoneShop } from "react-icons/ai";
 import { MdOutlineAccountBalanceWallet } from "react-icons/md";
 import { FaAngleRight } from "react-icons/fa6";
+import useBackButton from "../../hooks/useTelegramBackButton";
 
 const Menu = () => {
   const navigate = useNavigate();
   const { tg } = useTelegram();
 
-  const onClickBackButton = useCallback(() => {
-    navigate(-1);
-  }, [navigate]);
-
-  useEffect(() => {
-    if (!window.Telegram || !tg) {
-      return;
-    }
-
-    const backButton = tg.BackButton;
-
-    backButton.show();
-    backButton.onClick(onClickBackButton);
-
-    return () => {
-      backButton.hide();
-      backButton.offClick(onClickBackButton);
-    };
-  }, [tg, onClickBackButton]);
+  useBackButton();
 
   return (
     <div className={styles.menuContainer}>

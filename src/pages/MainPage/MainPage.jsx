@@ -8,7 +8,6 @@ import { setUser } from "../../store/userSlice.js";
 const MainPage = () => {
   const { tg } = useTelegram();
   const dispatch = useDispatch();
-  const userData = useSelector((state) => state.user);
 
   useEffect(() => {
     if (tg.initDataUnsafe) {
@@ -31,10 +30,6 @@ const MainPage = () => {
     <div style={{ background: "var(--tg-theme-secondary-bg-color)" }}>
       <Header />
       <ProductList />
-      <div>{userData.firstName}</div>
-      <div>{userData.lastName}</div>
-      <div>{userData.id}</div>
-      <div>{userData?.phone}</div>
     </div>
   );
 };
