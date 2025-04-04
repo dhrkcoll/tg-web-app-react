@@ -24,7 +24,6 @@ const OrderPage = () => {
   const [userPhone, setUserPhone] = useState("");
   const paymentMethod = useSelector((state) => state.payment.paymentMethod);
   const selectCity = useSelector((state) => state.location.selectedCity);
-
   const [isBonus, setIsBonus] = useState(false);
 
   const handleRequestPhone = () => {
@@ -151,7 +150,12 @@ const OrderPage = () => {
               <FaPhoneAlt />
             </div>
             <div className={styles.phoneContent}>
-              <div className={styles.phoneNumber}>{userPhone}</div>
+              <input
+                className={styles.phoneNumber}
+                value={userPhone}
+                onChange={(e) => setUserPhone(e.target.value)}
+              />
+
               <div className={styles.phoneEdit} onClick={handleRequestPhone}>
                 Указать
               </div>
