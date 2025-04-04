@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Header from "../../components/Header/Header.jsx";
 import ProductList from "../../components/ProductList/ProductList";
 import { useTelegram } from "../../hooks/useTelegram.js";
@@ -8,29 +8,33 @@ import { setUser } from "../../store/userSlice.js";
 const MainPage = () => {
   const { tg } = useTelegram();
   const dispatch = useDispatch();
-  const [userData, setUserData] = useState({});
+  const userData = useSelector((state) => state.user);
 
   useEffect(() => {
     if (tg.initDataUnsafe) {
       const user = tg.initDataUnsafe.user;
       if (user) {
-        setUserData({
-          id: user?.id,
-          firstName: user?.first_name,
-          lastName: user?.last_name,
-          username: user?.username,
-          phone: user?.phone_number,
-        });
+        dispatch(
+          setUser({
+            id: user?.id,
+            firstName: user?.first_name,
+            lastName: user?.last_name,
+            username: user?.username,
+            phone: user?.phone_number,
+          })
+        );
       }
     }
-
-    dispatch(setUser(userData));
   }, [tg]);
 
   return (
     <div style={{ background: "var(--tg-theme-secondary-bg-color)" }}>
       <Header />
       <ProductList />
+      <div>{userData.firstName}</div>
+      <div>{userData.lastName}</div>
+      <div>{userData.id}</div>
+      <div>{userData?.phone}</div>
     </div>
   );
 };
