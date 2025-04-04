@@ -15,15 +15,14 @@ const MainPage = () => {
       const user = tg.initDataUnsafe.user;
       if (user) {
         setUserData({
-          id: user.id,
-          firstName: user.first_name,
-          lastName: user.last_name,
-          username: user.username,
+          id: user?.id,
+          firstName: user?.first_name,
+          lastName: user?.last_name,
+          username: user?.username,
           phone: user?.phone_number,
         });
       }
     }
-    alert(userData);
 
     dispatch(setUser(userData));
   }, [tg]);
