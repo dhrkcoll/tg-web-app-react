@@ -1,5 +1,6 @@
 .container {
-  background: var(--tg-theme-bg-color);
+  // background: var(--tg-theme-bg-color);
+  background: var(--tg-theme-secondary-bg-color, #efeff4);
 }
 .delieverSection {
   background: var(--tg-theme-secondary-bg-color, #efeff4);
