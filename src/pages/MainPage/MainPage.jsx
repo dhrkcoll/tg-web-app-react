@@ -13,15 +13,7 @@ const MainPage = () => {
     if (tg.initDataUnsafe) {
       const user = tg.initDataUnsafe.user;
       if (user) {
-        dispatch(
-          setUser({
-            id: user?.id,
-            firstName: user?.first_name,
-            lastName: user?.last_name,
-            username: user?.username,
-            phone: user?.phone_number,
-          })
-        );
+        dispatch(setUser(user));
       }
     }
   }, [tg]);

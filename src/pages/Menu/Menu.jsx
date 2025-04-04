@@ -6,9 +6,11 @@ import { AiTwotoneShop } from "react-icons/ai";
 import { MdOutlineAccountBalanceWallet } from "react-icons/md";
 import { FaAngleRight } from "react-icons/fa6";
 import useBackButton from "../../hooks/useTelegramBackButton.js";
+import { useSelector } from "react-redux";
 
 const Menu = () => {
   const { tg } = useTelegram();
+  const user = useSelector((state) => state.user);
 
   useBackButton();
 
