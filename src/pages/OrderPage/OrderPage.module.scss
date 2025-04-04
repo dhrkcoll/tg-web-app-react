@@ -327,11 +327,13 @@
   position: relative;
 }
 .phoneNumber {
+  background-color: transparent;
   color: var(--tg-theme-text-color, #000);
   text-align: left;
   font-size: var(--regular-16-font-size, 16px);
   line-height: var(--regular-16-line-height, 100%);
   font-weight: var(--regular-16-font-weight, 400);
+  border: none;
   flex: 1;
 }
 .phoneEdit {
