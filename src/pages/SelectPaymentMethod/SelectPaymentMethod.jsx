@@ -1,4 +1,3 @@
-import { useEffect, useCallback } from "react";
 import styles from "./SelectPaymentMethod.module.scss";
 import { FaCheck } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,12 +5,12 @@ import {
   selectPaymentMethods,
   setPaymentMethod,
 } from "../../store/paymentSlice";
-import { useTelegram } from "../../hooks/useTelegram.js";
 import { useNavigate } from "react-router-dom";
+import useBackButton from "../../hooks/useTelegramBackButton.js";
 
 const SelectPaymentMethod = () => {
   const navigate = useNavigate();
-  const { tg } = useTelegram();
+
   const dispatch = useDispatch();
   const possiblePayments = useSelector(selectPaymentMethods);
   const paymentMethodId = useSelector((state) => state.payment.paymentMethod);
@@ -21,23 +20,7 @@ const SelectPaymentMethod = () => {
     navigate(-1);
   };
 
-  const onClickBackButton = useCallback(() => {
-    navigate(-1);
-  }, [navigate]);
-  useEffect(() => {
-    if (!window.Telegram || !tg) {
-      return;
-    }
-    const backButton = tg.BackButton;
-
-    backButton.show();
-    backButton.onClick(onClickBackButton);
-
-    return () => {
-      backButton.hide();
-      backButton.offClick(onClickBackButton);
-    };
-  }, [tg, onClickBackButton]);
+  useBackButton();
 
   return (
     <section className={styles.paymentMethods}>

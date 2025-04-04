@@ -1,15 +1,13 @@
-import { useCallback, useEffect } from "react";
 import styles from "./Menu.module.scss";
 import { useTelegram } from "../../hooks/useTelegram.js";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { MdOutlineHomeWork } from "react-icons/md";
 import { AiTwotoneShop } from "react-icons/ai";
 import { MdOutlineAccountBalanceWallet } from "react-icons/md";
 import { FaAngleRight } from "react-icons/fa6";
-import useBackButton from "../../hooks/useTelegramBackButton";
+import useBackButton from "../../hooks/useTelegramBackButton.js";
 
 const Menu = () => {
-  const navigate = useNavigate();
   const { tg } = useTelegram();
 
   useBackButton();

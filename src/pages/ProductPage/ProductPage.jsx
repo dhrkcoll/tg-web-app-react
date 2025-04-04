@@ -1,50 +1,20 @@
-import { useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectProductById } from "../../store/productsSlice";
 import styles from "./ProductPage.module.scss";
-import { useTelegram } from "../../hooks/useTelegram.js";
-import { useNavigate } from "react-router-dom";
 import { FaAngleRight } from "react-icons/fa6";
+import useBackButton from "../../hooks/useTelegramBackButton.js";
+import { useTelegramButton } from "../../hooks/useTelegramButton.js";
 
 const ProductPage = () => {
-  const navigate = useNavigate();
-  const { tg } = useTelegram();
   const productsInCart = useSelector((state) => state.cart.items);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
   const { productId } = useParams();
 
   const product = useSelector(selectProductById(productId));
 
-  const onClickBackButton = useCallback(() => {
-    navigate(-1);
-  }, [navigate]);
-
-  useEffect(() => {
-    if (!window.Telegram || !tg) {
-      return;
-    }
-    const backButton = tg.BackButton;
-
-    backButton.show();
-    backButton.onClick(onClickBackButton);
-
-    return () => {
-      backButton.hide();
-      backButton.offClick(onClickBackButton);
-    };
-  }, [tg, onClickBackButton]);
-
-  useEffect(() => {
-    if (productsInCart.length === 0) {
-      tg.MainButton.hide();
-    } else {
-      tg.MainButton.show();
-      tg.MainButton.setParams({
-        text: `Купить за ${totalPrice}₽`,
-      });
-    }
-  }, [totalPrice, productsInCart]);
+  useBackButton();
+  useTelegramButton(`Купить за ${totalPrice}₽`, productsInCart.length === 0);
 
   if (!product) {
     return <div>Продукт не найден</div>;

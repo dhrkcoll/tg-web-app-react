@@ -4,8 +4,9 @@ import styles from "./AddAdressPage.module.scss";
 import { useTelegram } from "../../hooks/useTelegram.js";
 import { useNavigate } from "react-router-dom";
 import { addAddress } from "../../store/adressesSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useTelegramButton } from "../../hooks/useTelegramButton.js";
+import useBackButton from "../../hooks/useTelegramBackButton.js";
 
 const CENTER = [52.233035839442266, 57.44059302107728];
 const ZOOM = 12;
@@ -95,7 +96,6 @@ const AddAdressPage = () => {
   useTelegramButton("Сохранить", true);
 
   const onClickMainButton = useCallback(() => {
-    // const transformedAdress = transformAddress(adress);
     dispatch(addDeliveryAdress(adress));
     navigate("/select-deliever");
   }, [dispatch, adress, navigate]);
@@ -107,26 +107,9 @@ const AddAdressPage = () => {
     };
   }, [dispatch, onClickMainButton]);
 
-  const onClickBackButton = useCallback(() => {
-    navigate(-1);
-  }, [navigate]);
-  useEffect(() => {
-    if (!window.Telegram || !tg) {
-      return;
-    }
-    const backButton = tg.BackButton;
-
-    backButton.show();
-    backButton.onClick(onClickBackButton);
-
-    return () => {
-      backButton.hide();
-      backButton.offClick(onClickBackButton);
-    };
-  }, [tg, onClickBackButton]);
+  useBackButton();
 
   const onClickAdd = () => {
-    // const transformedAdress = transformAddress(adress);
     dispatch(addAddress(adress));
     navigate("/select-deliever");
   };

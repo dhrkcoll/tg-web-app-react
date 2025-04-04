@@ -4,7 +4,8 @@ import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import CartItem from "../../components/CartItem/CartItem";
 import { useTelegram } from "../../hooks/useTelegram.js";
-import { useTelegramButton } from "../../hooks/useTelegramButton";
+import { useTelegramButton } from "../../hooks/useTelegramButton.js";
+import useBackButton from "../../hooks/useTelegramBackButton.js";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -12,25 +13,8 @@ const Cart = () => {
   const cartItems = useSelector((state) => state.cart.items);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
 
-  const onClickBackButton = useCallback(() => {
-    navigate(-1);
-  }, [navigate]);
-
   useTelegramButton(`Сделать заказ на ${totalPrice}₽`, cartItems !== 0);
-  useEffect(() => {
-    if (!window.Telegram || !tg) {
-      return;
-    }
-    const backButton = tg.BackButton;
-
-    backButton.show();
-    backButton.onClick(onClickBackButton);
-
-    return () => {
-      backButton.hide();
-      backButton.offClick(onClickBackButton);
-    };
-  }, [tg, onClickBackButton]);
+  useBackButton();
 
   const onClickMainButton = useCallback(() => {
     navigate("/order");

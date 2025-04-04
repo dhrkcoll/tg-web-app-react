@@ -1,17 +1,15 @@
-import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./SelectDelieverPage.module.scss";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
-import { useTelegram } from "../../hooks/useTelegram.js";
 import { useTelegramButton } from "../../hooks/useTelegramButton.js";
 import { selectAddress } from "../../store/locationSlice";
 import { FaCheck } from "react-icons/fa";
+import useBackButton from "../../hooks/useTelegramBackButton.js";
 
 const SelectDelieverPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { tg } = useTelegram();
 
   const delieveryAdresses = useSelector(
     (state) => state.adresses.savedAddresses
@@ -26,23 +24,7 @@ const SelectDelieverPage = () => {
   };
 
   useTelegramButton("", false);
-  const onClickBackButton = useCallback(() => {
-    navigate(-1);
-  }, [navigate]);
-  useEffect(() => {
-    if (!window.Telegram || !tg) {
-      return;
-    }
-    const backButton = tg.BackButton;
-
-    backButton.show();
-    backButton.onClick(onClickBackButton);
-
-    return () => {
-      backButton.hide();
-      backButton.offClick(onClickBackButton);
-    };
-  }, [tg, onClickBackButton]);
+  useBackButton();
 
   return (
     <section className={styles.container}>

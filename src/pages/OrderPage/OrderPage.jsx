@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useTelegram } from "../../hooks/useTelegram.js";
 import { Link, useNavigate } from "react-router-dom";
 import { useTelegramButton } from "../../hooks/useTelegramButton.js";
+import useBackButton from "../../hooks/useTelegramBackButton.js";
 
 const OrderPage = () => {
   const dispatch = useDispatch();
@@ -55,23 +56,7 @@ const OrderPage = () => {
   };
 
   useTelegramButton("ОФОРМИТЬ ЗАКАЗ", true);
-  const onClickBackButton = useCallback(() => {
-    navigate(-1);
-  }, [navigate]);
-  useEffect(() => {
-    if (!window.Telegram || !tg) {
-      return;
-    }
-    const backButton = tg.BackButton;
-
-    backButton.show();
-    backButton.onClick(onClickBackButton);
-
-    return () => {
-      backButton.hide();
-      backButton.offClick(onClickBackButton);
-    };
-  }, [tg, onClickBackButton]);
+  useBackButton();
 
   return (
     <div className={styles.deliveryModule}>
