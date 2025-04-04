@@ -34,7 +34,6 @@ const SelectDelieverPage = () => {
             <h2 className={styles.adressesListTitle}>Выберите адрес</h2>
             <ul className={styles.adressesList}>
               {delieveryAdresses.map((adress, index) => {
-                console.log(adress);
                 return (
                   <li
                     key={index}
