@@ -30,14 +30,16 @@ const OrderPage = () => {
     tg.HapticFeedback.selectionChanged();
     tg.requestContact((status, event) => {
       if (status) {
-        console.log(event);
         const phone = event?.responseUnsafe?.contact?.phone_number || null;
         setUserPhone(phone);
       }
     });
   };
 
-  const createInvoice = (orderData) => {};
+  useEffect(() => {
+    if (tg.initDataUnsafe) {
+    }
+  }, [tg]);
 
   const handleSubmitOrder = () => {
     const orderData = {

@@ -1,4 +1,3 @@
-// store/addresses/addressesSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
