@@ -14,16 +14,18 @@ const OrderPage = () => {
   const navigate = useNavigate();
   const { tg } = useTelegram();
 
-  const goodsPrice = useSelector((state) => state.cart.totalPrice);
   const delieverPrice = 100;
   const totalPrice = goodsPrice + delieverPrice;
+
+  const goodsPrice = useSelector((state) => state.cart.totalPrice);
   const deliveryMethod = useSelector((state) => state.location.deliveryMethod);
   const selectedAddress = useSelector(
     (state) => state.location.selectedAddress
   );
-  const [userPhone, setUserPhone] = useState("");
   const paymentMethod = useSelector((state) => state.payment.paymentMethod);
   const selectCity = useSelector((state) => state.location.selectedCity);
+
+  const [userPhone, setUserPhone] = useState("");
   const [isBonus, setIsBonus] = useState(false);
 
   const handleRequestPhone = () => {

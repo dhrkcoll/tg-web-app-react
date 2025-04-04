@@ -23,6 +23,8 @@ const MainPage = () => {
         });
       }
     }
+    alert(userData);
+
     dispatch(setUser(userData));
   }, [tg]);
 
@@ -30,13 +32,6 @@ const MainPage = () => {
     <div style={{ background: "var(--tg-theme-secondary-bg-color)" }}>
       <Header />
       <ProductList />
-      <div>
-        <div>{id}</div>
-        <div>{firstName}</div>
-        <div>{lastName}</div>
-        <div>{username}</div>
-        <div>{phone}</div>
-      </div>
     </div>
   );
 };

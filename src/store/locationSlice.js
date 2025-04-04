@@ -25,7 +25,6 @@ export const locationSlice = createSlice({
       state.selectedCity = action.payload;
     },
     selectAddress(state, action) {
-      console.log(action.payload);
       state.selectedAddress = action.payload;
     },
     setDeliveryMethod(state, action) {
