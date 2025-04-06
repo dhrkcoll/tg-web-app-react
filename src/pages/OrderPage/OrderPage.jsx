@@ -16,9 +16,9 @@ const OrderPage = () => {
   const { tg } = useTelegram();
 
   const delieverPrice = 100;
-  const totalPrice = goodsPrice + delieverPrice;
 
   const goodsPrice = useSelector((state) => state.cart.totalPrice);
+
   const deliveryMethod = useSelector((state) => state.location.deliveryMethod);
   const selectedAddress = useSelector(
     (state) => state.location.selectedAddress
@@ -28,6 +28,8 @@ const OrderPage = () => {
 
   const [userPhone, setUserPhone] = useState("");
   const [isBonus, setIsBonus] = useState(false);
+
+  const totalPrice = goodsPrice + delieverPrice;
 
   const handleRequestPhone = () => {
     tg.HapticFeedback.selectionChanged();
