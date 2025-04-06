@@ -72,7 +72,8 @@ const OrderPage = () => {
               <p>
                 {deliveryMethod === "dilivery"
                   ? selectedAddress?.locality
-                  : selectCity.name}{" "}
+                  : selectCity.name}
+                ,{" "}
                 {deliveryMethod === "dilivery"
                   ? `${selectedAddress?.formattedAddress}`
                   : `${selectedAddress?.street}, ${selectedAddress?.house}`}
