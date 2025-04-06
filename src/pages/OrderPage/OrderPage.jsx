@@ -39,10 +39,10 @@ const OrderPage = () => {
     });
   };
 
-  useEffect(() => {
-    if (tg.initDataUnsafe) {
-    }
-  }, [tg]);
+  // useEffect(() => {
+  //   if (tg.initDataUnsafe) {
+  //   }
+  // }, [tg]);
 
   const handleSubmitOrder = () => {
     const orderData = {
