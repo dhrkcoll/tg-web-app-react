@@ -7,6 +7,12 @@ import useBackButton from "../../hooks/useTelegramBackButton.js";
 import { useTelegramButton } from "../../hooks/useTelegramButton.js";
 
 const ProductPage = () => {
+  const options = [
+    { title: "Сырный соус", price: "50,00 ₽" },
+    { title: "Кисло-сладкий соус", price: "50,00 ₽" },
+    { title: "Кетчуп", price: "50,00 ₽" },
+  ];
+
   const productsInCart = useSelector((state) => state.cart.items);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
   const { productId } = useParams();
@@ -49,6 +55,28 @@ const ProductPage = () => {
                   <FaAngleRight />
                 </div>
               </div>
+            </div>
+          </div>
+
+          <div className={styles.sectionOptions}>
+            <div className={styles.head}>
+              <p className={styles.div1}>Опции</p>
+            </div>
+            <div className={styles.options}>
+              {options.map((option) => (
+                <div className={styles.optionsItem}>
+                  <div className={styles.content}>
+                    <div className={styles.text}>
+                      <div className={styles.title}>
+                        <div className={styles.div2}>{option.title}</div>
+                      </div>
+                      <div className={styles.subtitle}>
+                        <div className={styles.price}>{option.price}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

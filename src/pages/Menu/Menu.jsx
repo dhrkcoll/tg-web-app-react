@@ -1,5 +1,4 @@
 import styles from "./Menu.module.scss";
-import { useTelegram } from "../../hooks/useTelegram.js";
 import { Link } from "react-router-dom";
 import { MdOutlineHomeWork } from "react-icons/md";
 import { AiTwotoneShop } from "react-icons/ai";
@@ -9,7 +8,6 @@ import useBackButton from "../../hooks/useTelegramBackButton.js";
 import { useSelector } from "react-redux";
 
 const Menu = () => {
-  const { tg } = useTelegram();
   const user = useSelector((state) => state.user);
 
   useBackButton();
