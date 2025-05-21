@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import "./App.css";
 import { useTelegram } from "./hooks/useTelegram.js";
-import Header from "./components/Header/Header";
-import ProductList from "./components/ProductList/ProductList";
+import { YMaps } from "@pbe/react-yandex-maps";
+
 import { Outlet } from "react-router-dom";
 
 function App() {
@@ -15,7 +15,9 @@ function App() {
 
   return (
     <>
-      <Outlet />
+      <YMaps>
+        <Outlet />
+      </YMaps>
     </>
   );
 }

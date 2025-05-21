@@ -1,23 +1,35 @@
-const tg = window.Telegram.WebApp;
+import { useMemo } from "react";
+
+const tg = window.Telegram?.WebApp;
 
 export function useTelegram() {
   const onClose = () => {
-    tg.close();
-  };
-
-  const onToggleButton = () => {
-    if (tg.MainButton.isVisible) {
-      tg.MainButton.hide();
-    } else {
-      tg.MainButton.show();
+    if (tg) {
+      tg.close();
     }
   };
 
-  return {
-    tg,
-    onToggleButton,
-    onClose,
-    user: tg.initDataUnsafe?.user,
-    queryId: tg.initDataUnsafe?.query_id,
+  const onToggleButton = () => {
+    if (tg) {
+      if (tg.MainButton.isVisible) {
+        tg.MainButton.hide();
+      } else {
+        tg.MainButton.show();
+      }
+    }
   };
+
+  const user = tg?.initDataUnsafe?.user;
+  const queryId = tg?.initDataUnsafe?.query_id;
+
+  return useMemo(
+    () => ({
+      tg,
+      onToggleButton,
+      onClose,
+      user,
+      queryId,
+    }),
+    [tg]
+  );
 }

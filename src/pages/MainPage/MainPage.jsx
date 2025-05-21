@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Header from "../../components/Header/Header.jsx";
 import ProductList from "../../components/ProductList/ProductList";
 import { useTelegram } from "../../hooks/useTelegram.js";
