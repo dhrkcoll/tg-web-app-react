@@ -1,8 +1,6 @@
 import React from "react";
 import styles from "./Header.module.scss";
-import Button from "../UI/Button/Button";
-import { useTelegram } from "../../hooks/useTelegram.js";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FaAngleRight } from "react-icons/fa6";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,10 +9,8 @@ import { clearItems } from "../../store/cartSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const { user, onClose } = useTelegram();
 
   const deliveryMethod = useSelector((state) => state.location.deliveryMethod);
-
   const selectedCity = useSelector((state) => state.location.selectedCity);
   const selectedAdress = useSelector((state) => state.location.selectedAddress);
 
